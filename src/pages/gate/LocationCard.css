@@ -1,0 +1,196 @@
+@layer components {
+
+    /* ── Card shell ──────────────────────────────────────────── */
+    .card {
+        position: relative;
+        text-align: left;
+    }
+
+    .card:focus-visible {
+        outline: 2px solid color-mix(in srgb, var(--color-cream) 40%, transparent);
+        outline-offset: -2px;
+    }
+
+    /* Constant tint — pulls the image from "photo" to "atmosphere" */
+    .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.50);
+        pointer-events: none;
+    }
+
+    /* Bottom-up scrim — creates the legible zone for text */
+    .card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                transparent 28%,
+                rgba(0, 0, 0, 0.55) 52%,
+                rgba(0, 0, 0, 0.92) 100%
+        );
+        pointer-events: none;
+    }
+
+    /* Sit above both pseudo-element overlays */
+    .card__meta,
+    .card__content,
+    .card__cta-bar {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ── Meta row ────────────────────────────────────────────── */
+    .card__meta {
+        padding: 1.5rem 2rem;
+    }
+
+    .card__meta-index {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+        color: color-mix(in srgb, var(--color-cream) 60%, transparent);
+    }
+
+    .card__meta-city {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--color-cream) 55%, transparent);
+    }
+
+    /* ── Content area ────────────────────────────────────────── */
+    .card__content {
+        padding: 0 2rem 1.5rem;
+    }
+
+    .card__status-row {
+        margin-bottom: 1rem;
+    }
+
+    .card__status-badge {
+        padding: 0.2rem 0.7rem 0.2rem 0.5rem;
+        border: 1px solid color-mix(in srgb, var(--color-cream) 14%, transparent);
+        border-radius: 9999px;
+        background: color-mix(in srgb, var(--color-cream) 7%, transparent);
+        backdrop-filter: blur(6px);
+    }
+
+    .card__status-icon {
+        color: color-mix(in srgb, var(--color-cream) 65%, transparent);
+    }
+
+    .card__status-label {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        color: color-mix(in srgb, var(--color-cream) 80%, transparent);
+    }
+
+    .card__title {
+        font-family: var(--font-serif), serif;
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        margin-left: -0.25rem;
+        color: var(--color-cream);
+        text-shadow: 0 2px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .card__descriptor {
+        font-family: var(--font-mono), monospace;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+        color: color-mix(in srgb, var(--color-cream) 65%, transparent);
+    }
+
+    .card__divider {
+        height: 1px;
+        margin-bottom: 1.25rem;
+        background: linear-gradient(
+                to right,
+                color-mix(in srgb, var(--color-cream) 22%, transparent),
+                transparent
+        );
+    }
+
+    /* ── Contact block ───────────────────────────────────────── */
+    .card__contact {
+        margin-bottom: 1.25rem;
+    }
+
+    .card__contact-icon {
+        color: color-mix(in srgb, var(--color-cream) 55%, transparent);
+    }
+
+    .card__address {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1.0625rem;
+        font-style: normal;
+        line-height: 1.35;
+        color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+    }
+
+    .card__phone {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1.0625rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+    }
+
+    /* ── Delivery chips ──────────────────────────────────────── */
+    .card__section-label {
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.625rem;
+        color: color-mix(in srgb, var(--color-cream) 52%, transparent);
+    }
+
+    .card__chip {
+        font-family: var(--font-mono), monospace;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        padding: 0.25rem 0.75rem;
+        border: 1px solid;
+        border-radius: 9999px;
+    }
+
+    .card__chip--delivery {
+        border-color: color-mix(in srgb, var(--color-cream) 22%, transparent);
+        color: color-mix(in srgb, var(--color-cream) 58%, transparent);
+    }
+
+    /* ── CTA ─────────────────────────────────────────────────── */
+    .card__cta-bar {
+        padding: 0 2rem 2rem;
+    }
+
+    .card__cta-inner {
+        padding: 0.65rem 1.25rem;
+        border-radius: 0.5rem;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.025em;
+        color: var(--color-cream);
+        background-color: var(--color-terracotta);
+        transition: background-color 200ms;
+    }
+
+    .card:hover .card__cta-inner {
+        background-color: var(--color-terracotta-deep);
+    }
+
+
+}

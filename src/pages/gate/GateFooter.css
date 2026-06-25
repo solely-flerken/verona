@@ -1,0 +1,25 @@
+@layer components {
+    .gate-footer {
+        font-family: var(--font-mono), monospace;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--color-cream) 25%, transparent);
+        background-color: #0a0704;
+    }
+
+    .gate-footer__link {
+        transition: color 200ms;
+    }
+
+    .gate-footer__link:hover {
+        color: color-mix(in srgb, var(--color-cream) 50%, transparent);
+    }
+
+    .gate-footer__divider {
+        display: inline-block;
+        width: 1px;
+        height: 0.75rem;
+        background-color: color-mix(in srgb, var(--color-cream) 10%, transparent);
+    }
+}
