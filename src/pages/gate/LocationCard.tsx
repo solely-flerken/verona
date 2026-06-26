@@ -74,7 +74,13 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                     </div>
                     <div className="flex items-center gap-2">
                         <Phone size={18} className="card__contact-icon shrink-0"/>
-                        <p className="card__phone">{location.contact.phone}</p>
+                        <a
+                            href={`tel:${location.contact.phone.replace(/\s/g, '')}`}
+                            className="card__phone"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {location.contact.phone}
+                        </a>
                     </div>
                 </div>
 
