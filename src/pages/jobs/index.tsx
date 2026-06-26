@@ -11,7 +11,7 @@ export function JobsPage() {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <GateHeader subtitle="Jobs"/>
+            <GateHeader subtitle="Jobs" showBack/>
 
             <main className="flex-1 jobs-page" style={{backgroundImage: `url(${imagesData.wesekeLounge.src})`}}>
                 <div className="jobs-content">

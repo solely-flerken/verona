@@ -9,6 +9,16 @@
     }
 
     /* ── Wordmark ────────────────────────────────────────────── */
+    .gate-wordmark {
+        text-decoration: none;
+        opacity: 1;
+        transition: opacity 150ms;
+    }
+
+    .gate-wordmark:hover {
+        opacity: 0.75;
+    }
+
     .gate-wordmark__prefix,
     .gate-wordmark__name {
         font-family: var(--font-serif), serif;
@@ -32,6 +42,20 @@
         width: 1px;
         height: 1.5rem;
         background-color: var(--color-line);
+    }
+
+    /* ── Back link ──────────────────────────────────────────── */
+    .gate-header-back {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        text-decoration: none;
+        color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+        transition: color 150ms;
+        white-space: nowrap;
+    }
+
+    .gate-header-back:hover {
+        color: var(--color-ink);
     }
 
     /* ── Subtitle ────────────────────────────────────────────── */

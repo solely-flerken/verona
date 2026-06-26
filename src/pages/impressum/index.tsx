@@ -6,7 +6,7 @@ import './index.css'
 export function ImpressumPage() {
     return (
         <div className="min-h-screen flex flex-col">
-            <GateHeader subtitle="Impressum"/>
+            <GateHeader subtitle="Impressum" showBack/>
 
             <main className="flex-1 impressum-page" style={{backgroundImage: `url(${imagesData.wesekeEntry.src})`}}>
                 <article className="impressum-content">
