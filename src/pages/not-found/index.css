@@ -1,0 +1,61 @@
+@layer components {
+    .not-found-page {
+        position: relative;
+        background-size: cover;
+        background-position: center 40%;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 2rem;
+    }
+
+    .not-found-page::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+    }
+
+    .not-found-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 36rem;
+        background-color: color-mix(in srgb, var(--color-paper) 80%, transparent);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
+        border-radius: 1.25rem;
+        padding: 3.5rem 3rem;
+    }
+
+    .not-found-eyebrow {
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-terracotta);
+        margin-bottom: 0.75rem;
+    }
+
+    .not-found-title {
+        font-family: var(--font-serif), serif;
+        font-size: clamp(2.5rem, 5vw, 3.75rem);
+        font-weight: 700;
+        font-style: italic;
+        line-height: 0.94;
+        letter-spacing: -0.01em;
+        color: var(--color-ink);
+        margin-bottom: 1.25rem;
+    }
+
+    .not-found-body {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        line-height: 1.7;
+        color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+        margin-bottom: 2rem;
+    }
+}
