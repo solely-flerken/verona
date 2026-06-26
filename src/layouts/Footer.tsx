@@ -1,7 +1,7 @@
 import {Link} from 'react-router'
-import './GateFooter.css'
+import './Footer.css'
 
-export function GateFooter() {
+export function Footer() {
     return (
         <footer className="gate-footer flex items-center justify-between px-8 py-3.5">
             <span>© {new Date().getFullYear()} Pizzeria Verona · Weseke &amp; Borken</span>

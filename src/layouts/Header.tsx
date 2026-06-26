@@ -1,20 +1,20 @@
 import {Link} from 'react-router'
 import {ArrowLeft} from 'lucide-react'
-import './GateHeader.css'
+import './Header.css'
 
-interface GateHeaderProps {
+interface HeaderProps {
     subtitle?: string
     showBack?: boolean
 }
 
-export function GateHeader({subtitle = 'Bitte Standort wählen', showBack = false}: GateHeaderProps) {
+export function Header({subtitle = 'Bitte Standort wählen', showBack = false}: HeaderProps) {
     return (
         <header className="gate-header grid grid-cols-[1fr_auto_1fr] items-center px-6 py-3.5">
             <div className="flex items-center pr-4">
                 {showBack && (
                     <Link to="/" className="gate-header-back inline-flex items-center gap-1.5">
                         <ArrowLeft size={15} strokeWidth={1.75}/>
-                        Standort auswählen
+                        Standorte
                     </Link>
                 )}
                 <Link to="/" className="gate-wordmark ml-auto">

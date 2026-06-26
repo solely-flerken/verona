@@ -1,5 +1,4 @@
-import {GateHeader} from '../gate/GateHeader'
-import {GateFooter} from '../gate/GateFooter'
+import {PageLayout} from '../../layouts/PageLayout'
 import {jobsData} from './data'
 import {JobCard} from './JobCard'
 import {ContactCard} from './ContactCard'
@@ -10,9 +9,7 @@ export function JobsPage() {
     const activeJobs = jobsData.filter(j => j.active)
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <GateHeader subtitle="Jobs" showBack/>
-
+        <PageLayout subtitle="Jobs" showBack>
             <main className="flex-1 jobs-page" style={{backgroundImage: `url(${imagesData.wesekeLounge.src})`}}>
                 <div className="jobs-content">
                     <div className="jobs-header">
@@ -41,8 +38,6 @@ export function JobsPage() {
                     </div>
                 </div>
             </main>
-
-            <GateFooter/>
-        </div>
+        </PageLayout>
     )
 }

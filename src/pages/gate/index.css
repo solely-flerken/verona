@@ -1,0 +1,5 @@
+@layer components {
+    .gate-main {
+        background: linear-gradient(to bottom, var(--color-paper), #0a0704);
+    }
+}

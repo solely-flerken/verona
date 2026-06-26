@@ -1,13 +1,10 @@
-import {GateHeader} from '../gate/GateHeader'
-import {GateFooter} from '../gate/GateFooter'
+import {PageLayout} from '../../layouts/PageLayout'
 import {imagesData} from '../../shared/imagesData'
 import './index.css'
 
 export function ImpressumPage() {
     return (
-        <div className="min-h-screen flex flex-col">
-            <GateHeader subtitle="Impressum" showBack/>
-
+        <PageLayout subtitle="Impressum" showBack>
             <main className="flex-1 impressum-page" style={{backgroundImage: `url(${imagesData.wesekeEntry.src})`}}>
                 <article className="impressum-content">
                     <div className="impressum-header">
@@ -54,8 +51,6 @@ export function ImpressumPage() {
                     </section>
                 </article>
             </main>
-
-            <GateFooter/>
-        </div>
+        </PageLayout>
     )
 }

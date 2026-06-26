@@ -1,8 +1,8 @@
 import {useState} from 'react'
 import {locationsData} from '../../shared/locationsData.ts'
 import {useViewTransitionNavigate} from './hooks'
-import {GateHeader} from './GateHeader'
-import {GateFooter} from './GateFooter'
+import {PageLayout} from '../../layouts/PageLayout'
+import './index.css'
 import {LocationCard} from './LocationCard'
 import {LocationWidget} from './LocationWidget'
 
@@ -11,9 +11,7 @@ export function GatePage() {
     const [hoveredSlug, setHoveredSlug] = useState<string | null>(null)
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <GateHeader/>
-
+        <PageLayout>
             <main className="gate-main relative flex-1 flex flex-col md:flex-row gap-px">
                 <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
                     <LocationWidget/>
@@ -31,8 +29,6 @@ export function GatePage() {
                     />
                 ))}
             </main>
-
-            <GateFooter/>
-        </div>
+        </PageLayout>
     )
 }

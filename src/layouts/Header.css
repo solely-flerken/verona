@@ -4,10 +4,6 @@
         background-color: var(--color-paper);
     }
 
-    .gate-main {
-        background: linear-gradient(to bottom, var(--color-paper), #0a0704);
-    }
-
     /* ── Wordmark ────────────────────────────────────────────── */
     .gate-wordmark {
         text-decoration: none;
@@ -47,9 +43,9 @@
     /* ── Back link ──────────────────────────────────────────── */
     .gate-header-back {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: 0.9rem;
         text-decoration: none;
-        color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
         transition: color 150ms;
         white-space: nowrap;
     }
