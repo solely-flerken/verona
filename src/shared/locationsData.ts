@@ -1,4 +1,5 @@
 import type {LocationData, OpeningHoursConfig} from './types'
+import {imagesData} from './imagesData'
 
 export const locationsData: LocationData[] = [
     {
@@ -47,7 +48,7 @@ export const locationsData: LocationData[] = [
                 {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
-        image: "/images/verona_weseke_entry.jpg",
+        image: imagesData.wesekeEntry.src,
         fallbackBg: '#1c140d',
         descriptor: 'Hauptrestaurant · 42 Plätze',
         deliveryCities: ['Weseke', 'Ramsdorf', 'Ramsdorf-Holthausen', 'Südlohn', 'Oeding'],
@@ -98,7 +99,7 @@ export const locationsData: LocationData[] = [
                 {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
-        image: "/images/verona_weseke_lounge.jpg",
+        image: imagesData.wesekeLounge.src,
         fallbackBg: '#2d2318',
         descriptor: 'Filiale · Mittagstisch',
         deliveryCities: ['Borken', 'Hovesath', 'Borkenwirthe', 'Gemen', 'Grütlohn', 'Hoxfeld', 'Marbeck'],
