@@ -24,7 +24,7 @@ export function LocationWidget() {
                 className="widget__input"
             />
 
-            {matchedLocation && (
+            {matchedLocation ? (
                 <div className="widget__result flex items-center justify-between gap-3">
                     <div className="flex flex-col gap-1.5">
                         <p className="widget__result-label">Bestellen Sie bei</p>
@@ -37,6 +37,8 @@ export function LocationWidget() {
                         Weiter →
                     </button>
                 </div>
+            ) : query.trim().length >= 3 && (
+                <p className="widget__no-match">Wir konnten Ihrer Eingabe keinen Standort zuordnen.</p>
             )}
         </div>
     )

@@ -87,4 +87,15 @@
     .widget__result-btn:hover {
         background-color: var(--color-terracotta-deep);
     }
+
+    /* ── No match ────────────────────────────────────────────── */
+    .widget__no-match {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--color-line);
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.875rem;
+        text-align: center;
+        color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+    }
 }
