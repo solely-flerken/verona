@@ -9,8 +9,13 @@ interface PageLayoutProps {
 }
 
 export function PageLayout({subtitle, showBack, children}: PageLayoutProps) {
+    const pageTitle = subtitle
+        ? `${subtitle} · Pizzeria Verona`
+        : 'Pizzeria Verona'
+
     return (
         <div className="min-h-screen flex flex-col">
+            <title>{pageTitle}</title>
             <Header subtitle={subtitle} showBack={showBack}/>
             {children}
             <Footer/>
