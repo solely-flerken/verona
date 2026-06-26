@@ -25,6 +25,7 @@ function timeToMinutes(time: string): number {
 
 export interface OpeningStatus {
     isOpen: boolean
+    opensLater: boolean
     label: string
 }
 
@@ -61,7 +62,7 @@ export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), m
     const schedule = override ? override.schedule : config.week[toWeekDay(now)]
 
     if ('closed' in schedule) {
-        return {isOpen: false, label: override?.label ? LABEL.override(override.label) : LABEL.closed}
+        return {isOpen: false, opensLater: false, label: override?.label ? LABEL.override(override.label) : LABEL.closed}
     }
 
     const nowMin = now.getHours() * 60 + now.getMinutes()
@@ -72,12 +73,12 @@ export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), m
         const closeMin = timeToMinutes(close)
 
         if (nowMin >= openMin && nowMin < closeMin) {
-            return {isOpen: true, label: LABEL.open(close)}
+            return {isOpen: true, opensLater: false, label: LABEL.open(close)}
         }
         if (nowMin < openMin) {
-            return {isOpen: false, label: i === 0 ? LABEL.before(open) : LABEL.between(open)}
+            return {isOpen: false, opensLater: true, label: i === 0 ? LABEL.before(open) : LABEL.between(open)}
         }
     }
 
-    return {isOpen: false, label: LABEL.afterClose}
+    return {isOpen: false, opensLater: false, label: LABEL.afterClose}
 }

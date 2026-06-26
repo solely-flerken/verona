@@ -40,11 +40,13 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             <div className="card__content">
                 <div className="card__status-row flex flex-wrap gap-2">
                     <div className="card__status-badge inline-flex items-center gap-[0.4rem]">
+                        <span className={`card__status-dot card__status-dot--${status.isOpen ? 'open' : status.opensLater ? 'soon' : 'closed'}`}/>
                         <Clock size={18} className="card__status-icon shrink-0"/>
                         <span className="card__status-label">{status.label}</span>
                     </div>
                     {deliveryStatus && (
                         <div className="card__status-badge inline-flex items-center gap-[0.4rem]">
+                            <span className={`card__status-dot card__status-dot--${deliveryStatus.isOpen ? 'open' : deliveryStatus.opensLater ? 'soon' : 'closed'}`}/>
                             <Bike size={18} className="card__status-icon shrink-0"/>
                             <span className="card__status-label">{deliveryStatus.label}</span>
                         </div>
