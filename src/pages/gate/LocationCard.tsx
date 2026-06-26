@@ -1,7 +1,14 @@
 import {MapPin, Phone, Clock, Bike} from 'lucide-react'
 import {getOpeningStatus} from '../../shared/openingHours'
+import type {OpeningStatus} from '../../shared/openingHours'
 import type {LocationData} from '../../shared/types'
 import './LocationCard.css'
+
+function dotState(s: OpeningStatus) {
+    if (s.closesSoon) return 'soon'
+    if (s.isOpen) return 'open'
+    return 'closed'
+}
 
 interface LocationCardProps {
     location: LocationData
@@ -40,13 +47,13 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             <div className="card__content">
                 <div className="card__status-row flex flex-wrap gap-2">
                     <div className="card__status-badge inline-flex items-center gap-[0.4rem]">
-                        <span className={`card__status-dot card__status-dot--${status.isOpen ? 'open' : status.opensLater ? 'soon' : 'closed'}`}/>
+                        <span className={`card__status-dot card__status-dot--${dotState(status)}`}/>
                         <Clock size={18} className="card__status-icon shrink-0"/>
                         <span className="card__status-label">{status.label}</span>
                     </div>
                     {deliveryStatus && (
                         <div className="card__status-badge inline-flex items-center gap-[0.4rem]">
-                            <span className={`card__status-dot card__status-dot--${deliveryStatus.isOpen ? 'open' : deliveryStatus.opensLater ? 'soon' : 'closed'}`}/>
+                            <span className={`card__status-dot card__status-dot--${dotState(deliveryStatus)}`}/>
                             <Bike size={18} className="card__status-icon shrink-0"/>
                             <span className="card__status-label">{deliveryStatus.label}</span>
                         </div>

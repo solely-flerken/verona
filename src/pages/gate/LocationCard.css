@@ -96,6 +96,10 @@
         background: #fb923c;
     }
 
+    .card__status-dot--later {
+        background: #60a5fa;
+    }
+
     .card__status-dot--closed {
         background: color-mix(in srgb, var(--color-cream) 22%, transparent);
     }

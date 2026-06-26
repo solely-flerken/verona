@@ -26,6 +26,7 @@ function timeToMinutes(time: string): number {
 export interface OpeningStatus {
     isOpen: boolean
     opensLater: boolean
+    closesSoon: boolean
     label: string
 }
 
@@ -34,6 +35,7 @@ type Mode = 'restaurant' | 'delivery'
 const LABELS = {
     restaurant: {
         open: (time: string) => `Geöffnet · bis ${time} Uhr`,
+        closingSoon: (time: string) => `Schließt demnächst · ${time} Uhr`,
         before: (time: string) => `Öffnet heute um ${time} Uhr`,
         between: (time: string) => `Öffnet wieder um ${time} Uhr`,
         afterClose: 'Geschlossen',
@@ -42,6 +44,7 @@ const LABELS = {
     },
     delivery: {
         open: (time: string) => `Lieferservice · bis ${time} Uhr`,
+        closingSoon: (time: string) => `Lieferservice endet · ${time} Uhr`,
         before: (time: string) => `Lieferservice ab ${time} Uhr`,
         between: (time: string) => `Lieferservice ab ${time} Uhr`,
         afterClose: 'Lieferservice geschlossen',
@@ -50,7 +53,7 @@ const LABELS = {
     },
 } satisfies Record<Mode, Record<string, string | ((s: string) => string)>>
 
-export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant'): OpeningStatus {
+export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant', closingSoonMinutes = 30): OpeningStatus {
     const LABEL = LABELS[mode]
     const dateStr = toDateStr(now)
     const monthDay = toMonthDay(now)
@@ -62,7 +65,7 @@ export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), m
     const schedule = override ? override.schedule : config.week[toWeekDay(now)]
 
     if ('closed' in schedule) {
-        return {isOpen: false, opensLater: false, label: override?.label ? LABEL.override(override.label) : LABEL.closed}
+        return {isOpen: false, opensLater: false, closesSoon: false, label: override?.label ? LABEL.override(override.label) : LABEL.closed}
     }
 
     const nowMin = now.getHours() * 60 + now.getMinutes()
@@ -73,12 +76,14 @@ export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), m
         const closeMin = timeToMinutes(close)
 
         if (nowMin >= openMin && nowMin < closeMin) {
-            return {isOpen: true, opensLater: false, label: LABEL.open(close)}
+            const closesSoon = closeMin - nowMin <= closingSoonMinutes
+            const label = closesSoon ? LABEL.closingSoon(close) : LABEL.open(close)
+            return {isOpen: true, opensLater: false, closesSoon, label}
         }
         if (nowMin < openMin) {
-            return {isOpen: false, opensLater: true, label: i === 0 ? LABEL.before(open) : LABEL.between(open)}
+            return {isOpen: false, opensLater: true, closesSoon: false, label: i === 0 ? LABEL.before(open) : LABEL.between(open)}
         }
     }
 
-    return {isOpen: false, opensLater: false, label: LABEL.afterClose}
+    return {isOpen: false, opensLater: false, closesSoon: false, label: LABEL.afterClose}
 }

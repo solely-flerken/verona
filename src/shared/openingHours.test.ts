@@ -31,67 +31,82 @@ const standard: OpeningHoursConfig = {
 describe('restaurant — slot states', () => {
     it('open: inside a slot', () => {
         const result = getOpeningStatus(standard, THU(19))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 22:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 22:00 Uhr'})
     })
 
     it('open: exactly at open time', () => {
         const result = getOpeningStatus(standard, THU(17))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 22:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 22:00 Uhr'})
     })
 
-    it('closed: one minute before closing is still open', () => {
+    it('open: one minute before closing is still open (closesSoon)', () => {
         const result = getOpeningStatus(standard, THU(21, 59))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 22:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: true, label: 'Schließt demnächst · 22:00 Uhr'})
     })
 
     it('before: before first slot', () => {
         const result = getOpeningStatus(standard, THU(15))
-        expect(result).toEqual({isOpen: false, opensLater: true, label: 'Öffnet heute um 17:00 Uhr'})
+        expect(result).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Öffnet heute um 17:00 Uhr'})
     })
 
     it('between: after first slot, before second (split shift)', () => {
         const result = getOpeningStatus(standard, TUE(15, 30))
-        expect(result).toEqual({isOpen: false, opensLater: true, label: 'Öffnet wieder um 17:00 Uhr'})
+        expect(result).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Öffnet wieder um 17:00 Uhr'})
     })
 
     it('open: inside first slot of split shift', () => {
         const result = getOpeningStatus(standard, TUE(12))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 14:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 14:00 Uhr'})
     })
 
     it('closed: between two slots', () => {
         const result = getOpeningStatus(standard, TUE(15))
-        expect(result).toEqual({isOpen: false, opensLater: true, label: 'Öffnet wieder um 17:00 Uhr'})
+        expect(result).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Öffnet wieder um 17:00 Uhr'})
+    })
+
+    it('closesSoon: within 30 min of closing', () => {
+        const result = getOpeningStatus(standard, THU(21, 31))
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: true, label: 'Schließt demnächst · 22:00 Uhr'})
+    })
+
+    it('closesSoon: exactly 30 min before close', () => {
+        const result = getOpeningStatus(standard, THU(21, 30))
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: true, label: 'Schließt demnächst · 22:00 Uhr'})
+    })
+
+    it('not closesSoon: 31 min before close', () => {
+        const result = getOpeningStatus(standard, THU(21, 29))
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 22:00 Uhr'})
     })
 
     it('afterClose: after last slot', () => {
         const result = getOpeningStatus(standard, THU(23))
-        expect(result).toEqual({isOpen: false, opensLater: false, label: 'Geschlossen'})
+        expect(result).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Geschlossen'})
     })
 
     it('afterClose: exactly at close time', () => {
         const result = getOpeningStatus(standard, THU(22))
-        expect(result).toEqual({isOpen: false, opensLater: false, label: 'Geschlossen'})
+        expect(result).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Geschlossen'})
     })
 
     it('closed: rest day', () => {
         const result = getOpeningStatus(standard, MON(12))
-        expect(result).toEqual({isOpen: false, opensLater: false, label: 'Heute geschlossen'})
+        expect(result).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heute geschlossen'})
     })
 
     it('sunday opens earlier', () => {
         const result = getOpeningStatus(standard, SUN(15))
-        expect(result).toEqual({isOpen: false, opensLater: true, label: 'Öffnet heute um 16:00 Uhr'})
+        expect(result).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Öffnet heute um 16:00 Uhr'})
     })
 
     it('sunday inside slot', () => {
         const result = getOpeningStatus(standard, SUN(20))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 22:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 22:00 Uhr'})
     })
 
     it('saturday inside slot', () => {
         const result = getOpeningStatus(standard, SAT(20))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 22:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 22:00 Uhr'})
     })
 })
 
@@ -107,27 +122,27 @@ describe('restaurant — overrides', () => {
 
     it('annual override: named holiday is closed', () => {
         const christmas = at(2026, 12, 24, 15)
-        expect(getOpeningStatus(withOverrides, christmas)).toEqual({isOpen: false, opensLater: false, label: 'Heiligabend · geschlossen'})
+        expect(getOpeningStatus(withOverrides, christmas)).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · geschlossen'})
     })
 
     it('annual override: applies every year', () => {
         const christmas2027 = at(2027, 12, 24, 15)
-        expect(getOpeningStatus(withOverrides, christmas2027)).toEqual({isOpen: false, opensLater: false, label: 'Heiligabend · geschlossen'})
+        expect(getOpeningStatus(withOverrides, christmas2027)).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · geschlossen'})
     })
 
     it('annual override: unnamed falls back to closed label', () => {
         const nye = at(2026, 12, 31, 20)
-        expect(getOpeningStatus(withOverrides, nye)).toEqual({isOpen: false, opensLater: false, label: 'Heute geschlossen'})
+        expect(getOpeningStatus(withOverrides, nye)).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heute geschlossen'})
     })
 
     it('one-time override: open with special hours', () => {
         const special = at(2026, 10, 3, 14)
-        expect(getOpeningStatus(withOverrides, special)).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 18:00 Uhr'})
+        expect(getOpeningStatus(withOverrides, special)).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 18:00 Uhr'})
     })
 
     it('one-time override: outside special hours is afterClose', () => {
         const special = at(2026, 10, 3, 20)
-        expect(getOpeningStatus(withOverrides, special)).toEqual({isOpen: false, opensLater: false, label: 'Geschlossen'})
+        expect(getOpeningStatus(withOverrides, special)).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Geschlossen'})
     })
 
     it('exact date override beats annual override on same DD.MM', () => {
@@ -140,21 +155,21 @@ describe('restaurant — overrides', () => {
         }
 
         const result = getOpeningStatus(withBoth, at(2026, 12, 24, 16))
-        expect(result).toEqual({isOpen: true, opensLater: false, label: 'Geöffnet · bis 20:00 Uhr'})
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Geöffnet · bis 20:00 Uhr'})
     })
 })
 
 describe('delivery mode', () => {
     it('open', () => {
-        expect(getOpeningStatus(standard, WED(19), 'delivery')).toEqual({isOpen: true, opensLater: false, label: 'Lieferservice · bis 22:00 Uhr'})
+        expect(getOpeningStatus(standard, WED(19), 'delivery')).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Lieferservice · bis 22:00 Uhr'})
     })
 
     it('before', () => {
-        expect(getOpeningStatus(standard, THU(15), 'delivery')).toEqual({isOpen: false, opensLater: true, label: 'Lieferservice ab 17:00 Uhr'})
+        expect(getOpeningStatus(standard, THU(15), 'delivery')).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Lieferservice ab 17:00 Uhr'})
     })
 
     it('afterClose', () => {
-        expect(getOpeningStatus(standard, FRI(23), 'delivery')).toEqual({isOpen: false, opensLater: false, label: 'Lieferservice geschlossen'})
+        expect(getOpeningStatus(standard, FRI(23), 'delivery')).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Lieferservice geschlossen'})
     })
 
     it('named holiday override', () => {
@@ -162,6 +177,6 @@ describe('delivery mode', () => {
             ...standard,
             overrides: [{date: '24.12', schedule: {closed: true}, label: 'Heiligabend'}],
         }
-        expect(getOpeningStatus(config, at(2026, 12, 24, 15), 'delivery')).toEqual({isOpen: false, opensLater: false, label: 'Heiligabend · kein Lieferservice'})
+        expect(getOpeningStatus(config, at(2026, 12, 24, 15), 'delivery')).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · kein Lieferservice'})
     })
 })
