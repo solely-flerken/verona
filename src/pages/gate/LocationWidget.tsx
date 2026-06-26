@@ -19,6 +19,7 @@ export function LocationWidget() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && matchedLocation && navigate(`/${matchedLocation.slug}`)}
                 placeholder="z. B. Ramsdorf"
                 className="widget__input"
             />
