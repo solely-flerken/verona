@@ -50,7 +50,7 @@
     /* ── Page H1 ─────────────────────────────────────────────── */
     .jobs-title {
         font-family: var(--font-serif), serif;
-        font-size: clamp(3rem, 6vw, 4.75rem);
+        font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 700;
         font-style: italic;
         line-height: 0.94;
@@ -64,7 +64,7 @@
         font-family: var(--font-serif), serif;
         font-style: italic;
         font-weight: 500;
-        font-size: clamp(1.375rem, 3vw, 1.875rem);
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
         line-height: 1.35;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
     }
@@ -72,7 +72,7 @@
     /* ── Section H2 ──────────────────────────────────────────── */
     .jobs-section-heading {
         font-family: var(--font-serif), serif;
-        font-size: 2.5rem;
+        font-size: 1.75rem;
         font-weight: 600;
         line-height: 1.1;
         color: var(--color-ink);

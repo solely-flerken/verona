@@ -37,7 +37,7 @@
     /* ── Job title H3 ────────────────────────────────────────── */
     .job-card__title {
         font-family: var(--font-serif), serif;
-        font-size: 1.875rem;
+        font-size: 1.5rem;
         font-weight: 600;
         line-height: 1.2;
         margin-bottom: 0.75rem;
