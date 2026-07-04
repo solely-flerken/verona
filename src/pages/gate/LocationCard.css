@@ -54,6 +54,14 @@
         transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Desktop: capped to the passive-hover width (40% of the row) so
+       hovering never reflows content — growing just reveals more backdrop. */
+    @media (min-width: 768px) {
+        .card__body {
+            max-width: 40vw;
+        }
+    }
+
     /* Mobile: the widget floats centered on the seam between the two stacked
        cards and grows both ways from there — so the first card's content
        shifts up while the second card's shifts down. */
@@ -258,6 +266,5 @@
     .card:hover .card__cta-inner {
         background-color: var(--color-terracotta-deep);
     }
-
-
+    
 }
