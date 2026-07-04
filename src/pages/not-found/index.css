@@ -4,10 +4,10 @@
         background-size: cover;
         background-position: center 40%;
         background-attachment: fixed;
+        padding: 4rem 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 4rem 2rem;
     }
 
     .not-found-page::before {
@@ -28,7 +28,33 @@
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
         border-radius: 1.25rem;
-        padding: 3.5rem 3rem;
+        padding: 4rem 3rem;
+    }
+
+    .not-found-inner {
+        max-width: 26rem;
+    }
+
+    /* Slim screens: no room to spare for the backdrop border, so the card goes edge-to-edge instead. */
+    @media (max-width: 960px) {
+        .not-found-page {
+            padding: 0;
+        }
+
+        .not-found-content {
+            position: absolute;
+            inset: 0;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 0;
+            border-width: 0;
+        }
+
+        .not-found-inner {
+            margin: 0 auto;
+        }
     }
 
     .not-found-eyebrow {
@@ -42,7 +68,7 @@
 
     .not-found-title {
         font-family: var(--font-serif), serif;
-        font-size: clamp(2.5rem, 5vw, 3.75rem);
+        font-size: clamp(1.75rem, 3.5vw, 2.75rem);
         font-weight: 700;
         font-style: italic;
         line-height: 0.94;
