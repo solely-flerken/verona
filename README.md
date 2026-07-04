@@ -10,6 +10,7 @@
 - [ ] Link addresses to Google Maps / Apple Maps for tap-to-navigate on mobile
 - [x] Add keyboard support to the location lookup widget (Enter key does nothing)
 - [x] Show feedback when a city search returns no match
+- [x] Make Location-Gate hover animation not trigger on short mouse hovers
 
 ### SEO / Meta
 - [x] Add per-page `<title>` tags (currently static "Pizzeria Verona" across all pages)
