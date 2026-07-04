@@ -4,11 +4,19 @@
     .card {
         position: relative;
         text-align: left;
+        overflow: hidden;
     }
 
     .card:focus-visible {
         outline: 2px solid color-mix(in srgb, var(--color-cream) 40%, transparent);
         outline-offset: -2px;
+    }
+
+    /* Mobile only: guarantees enough space above .card__body */
+    @media (max-width: 767px) {
+        .card__spacer {
+            min-height: 8.5rem;
+        }
     }
 
     /* Constant tint — pulls the image from "photo" to "atmosphere" */
@@ -37,10 +45,32 @@
 
     /* Sit above both pseudo-element overlays */
     .card__meta,
-    .card__content,
-    .card__cta-bar {
+    .card__body {
         position: relative;
         z-index: 1;
+    }
+
+    .card__body {
+        transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Mobile: the widget floats centered on the seam between the two stacked
+       cards and grows both ways from there — so the first card's content
+       shifts up while the second card's shifts down. */
+    .gate-main--widget-open .card:first-of-type .card__body {
+        transform: translateY(calc(-1 * var(--card-shift, 0rem)));
+    }
+
+    .gate-main--widget-open .card:last-of-type .card__body {
+        transform: translateY(var(--card-shift, 0rem));
+    }
+
+    /* Desktop: the widget sits at the bottom of the vertical seam and only
+       grows upward, so both cards shift up the same way. */
+    @media (min-width: 768px) {
+        .gate-main--widget-open .card:last-of-type .card__body {
+            transform: translateY(calc(-1 * var(--card-shift, 0rem)));
+        }
     }
 
     /* ── Meta row ────────────────────────────────────────────── */
@@ -208,7 +238,9 @@
 
     /* ── CTA ─────────────────────────────────────────────────── */
     .card__cta-bar {
-        padding: 0 2rem 2rem;
+        /* Reserves --card-cta-clearance at the bottom for the floating
+           "Nicht sicher?" pill (see .gate-main in index.css). */
+        padding: 0 2rem var(--card-cta-clearance, 2rem);
     }
 
     .card__cta-inner {

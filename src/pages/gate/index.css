@@ -1,5 +1,55 @@
 @layer components {
+    /* Desktop */
     .gate-main {
+        /* Padding budget on each card's CTA bar — keeps the floating pill off real content. */
+        --card-cta-clearance: 7rem;
+        /* Bottom margin between the widget and gate-main's bottom edge. */
+        --widget-margin-bottom: 1.75rem;
         background: linear-gradient(to bottom, var(--color-paper), #0a0704);
+    }
+
+    /* --panel-height-est is a static per-state guess */
+    .gate-main--widget-open {
+        --panel-height-est: 9rem;
+        --card-shift: calc(var(--widget-margin-bottom) * 2 + var(--panel-height-est) - var(--card-cta-clearance));
+    }
+
+    .gate-main--widget-open:has(.widget__result) {
+        --panel-height-est: 13rem;
+    }
+
+    .gate-main--widget-open:has(.widget__no-match) {
+        --panel-height-est: 12.5rem;
+    }
+
+    /* Mobile: cards shift toward the seam, so clearance must exceed the
+       shift or content slides past the card's edge and clips. */
+    @media (max-width: 767px) {
+        .gate-main {
+            --card-cta-clearance: 9rem;
+        }
+    }
+
+    /* Mobile: zero-height flex item between the two cards (index.tsx) — its
+       centered child lands exactly on the seam – pill is centered */
+    .widget-dock {
+        position: relative;
+        height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        z-index: 20;
+    }
+
+    /* Desktop: pill pinned to gate-main's bottom edge instead */
+    @media (min-width: 768px) {
+        .widget-dock {
+            position: absolute;
+            inset: auto 0 0 0;
+            height: auto;
+            align-items: flex-end;
+            padding-bottom: var(--widget-margin-bottom);
+        }
     }
 }
