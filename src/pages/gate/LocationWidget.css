@@ -64,11 +64,13 @@
         backdrop-filter: blur(16px);
         box-shadow: 0 12px 24px -6px rgb(0 0 0 / 0.22), 0 4px 10px -2px rgb(0 0 0 / 0.12);
         cursor: pointer;
-        transition: box-shadow 150ms;
+        transition: background-color 150ms, border-color 150ms, box-shadow 150ms;
     }
 
     .widget-trigger:hover {
-        box-shadow: 0 16px 28px -6px rgb(0 0 0 / 0.26), 0 6px 12px -2px rgb(0 0 0 / 0.14);
+        background-color: var(--color-paper);
+        border-color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+        box-shadow: 0 20px 32px -6px rgb(0 0 0 / 0.3), 0 8px 16px -2px rgb(0 0 0 / 0.18);
     }
 
     /* ── Widget shell ────────────────────────────────────────── */
