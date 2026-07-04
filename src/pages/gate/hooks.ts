@@ -1,6 +1,6 @@
 import {flushSync} from 'react-dom'
 import {useNavigate} from 'react-router'
-import {useEffect} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import type {RefObject} from 'react'
 
 export function useViewTransitionNavigate() {
@@ -44,4 +44,29 @@ export function useCloseOnOutsideOrEscape(ref: RefObject<HTMLElement | null>, ac
             document.removeEventListener('keydown', onKeyDown)
         }
     }, [ref, active, onClose])
+}
+
+/**
+ * Tracks a hovered id, but only commits it after delayMs of continuous
+ * hover — a quick pass-through never triggers it.
+ *
+ * @param delayMs
+ */
+export function useHoverIntent(delayMs: number) {
+    const [active, setActive] = useState<string | null>(null)
+    const timeoutRef = useRef<number | undefined>(undefined)
+
+    const onEnter = useCallback((id: string) => {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = window.setTimeout(() => setActive(id), delayMs)
+    }, [delayMs])
+
+    const onLeave = useCallback(() => {
+        clearTimeout(timeoutRef.current)
+        setActive(null)
+    }, [])
+
+    useEffect(() => () => clearTimeout(timeoutRef.current), [])
+
+    return [active, onEnter, onLeave] as const
 }
