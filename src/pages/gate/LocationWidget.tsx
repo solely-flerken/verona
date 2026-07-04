@@ -1,21 +1,75 @@
-import {useState} from 'react'
+import {useCallback, useRef, useState} from 'react'
+import {X} from 'lucide-react'
 import {getLocationBySlug} from '../../shared/locationsData.ts'
 import {findNearestLocation} from './cityLookup'
-import {useViewTransitionNavigate} from './hooks'
+import {useCloseOnOutsideOrEscape, useViewTransitionNavigate} from './hooks'
 import './LocationWidget.css'
 
-export function LocationWidget() {
+type Phase = 'closed' | 'open' | 'closing'
+
+interface LocationWidgetProps {
+    onOpenChange?: (open: boolean) => void
+}
+
+function TriggerButton({className, onClick}: { className?: string, onClick: () => void }) {
+    return (
+        <button
+            className={['widget-trigger', 'pointer-events-auto', className].filter(Boolean).join(' ')}
+            onClick={(e) => {
+                e.stopPropagation()
+                onClick()
+            }}
+        >
+            Nicht sicher?
+        </button>
+    )
+}
+
+export function LocationWidget({onOpenChange}: LocationWidgetProps) {
     const navigate = useViewTransitionNavigate()
+    const [phase, setPhase] = useState<Phase>('closed')
     const [query, setQuery] = useState('')
+    const rootRef = useRef<HTMLDivElement>(null)
 
     const match = findNearestLocation(query)
     const matchedLocation = match ? getLocationBySlug(match.locationSlug) : null
 
-    return (
-        <div className="widget pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+    const open = useCallback(() => {
+        setPhase('open')
+        onOpenChange?.(true)
+    }, [onOpenChange])
+
+    const close = useCallback(() => {
+        setPhase('closing')
+        onOpenChange?.(false)
+    }, [onOpenChange])
+
+    useCloseOnOutsideOrEscape(rootRef, phase === 'open', close)
+
+    if (phase === 'closed') {
+        return <TriggerButton onClick={open}/>
+    }
+
+    const panel = (
+        <div
+            ref={rootRef}
+            className={`widget pointer-events-auto ${phase === 'closing' ? 'widget--exit' : 'widget--enter'}`}
+            onClick={(e) => e.stopPropagation()}
+            onAnimationEnd={() => {
+                if (phase === 'closing') {
+                    setPhase('closed')
+                    setQuery('')
+                }
+            }}
+        >
+            <button className="widget__close" onClick={close} aria-label="Schließen">
+                <X size={16}/>
+            </button>
+
             <p className="widget__title">Nicht sicher?</p>
             <p className="widget__subtitle">Geben Sie Ihren Ort ein.</p>
             <input
+                autoFocus
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -40,6 +94,15 @@ export function LocationWidget() {
             ) : query.trim().length >= 3 && (
                 <p className="widget__no-match">Wir konnten Ihrer Eingabe keinen Standort zuordnen.</p>
             )}
+        </div>
+    )
+
+    if (phase !== 'closing') return panel
+
+    return (
+        <div className="widget-swap">
+            <TriggerButton className="widget-trigger--enter" onClick={open}/>
+            {panel}
         </div>
     )
 }
