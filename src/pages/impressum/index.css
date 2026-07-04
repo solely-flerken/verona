@@ -24,13 +24,26 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        max-width: 52rem;
+        max-width: 50rem;
         background-color: color-mix(in srgb, var(--color-paper) 80%, transparent);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
         border-radius: 1.25rem;
         padding: 4rem 3rem;
+    }
+
+    /* Slim screens: no room to spare for the backdrop border, so the card goes edge-to-edge instead. */
+    @media (max-width: 960px) {
+        .impressum-page {
+            padding: 0;
+        }
+
+        .impressum-content {
+            max-width: 100%;
+            border-radius: 0;
+            border-width: 0;
+        }
     }
 
     /* ── Header ──────────────────────────────────────────────── */
