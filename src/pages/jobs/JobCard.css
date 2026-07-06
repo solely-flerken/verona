@@ -7,6 +7,12 @@
         background-color: var(--color-paper);
     }
 
+    @media (max-width: 960px) {
+        .job-card {
+            padding: 1.5rem 1.25rem;
+        }
+    }
+
     .job-card__badges {
         margin-bottom: 1rem;
     }

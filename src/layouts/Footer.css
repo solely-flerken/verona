@@ -8,6 +8,12 @@
         background-color: #0a0704;
     }
 
+    @media (max-width: 767px) {
+        .gate-footer {
+            letter-spacing: 0.12em;
+        }
+    }
+
     .gate-footer__link {
         transition: color 200ms;
     }

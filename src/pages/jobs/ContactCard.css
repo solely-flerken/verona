@@ -9,6 +9,12 @@
         gap: 1.25rem;
     }
 
+    @media (max-width: 960px) {
+        .jobs-contact-card {
+            padding: 1.5rem 1.25rem;
+        }
+    }
+
     .jobs-contact-card__body {
         display: flex;
         flex-direction: column;
