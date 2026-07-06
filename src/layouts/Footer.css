@@ -4,7 +4,7 @@
         font-size: 10px;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: color-mix(in srgb, var(--color-cream) 25%, transparent);
+        color: color-mix(in srgb, var(--color-cream) 40%, transparent);
         background-color: #0a0704;
     }
 
