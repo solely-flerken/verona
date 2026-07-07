@@ -14,7 +14,7 @@ export function PageLayout({subtitle, showBack, children}: PageLayoutProps) {
         : 'Pizzeria Verona'
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-dvh flex flex-col">
             <title>{pageTitle}</title>
             <Header subtitle={subtitle} showBack={showBack}/>
             {children}

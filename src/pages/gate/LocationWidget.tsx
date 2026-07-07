@@ -97,11 +97,9 @@ export function LocationWidget({onOpenChange}: LocationWidgetProps) {
         </div>
     )
 
-    if (phase !== 'closing') return panel
-
     return (
         <div className="widget-swap">
-            <TriggerButton className="widget-trigger--enter" onClick={open}/>
+            {phase === 'closing' && <TriggerButton className="widget-trigger--enter" onClick={open}/>}
             {panel}
         </div>
     )
