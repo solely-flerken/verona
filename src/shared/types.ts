@@ -40,6 +40,7 @@ export interface LocationData {
     contact: LocationContact
     openingHours: OpeningHoursConfig
     deliveryHours?: OpeningHoursConfig
+    orderUrl: string
     image?: string
     fallbackBg: string
     descriptor: string
