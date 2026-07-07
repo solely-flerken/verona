@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router'
 import {GatePage} from './pages/gate'
 import {ImpressumPage} from './pages/impressum'
 import {JobsPage} from './pages/jobs'
+import {LocationPage} from './pages/location'
 import {NotFoundPage} from './pages/not-found'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
                 <Route path="/" element={<GatePage/>}/>
                 <Route path="/impressum" element={<ImpressumPage/>}/>
                 <Route path="/jobs" element={<JobsPage/>}/>
+                <Route path="/:slug" element={<LocationPage/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </BrowserRouter>
