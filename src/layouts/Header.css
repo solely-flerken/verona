@@ -54,6 +54,26 @@
         color: var(--color-ink);
     }
 
+    /* ── Order CTA */
+    .gate-header-cta {
+        display: inline-block;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        color: var(--color-cream);
+        background-color: var(--color-terracotta);
+        border-radius: 9999px;
+        padding: 0.4rem 1.1rem;
+        text-decoration: none;
+        transition: background-color 150ms;
+    }
+
+    .gate-header-cta:hover {
+        background-color: var(--color-terracotta-deep);
+    }
+
     /* ── Subtitle ────────────────────────────────────────────── */
     .gate-banner-sub {
         font-family: var(--font-mono), monospace;

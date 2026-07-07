@@ -2,12 +2,18 @@ import {Link} from 'react-router'
 import {ArrowLeft} from 'lucide-react'
 import './Header.css'
 
+export interface HeaderCta {
+    label: string
+    href: string
+}
+
 interface HeaderProps {
     subtitle?: string
     showBack?: boolean
+    cta?: HeaderCta
 }
 
-export function Header({subtitle = 'Bitte Standort wählen', showBack = false}: HeaderProps) {
+export function Header({subtitle = 'Bitte Standort wählen', showBack = false, cta}: HeaderProps) {
     return (
         <header className="gate-header relative flex flex-col gap-1 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center px-6 py-3.5">
             <div className="flex items-center justify-center gap-3 md:justify-start md:gap-0 md:pr-4">
@@ -23,7 +29,16 @@ export function Header({subtitle = 'Bitte Standort wählen', showBack = false}: 
                 </Link>
             </div>
             <span className="gate-header-sep hidden md:block" aria-hidden="true"/>
-            <span className="gate-banner-sub text-center md:text-left md:pl-4">{subtitle}</span>
+            <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:justify-between md:gap-4 md:pl-4">
+                <span className="gate-banner-sub text-center md:text-left">{subtitle}</span>
+                {cta && (
+                    <div className="hidden md:block">
+                        <a href={cta.href} target="_blank" rel="noopener" className="gate-header-cta">
+                            {cta.label}
+                        </a>
+                    </div>
+                )}
+            </div>
         </header>
     )
 }
