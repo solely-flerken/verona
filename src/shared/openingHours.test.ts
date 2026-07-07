@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {getOpeningStatus} from './openingHours'
+import {getOpeningStatus, getWeekSchedule} from './openingHours'
 import type {OpeningHoursConfig} from './types'
 
 // Local-time date to avoid UTC-vs-local issues
@@ -178,5 +178,24 @@ describe('delivery mode', () => {
             overrides: [{date: '24.12', schedule: {closed: true}, label: 'Heiligabend'}],
         }
         expect(getOpeningStatus(config, at(2026, 12, 24, 15), 'delivery')).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · kein Lieferservice'})
+    })
+})
+
+describe('getWeekSchedule', () => {
+    it('returns Mo -> So rows with labels and marks today', () => {
+        const rows = getWeekSchedule(standard, THU(12))
+        expect(rows).toHaveLength(7)
+        expect(rows[0]).toEqual({day: 'mon', label: 'Montag', text: 'Geschlossen', isToday: false})
+        expect(rows.map(r => r.isToday)).toEqual([false, false, false, true, false, false, false])
+    })
+
+    it('joins split shifts with &', () => {
+        const rows = getWeekSchedule(standard, MON(12))
+        expect(rows[1].text).toBe('11:30 – 14:00 & 17:00 – 22:00')
+    })
+
+    it('formats a single slot as a range', () => {
+        const rows = getWeekSchedule(standard, MON(12))
+        expect(rows[6]).toEqual({day: 'sun', label: 'Sonntag', text: '16:00 – 22:00', isToday: false})
     })
 })

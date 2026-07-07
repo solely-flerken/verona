@@ -53,6 +53,45 @@ const LABELS = {
     },
 } satisfies Record<Mode, Record<string, string | ((s: string) => string)>>
 
+const DAY_LABELS: Record<WeekDay, string> = {
+    mon: 'Montag',
+    tue: 'Dienstag',
+    wed: 'Mittwoch',
+    thu: 'Donnerstag',
+    fri: 'Freitag',
+    sat: 'Samstag',
+    sun: 'Sonntag',
+}
+
+const WEEK_ORDER: WeekDay[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+export interface WeekScheduleRow {
+    day: WeekDay
+    label: string
+    text: string
+    isToday: boolean
+}
+
+/**
+ * Weekly schedule as display rows (Mo -> So), e.g. "11:30 – 14:00 & 17:00 – 22:00" or "Geschlossen".
+ * Renders the regular week only — date overrides are not applied.
+ *
+ * @param config opening hours to format
+ * @param now reference date, used only to set `isToday`
+ */
+export function getWeekSchedule(config: OpeningHoursConfig, now = new Date()): WeekScheduleRow[] {
+    const today = toWeekDay(now)
+
+    return WEEK_ORDER.map((day) => {
+        const schedule = config.week[day]
+        const text = 'closed' in schedule
+            ? 'Geschlossen'
+            : schedule.slots.map(({open, close}) => `${open} – ${close}`).join(' & ')
+
+        return {day, label: DAY_LABELS[day], text, isToday: day === today}
+    })
+}
+
 export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant', closingSoonMinutes = 30): OpeningStatus {
     const LABEL = LABELS[mode]
     const dateStr = toDateStr(now)
