@@ -1,3 +1,5 @@
+import type {ImageAsset} from './imagesData'
+
 export type WeekDay = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
 export interface TimeSlot {
@@ -42,6 +44,7 @@ export interface LocationData {
     deliveryHours?: OpeningHoursConfig
     orderUrl: string
     image?: string
+    galleryImages: ImageAsset[]
     fallbackBg: string
     descriptor: string
     deliveryCities: string[]
