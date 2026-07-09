@@ -43,6 +43,7 @@ export interface LocationData {
     openingHours: OpeningHoursConfig
     deliveryHours?: OpeningHoursConfig
     orderUrl: string
+    menuPdf?: string
     image?: string
     galleryImages: ImageAsset[]
     fallbackBg: string
