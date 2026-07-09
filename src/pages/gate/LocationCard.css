@@ -110,60 +110,6 @@
         margin-bottom: 1rem;
     }
 
-    .card__status-badge {
-        padding: 0.2rem 0.7rem 0.2rem 0.5rem;
-        border: 1px solid color-mix(in srgb, var(--color-cream) 14%, transparent);
-        border-radius: 9999px;
-        background: color-mix(in srgb, var(--color-cream) 7%, transparent);
-        backdrop-filter: blur(6px);
-    }
-
-    .card__status-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 9999px;
-        flex-shrink: 0;
-    }
-
-    .card__status-dot--open {
-        background: #4ade80;
-        animation: status-pulse 2.4s ease-in-out infinite;
-    }
-
-    .card__status-dot--soon {
-        background: #fb923c;
-    }
-
-    .card__status-dot--later {
-        background: #60a5fa;
-    }
-
-    .card__status-dot--closed {
-        background: color-mix(in srgb, var(--color-cream) 22%, transparent);
-    }
-
-    @keyframes status-pulse {
-        0%, 100% {
-            opacity: 1;
-            box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
-        }
-        50% {
-            opacity: 0.85;
-            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0);
-        }
-    }
-
-    .card__status-icon {
-        color: color-mix(in srgb, var(--color-cream) 65%, transparent);
-    }
-
-    .card__status-label {
-        font-family: var(--font-mono), monospace;
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        color: color-mix(in srgb, var(--color-cream) 80%, transparent);
-    }
-
     .card__title {
         font-family: var(--font-serif), serif;
         font-size: clamp(3.5rem, 8vw, 7rem);
