@@ -1,4 +1,4 @@
-import type {OpeningHoursConfig, WeekDay} from './types'
+import type {DaySchedule, OpeningHoursConfig, WeekDay} from './types'
 
 const WEEK_DAYS: WeekDay[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 
@@ -21,6 +21,19 @@ function toMonthDay(d: Date): string {
 function timeToMinutes(time: string): number {
     const [h, m = '0'] = time.split(':')
     return parseInt(h) * 60 + parseInt(m)
+}
+
+function findOverride(config: OpeningHoursConfig, d: Date) {
+    const dateStr = toDateStr(d)
+    const monthDay = toMonthDay(d)
+    return config.overrides?.find((o) => o.date === dateStr)
+        ?? config.overrides?.find((o) => o.date === monthDay)
+}
+
+function scheduleText(schedule: DaySchedule): string {
+    return 'closed' in schedule
+        ? 'Geschlossen'
+        : schedule.slots.map(({open, close}) => `${open} – ${close}`).join(' & ')
 }
 
 export interface OpeningStatus {
@@ -74,7 +87,8 @@ export interface WeekScheduleRow {
 
 /**
  * Weekly schedule as display rows (Mo -> So), e.g. "11:30 – 14:00 & 17:00 – 22:00" or "Geschlossen".
- * Renders the regular week only — date overrides are not applied.
+ * Always renders the regular week; date overrides are exposed separately
+ * via getUpcomingOverrides so the general hours stay readable.
  *
  * @param config opening hours to format
  * @param now reference date, used only to set `isToday`
@@ -82,25 +96,53 @@ export interface WeekScheduleRow {
 export function getWeekSchedule(config: OpeningHoursConfig, now = new Date()): WeekScheduleRow[] {
     const today = toWeekDay(now)
 
-    return WEEK_ORDER.map((day) => {
-        const schedule = config.week[day]
-        const text = 'closed' in schedule
-            ? 'Geschlossen'
-            : schedule.slots.map(({open, close}) => `${open} – ${close}`).join(' & ')
+    return WEEK_ORDER.map((day) => ({
+        day,
+        label: DAY_LABELS[day],
+        text: scheduleText(config.week[day]),
+        isToday: day === today,
+    }))
+}
 
-        return {day, label: DAY_LABELS[day], text, isToday: day === today}
-    })
+export interface UpcomingOverride {
+    day: WeekDay
+    dateLabel: string
+    label?: string
+    text: string
+    isToday: boolean
+    daysFromNow: number
+}
+
+/**
+ * Date overrides within the next `daysAhead` days as display rows, e.g. "Heiligabend (24.12.): Geschlossen".
+ *
+ * @param config opening hours whose overrides to scan
+ * @param now reference date, day 0 of the scan
+ * @param daysAhead how many days past `now` to include
+ */
+export function getUpcomingOverrides(config: OpeningHoursConfig, now = new Date(), daysAhead = 14): UpcomingOverride[] {
+    const result: UpcomingOverride[] = []
+    for (let i = 0; i <= daysAhead; i++) {
+        const d = new Date(now)
+        d.setDate(d.getDate() + i)
+        const override = findOverride(config, d)
+        if (override) {
+            result.push({
+                day: toWeekDay(d),
+                dateLabel: `${toMonthDay(d)}.`,
+                label: override.label,
+                text: scheduleText(override.schedule),
+                isToday: i === 0,
+                daysFromNow: i,
+            })
+        }
+    }
+    return result
 }
 
 export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant', closingSoonMinutes = 30): OpeningStatus {
     const LABEL = LABELS[mode]
-    const dateStr = toDateStr(now)
-    const monthDay = toMonthDay(now)
-
-    const exactOverride = config.overrides?.find((o) => o.date === dateStr)
-    const annualOverride = config.overrides?.find((o) => o.date === monthDay)
-    const override = exactOverride ?? annualOverride
-
+    const override = findOverride(config, now)
     const schedule = override ? override.schedule : config.week[toWeekDay(now)]
 
     if ('closed' in schedule) {
