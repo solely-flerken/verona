@@ -1,0 +1,322 @@
+:root {
+    --location-inner: 60rem;
+}
+
+@layer components {
+    /* ── Hero ────────────────────────────────────────────────── */
+    .location-hero {
+        min-height: clamp(320px, 55vh, 560px);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .location-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(10, 7, 4, 0.82) 0%, rgba(10, 7, 4, 0.35) 45%, rgba(10, 7, 4, 0.15) 100%);
+    }
+
+    .location-hero__eyebrow {
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--color-cream) 75%, transparent);
+    }
+
+    .location-hero__title {
+        font-family: var(--font-serif), serif;
+        font-size: clamp(3.5rem, 9vw, 6.5rem);
+        font-weight: 700;
+        line-height: 0.9;
+        letter-spacing: -0.01em;
+        color: var(--color-cream);
+    }
+
+    .location-hero__descriptor {
+        font-family: var(--font-serif), serif;
+        font-style: italic;
+        font-size: clamp(1.05rem, 2vw, 1.3rem);
+        color: color-mix(in srgb, var(--color-cream) 80%, transparent);
+    }
+
+    .location-hero__cta {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-cream);
+        background-color: var(--color-terracotta);
+        border-radius: 9999px;
+        padding: 0.65rem 1.4rem;
+        text-decoration: none;
+        transition: background-color 150ms;
+    }
+
+    .location-hero__cta:hover {
+        background-color: var(--color-terracotta-deep);
+    }
+
+    /* ── Sections ────────────────────────────────────────────── */
+    .location-section {
+        background-color: var(--color-paper);
+        padding: 4rem 1.5rem;
+    }
+
+    .location-section--warm {
+        background-color: var(--color-paper-warm);
+    }
+
+    .location-section__inner {
+        max-width: var(--location-inner);
+        margin: 0 auto;
+    }
+
+    .location-eyebrow {
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-terracotta);
+        margin-bottom: 0.75rem;
+    }
+
+    .location-heading {
+        font-family: var(--font-serif), serif;
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        font-weight: 700;
+        font-style: italic;
+        line-height: 1;
+        color: var(--color-ink);
+        margin-bottom: 1.75rem;
+    }
+
+    /* ── Hours ticket ────────────────────────────────────────── */
+    .location-ticket__table {
+        border-collapse: collapse;
+    }
+
+    .location-ticket__table th,
+    .location-ticket__table td {
+        padding: 0.5rem 0.25rem;
+        text-align: left;
+        vertical-align: baseline;
+    }
+
+    .location-ticket__col {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+        white-space: nowrap;
+    }
+
+    .location-ticket__table tbody tr {
+        border-top: 1px dashed var(--color-line);
+    }
+
+    .location-ticket__day {
+        font-family: var(--font-serif), serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--color-ink);
+    }
+
+    .location-ticket__time {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.8rem;
+        color: color-mix(in srgb, var(--color-ink) 70%, transparent);
+    }
+
+    /* Upcoming special dates sit in their own table body below the regular week */
+    .location-ticket__specials {
+        border-top: 2px solid var(--color-line);
+    }
+
+    .location-ticket__date {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.14em;
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+        margin-left: 0.4rem;
+    }
+
+    .location-ticket__row--today .location-ticket__day,
+    .location-ticket__row--today .location-ticket__time {
+        color: var(--color-terracotta);
+    }
+
+    /* Regular hours that don't apply today (see the special dates below the week) */
+    .location-ticket__time--struck {
+        text-decoration: line-through;
+        opacity: 0.6;
+    }
+
+    .location-ticket__row--today .location-ticket__day::after {
+        content: '· Heute';
+        font-family: var(--font-mono), monospace;
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-left: 0.4rem;
+    }
+
+    /* Large screens have a margin next to the ticket: 'Heute' hangs out there instead of trailing the day name */
+    @media (min-width: 72rem) {
+        .location-ticket__row--today .location-ticket__day::after {
+            content: none;
+        }
+
+        .location-ticket__row--today .location-ticket__day::before {
+            content: 'Heute';
+            display: inline-block;
+            width: 0;
+            direction: rtl;
+            white-space: nowrap;
+            transform: translateX(-1rem);
+            font-family: var(--font-mono), monospace;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+    }
+
+    /* ── Contact ─────────────────────────────────────────────── */
+    .location-contact-icon {
+        color: var(--color-terracotta);
+        margin-top: 0.15rem;
+    }
+
+    .location-contact-text {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--color-ink);
+    }
+
+    .location-contact-link {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        color: var(--color-ink);
+        text-decoration: none;
+        transition: color 150ms;
+    }
+
+    .location-contact-link:hover {
+        color: var(--color-terracotta);
+    }
+
+    .location-section-label {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+        margin-bottom: 0.6rem;
+    }
+
+    .location-chip {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.8rem;
+        color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+        border: 1px solid var(--color-line);
+        border-radius: 9999px;
+        padding: 0.15rem 0.7rem;
+    }
+
+    /* ── About ───────────────────────────────────────────────── */
+    .location-about-text {
+        font-family: var(--font-serif), serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
+        line-height: 1.5;
+        color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+    }
+
+    /* ── Menu link ───────────────────────────────────────────── */
+    .location-menu-link {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--color-terracotta);
+        text-decoration: none;
+        transition: color 150ms;
+    }
+
+    .location-menu-link:hover {
+        color: var(--color-terracotta-deep);
+    }
+
+    .location-menu-note {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.75rem;
+        text-align: center;
+        color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+        margin-top: 1.25rem;
+    }
+
+    /* ── Order band ──────────────────────────────────────────── */
+    .location-order-band {
+        background-color: var(--color-terracotta);
+        padding: 4rem 1.5rem;
+    }
+
+    .location-order-band__title {
+        font-family: var(--font-serif), serif;
+        font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+        font-weight: 700;
+        font-style: italic;
+        line-height: 1;
+        color: var(--color-cream);
+    }
+
+    .location-order-band__text {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 34rem;
+        color: color-mix(in srgb, var(--color-cream) 85%, transparent);
+    }
+
+    .location-order-band__cta {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-terracotta-deep);
+        background-color: var(--color-cream);
+        border-radius: 9999px;
+        padding: 0.8rem 1.9rem;
+        text-decoration: none;
+        transition: opacity 150ms;
+    }
+
+    .location-order-band__cta:hover {
+        opacity: 0.9;
+    }
+
+    .location-order-band__phone {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-cream);
+        border: 1px solid color-mix(in srgb, var(--color-cream) 45%, transparent);
+        border-radius: 9999px;
+        padding: 0.8rem 1.9rem;
+        text-decoration: none;
+        transition: border-color 150ms, background-color 150ms;
+    }
+
+    .location-order-band__phone:hover {
+        border-color: var(--color-cream);
+        background-color: color-mix(in srgb, var(--color-cream) 8%, transparent);
+    }
+}

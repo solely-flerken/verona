@@ -33,6 +33,21 @@ export interface LocationContact {
     email: string
 }
 
+export interface MenuItem {
+    id: string
+    name: string
+    description?: string
+    price: string | string[]  // bare amounts like '8,50' (€ is added in render); arrays map positionally to the category's `sizes`
+    locations: '*' | string[]  // '*' = offered at every location
+}
+
+export interface MenuCategory {
+    id: string
+    name: string
+    sizes?: string[]  // price column labels, e.g. ['Ø 26', 'Ø 32', 'Ø 40']
+    items: MenuItem[]
+}
+
 export interface LocationData {
     id: string
     slug: string

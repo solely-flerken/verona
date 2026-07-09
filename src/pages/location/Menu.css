@@ -1,0 +1,120 @@
+@layer components {
+    .menu-shell {
+        max-width: var(--location-inner);
+        margin: 0 auto;
+        transition: max-width 400ms ease;
+    }
+
+    .menu-shell--wide {
+        max-width: 90rem;
+    }
+
+    .menu__category {
+        margin-bottom: 2.5rem;
+    }
+
+    .menu__heading {
+        font-family: var(--font-serif), serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--color-terracotta);
+        border-bottom: 1px solid var(--color-line);
+        padding-bottom: 0.4rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .menu__name {
+        font-family: var(--font-serif), serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--color-ink);
+    }
+
+    .menu__leader {
+        border-bottom: 2px dotted color-mix(in srgb, var(--color-ink) 30%, transparent);
+        transform: translateY(-4px);
+        min-width: 1.5rem;
+    }
+
+    .menu__sizes {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.7rem;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        color: color-mix(in srgb, var(--color-ink) 50%, transparent);
+        white-space: nowrap;
+    }
+
+    /* Shared fixed width keeps heading labels and price cells in one grid */
+    .menu__price-col {
+        width: 3.2rem;
+        flex-shrink: 0;
+        text-align: right;
+    }
+
+    /* Size labels centered over their columns; prices stay right-aligned.
+       The shift matches the label center to the right-anchored digit cluster. */
+    .menu__sizes.menu__price-col {
+        text-align: center;
+        transform: translateX(0.5rem);
+    }
+
+    .menu__price-euro {
+        margin-left: 0.4rem;
+        flex-shrink: 0;
+    }
+
+    .menu__price-euro--ghost {
+        visibility: hidden;
+    }
+
+    .menu__price {
+        font-family: var(--font-mono), monospace;
+        font-size: 0.8rem;
+        color: var(--color-ink);
+        white-space: nowrap;
+    }
+
+    .menu__description {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+        margin-top: 0.2rem;
+    }
+
+    .menu__more {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.8rem;
+        font-style: italic;
+        color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+        background: none;
+        border: none;
+        padding: 0;
+        margin-top: 0.75rem;
+        transition: color 150ms;
+    }
+
+    .menu__more:hover {
+        color: var(--color-terracotta);
+    }
+
+    .menu__toggle {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--color-terracotta);
+        background: none;
+        border: 1px solid color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+        border-radius: 9999px;
+        padding: 0.5rem 1.3rem;
+        transition: border-color 150ms, background-color 150ms;
+    }
+
+    .menu__toggle:hover {
+        border-color: var(--color-terracotta);
+        background-color: color-mix(in srgb, var(--color-terracotta) 6%, transparent);
+    }
+}
