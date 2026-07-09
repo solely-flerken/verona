@@ -1,5 +1,6 @@
 import {Phone, Mail} from 'lucide-react'
 import {jobsContact} from './data'
+import {telRef} from '../../shared/telRef.ts'
 import './ContactCard.css'
 
 export function ContactCard() {
@@ -15,7 +16,7 @@ export function ContactCard() {
                 </p>
             </div>
             <div className="jobs-contact-card__actions">
-                <a href={`tel:${jobsContact.phone.replace(/\s/g, '')}`} className="jobs-contact-card__action">
+                <a href={telRef(jobsContact.phone)} className="jobs-contact-card__action">
                     <Phone size={15} className="jobs-contact-card__icon shrink-0"/>
                     {jobsContact.phone}
                 </a>

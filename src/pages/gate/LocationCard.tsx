@@ -1,6 +1,6 @@
 import {MapPin, Phone} from 'lucide-react'
 import {getOpeningStatus} from '../../shared/openingHours'
-import type {OpeningStatus} from '../../shared/openingHours'
+import {telRef} from '../../shared/telRef.ts'
 import {StatusBadge} from '../../components/StatusBadge'
 import type {LocationData} from '../../shared/types'
 import './LocationCard.css'
@@ -61,7 +61,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                         <div className="flex items-center gap-2">
                             <Phone size={18} className="card__contact-icon shrink-0"/>
                             <a
-                                href={`tel:${location.contact.phone.replace(/\s/g, '')}`}
+                                href={telRef(location.contact.phone)}
                                 className="card__phone"
                                 onClick={(e) => e.stopPropagation()}
                             >
