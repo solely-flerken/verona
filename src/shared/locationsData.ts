@@ -108,7 +108,7 @@ export const locationsData: LocationData[] = [
         galleryImages: [imagesData.wesekeEntry, imagesData.wesekeLounge], // TODO: real Borken photos
         fallbackBg: '#2d2318',
         descriptor: 'Filiale · Mittagstisch',
-        deliveryCities: ['Borken', 'Hovesath', 'Borkenwirthe', 'Gemen', 'Grütlohn', 'Hoxfeld', 'Marbeck'],
+        deliveryCities: ['Borken', 'Hovesath', 'Borkenwirthe', 'Gemen', 'Gemenwirthe', 'Grütlohn', 'Hoxfeld', 'Marbeck'],
     },
 ]
 
