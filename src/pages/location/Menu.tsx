@@ -1,4 +1,4 @@
-import {useEffect, useLayoutEffect, useRef} from 'react'
+import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {ChevronDown, ChevronUp} from 'lucide-react'
 import type {MenuCategory, MenuItem} from '../../shared/types'
 import './Menu.css'
@@ -43,10 +43,64 @@ interface MenuProps {
 
 export function Menu({categories, expanded, onToggle}: MenuProps) {
     const listRef = useRef<HTMLDivElement>(null)
+    const tabsListRef = useRef<HTMLDivElement>(null)
     const fromHeight = useRef<number | null>(null)
     const fromShellMax = useRef<string | null>(null)
     const focusCategory = useRef<string | null>(null)
     const hasMore = categories.some((c) => c.items.length > PREVIEW_ITEMS)
+    const [activeCategory, setActiveCategory] = useState<string | null>(categories[0]?.id ?? null)
+    const suppressObserver = useRef(false)
+    const suppressTimeout = useRef<number | undefined>(undefined)
+
+    /* Mobile-only quick-nav: highlight whichever category section is at the top of the viewport */
+    useEffect(() => {
+        const sections = listRef.current?.querySelectorAll<HTMLElement>('[data-category]')
+        if (!sections?.length) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                /* Ignore intermediate sections the smooth-scroll passes through after a tab click */
+                if (suppressObserver.current) return
+                const visible = entries.filter((e) => e.isIntersecting)
+                if (visible.length === 0) return
+                visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+                setActiveCategory(visible[0].target.getAttribute('data-category'))
+            },
+            {rootMargin: '-60px 0px -70% 0px'},
+        )
+        sections.forEach((section) => observer.observe(section))
+        return () => observer.disconnect()
+    }, [categories])
+
+    /* Scrolls the horizontally-scrollable nav row only — using scrollBy instead of tab.scrollIntoView() to avoid scrolling ancestor containers, like the page. */
+    useEffect(() => {
+        if (!activeCategory) return
+        const container = tabsListRef.current
+        const tab = container?.querySelector<HTMLElement>(`[data-tab="${activeCategory}"]`)
+        if (!container || !tab) return
+
+        const containerBox = container.getBoundingClientRect()
+        const tabBox = tab.getBoundingClientRect()
+        if (tabBox.left < containerBox.left) {
+            container.scrollBy({left: tabBox.left - containerBox.left, behavior: 'smooth'})
+        } else if (tabBox.right > containerBox.right) {
+            container.scrollBy({left: tabBox.right - containerBox.right, behavior: 'smooth'})
+        }
+    }, [activeCategory])
+
+    function scrollToCategory(id: string) {
+        suppressObserver.current = true
+        setActiveCategory(id)
+        listRef.current?.querySelector<HTMLElement>(`[data-category="${id}"]`)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        })
+
+        window.clearTimeout(suppressTimeout.current)
+        suppressTimeout.current = window.setTimeout(() => {
+            suppressObserver.current = false
+        }, 700)
+    }
 
     /* A category's 'extend' button unmounts itself on expand */
     useEffect(() => {
@@ -99,6 +153,21 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
 
     return (
         <div>
+            <div className="menu-tabs md:hidden">
+                <div className="menu-tabs__list" ref={tabsListRef}>
+                    {categories.map(({id, name}) => (
+                        <button
+                            key={id}
+                            type="button"
+                            data-tab={id}
+                            onClick={() => scrollToCategory(id)}
+                            className={`menu-tabs__tab ${activeCategory === id ? 'menu-tabs__tab--active' : ''}`}
+                        >
+                            {name}
+                        </button>
+                    ))}
+                </div>
+            </div>
             <div ref={listRef}>
                 <div className={`md:columns-2 md:gap-12 ${expanded ? 'xl:columns-3' : ''}`}>
                     {categories.map(({id, name, sizes, items: allItems}) => {

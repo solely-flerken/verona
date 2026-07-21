@@ -11,6 +11,62 @@
 
     .menu__category {
         margin-bottom: 2.5rem;
+        scroll-margin-top: 3.75rem;
+    }
+
+    /* ── Category quick-nav (mobile only) ───────────────────── */
+    .menu-tabs {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        height: 3.75rem;
+        display: flex;
+        align-items: center;
+        background-color: var(--color-paper);
+        box-shadow: 0 1px 0 var(--color-line), 0 8px 16px -10px rgba(0, 0, 0, 0.18);
+        margin: 0 -1.5rem 1.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .menu-tabs__list {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        /* Hint that the row scrolls further by fading its trailing edge */
+        mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent);
+        -webkit-mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent);
+        padding-right: 1.5rem;
+    }
+
+    .menu-tabs__list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu-tabs__tab {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+        color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+        background: none;
+        border: 1px solid var(--color-line);
+        border-radius: 9999px;
+        padding: 0.7rem 1.4rem;
+        scroll-snap-align: start;
+        -webkit-tap-highlight-color: transparent;
+        transition: color 150ms, border-color 150ms, background-color 150ms, transform 100ms;
+    }
+
+    .menu-tabs__tab:active {
+        transform: scale(0.94);
+    }
+
+    .menu-tabs__tab--active {
+        color: var(--color-cream);
+        background-color: var(--color-terracotta);
+        border-color: var(--color-terracotta);
     }
 
     .menu__heading {
