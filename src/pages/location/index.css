@@ -157,13 +157,14 @@
     }
 
     .location-ticket__row--today .location-ticket__day::after {
-        content: '· Heute';
+        content: 'Heute';
+        display: block;
         font-family: var(--font-mono), monospace;
         font-size: 0.65rem;
         font-weight: 400;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        margin-left: 0.4rem;
+        margin-top: 0.2rem;
     }
 
     /* Large screens have a margin next to the ticket: 'Heute' hangs out there instead of trailing the day name */
