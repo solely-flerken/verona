@@ -8,8 +8,8 @@ export function Footer() {
             <div className="flex items-center justify-center md:justify-start gap-5">
                 <Link to="/jobs" className="gate-footer__link">Jobs</Link>
                 <span className="gate-footer__divider"/>
-                <Link to="/datenschutz" className="gate-footer__link">Datenschutz</Link>
-                <span className="gate-footer__divider"/>
+                {/*<Link to="/datenschutz" className="gate-footer__link">Datenschutz</Link>*/}
+                {/*<span className="gate-footer__divider"/>*/}
                 <Link to="/impressum" className="gate-footer__link">Impressum</Link>
             </div>
         </footer>
