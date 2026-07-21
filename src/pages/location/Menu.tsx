@@ -4,6 +4,7 @@ import type {MenuCategory, MenuItem} from '../../shared/types'
 import './Menu.css'
 
 const PREVIEW_ITEMS = 3
+const TABS_EDGE_FADE = 32
 
 /* Price cells for a row in a sized category: the first available price renders
    at natural width so the dot leader reaches it, the € follows the last one,
@@ -84,7 +85,7 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
         if (tabBox.left < containerBox.left) {
             container.scrollBy({left: tabBox.left - containerBox.left, behavior: 'smooth'})
         } else if (tabBox.right > containerBox.right) {
-            container.scrollBy({left: tabBox.right - containerBox.right, behavior: 'smooth'})
+            container.scrollBy({left: tabBox.right - containerBox.right + TABS_EDGE_FADE, behavior: 'smooth'})
         }
     }, [activeCategory])
 
