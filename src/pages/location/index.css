@@ -241,6 +241,14 @@
     }
 
     /* ── Menu link ───────────────────────────────────────────── */
+    .location-menu-heading-row {
+        margin-bottom: 1.75rem;
+    }
+
+    .location-menu-heading-row .location-heading {
+        margin-bottom: 0;
+    }
+
     .location-menu-link {
         font-family: var(--font-sans), sans-serif;
         font-size: 0.95rem;
