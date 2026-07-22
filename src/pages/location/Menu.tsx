@@ -172,7 +172,6 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
             <div ref={listRef}>
                 <div className={`md:columns-2 md:gap-12 ${expanded ? 'xl:columns-3' : ''}`}>
                     {categories.map(({id, name, sizes, items: allItems}) => {
-                        const items = expanded ? allItems : allItems.slice(0, PREVIEW_ITEMS)
                         const truncated = !expanded && allItems.length > PREVIEW_ITEMS
                         return (
                             <section key={id} data-category={id} className="menu__category break-inside-avoid">
@@ -189,8 +188,8 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
                                     )}
                                 </h3>
                                 <ul className="space-y-4">
-                                    {items.map((item) => (
-                                        <li key={item.id} className="break-inside-avoid">
+                                    {allItems.map((item, i) => (
+                                        <li key={item.id} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'hidden' : ''}`}>
                                             <div className="flex items-baseline gap-2">
                                                 <span className="menu__name">{item.name}</span>
                                                 <span className="menu__leader flex-1" aria-hidden="true"></span>
