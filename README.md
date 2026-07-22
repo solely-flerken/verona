@@ -14,9 +14,11 @@
 
 ### SEO / Meta
 - [x] Add per-page `<title>` tags (currently static "Pizzeria Verona" across all pages)
-- [ ] Add `<meta name="description">` tags
-- [ ] Add Open Graph `<meta property="og:*">` tags for social sharing
-- [ ] Add `robots.txt` and `sitemap.xml`
+- [x] Add `<meta name="description">` tags
+- [ ] Add Open Graph `<meta property="og:*">` tags for social sharing (blocked on SSR/SSG — client-injected tags aren't seen by link-preview bots)
+- [x] Add `robots.txt` and `sitemap.xml`
+- [ ] Replace Borken's placeholder photos (`src/shared/locationsData.ts` reuses Weseke's images) with real Borken photos
+- [ ] Claim/verify Google Business Profile listings for both locations (outside the codebase)
 
 ### Accessibility
 - [ ] Add `aria-label` to location card `<button>` elements
