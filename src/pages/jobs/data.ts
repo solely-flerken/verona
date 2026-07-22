@@ -24,6 +24,8 @@ export const jobsContact = {
     email: 'info@pizzeria-verona.de',
 }
 
+export const jobsMetaDescription = 'Aktuelle Stellenangebote bei Pizzeria Verona in Weseke und Borken. Werde Teil unseres Teams in Gastronomie und Service.'
+
 export const jobsData: JobListing[] = [
     {
         id: 'fahrer',

@@ -84,6 +84,7 @@ export function LocationPage() {
     return (
         <PageLayout
             subtitle={location.shortName}
+            description={location.metaDescription}
             showBack
             cta={{label: 'Online bestellen', href: location.orderUrl}}
         >

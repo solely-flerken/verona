@@ -1,5 +1,5 @@
 import {PageLayout} from '../../layouts/PageLayout'
-import {jobsData} from './data'
+import {jobsData, jobsMetaDescription} from './data'
 import {JobCard} from './JobCard'
 import {ContactCard} from './ContactCard'
 import {imagesData} from '../../shared/imagesData'
@@ -9,7 +9,11 @@ export function JobsPage() {
     const activeJobs = jobsData.filter(j => j.active)
 
     return (
-        <PageLayout subtitle="Jobs" showBack>
+        <PageLayout
+            subtitle="Jobs"
+            description={jobsMetaDescription}
+            showBack
+        >
             <main className="flex-1 jobs-page" style={{backgroundImage: `url(${imagesData.wesekeLounge.src})`}}>
                 <div className="jobs-content">
                     <div className="jobs-header">

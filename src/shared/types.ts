@@ -64,4 +64,5 @@ export interface LocationData {
     fallbackBg: string
     descriptor: string
     deliveryCities: string[]
+    metaDescription: string
 }

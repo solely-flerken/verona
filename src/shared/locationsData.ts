@@ -55,6 +55,7 @@ export const locationsData: LocationData[] = [
         fallbackBg: '#1c140d',
         descriptor: 'Hauptrestaurant · 42 Plätze',
         deliveryCities: ['Weseke', 'Ramsdorf', 'Ramsdorf-Holthausen', 'Südlohn', 'Oeding'],
+        metaDescription: 'Pizzeria Verona Weseke: unser Hauptrestaurant mit 42 Sitzplätzen, Abholung und Lieferservice nach Weseke, Ramsdorf, Südlohn und Oeding. Öffnungszeiten, Speisekarte & Online-Bestellung.',
     },
     {
         id: 'borken',
@@ -109,6 +110,7 @@ export const locationsData: LocationData[] = [
         fallbackBg: '#2d2318',
         descriptor: 'Filiale · Mittagstisch',
         deliveryCities: ['Borken', 'Hovesath', 'Borkenwirthe', 'Gemen', 'Gemenwirthe', 'Grütlohn', 'Hoxfeld', 'Marbeck'],
+        metaDescription: 'Pizzeria Verona Borken: unsere Filiale mit Mittagstisch, Abholung und Lieferservice nach Borken, Gemen, Marbeck und Umgebung. Öffnungszeiten, Speisekarte & Online-Bestellung.',
     },
 ]
 
