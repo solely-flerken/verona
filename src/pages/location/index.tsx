@@ -11,6 +11,7 @@ import {Menu} from './Menu'
 import {AboutImageGallery} from './AboutImageGallery.tsx'
 import {getMenuForLocation} from '../../shared/menuData'
 import type {MenuCategory} from '../../shared/types'
+import {locationJsonLd} from '../../shared/structuredData'
 import {aboutTexts} from './data'
 import './index.css'
 
@@ -82,13 +83,15 @@ export function LocationPage() {
     const todayHasSpecial = specialDays.some((o) => o.isToday)
 
     return (
-        <PageLayout
-            subtitle={location.shortName}
-            description={location.metaDescription}
-            showBack
-            cta={{label: 'Online bestellen', href: location.orderUrl}}
-        >
-            <main className="flex-1">
+        <>
+            <script type="application/ld+json">{JSON.stringify(locationJsonLd(location))}</script>
+            <PageLayout
+                subtitle={location.shortName}
+                description={location.metaDescription}
+                showBack
+                cta={{label: 'Online bestellen', href: location.orderUrl}}
+            >
+                <main className="flex-1">
                 {/* ── Hero ─────────────────────────────────────────── */}
                 <section
                     className="location-hero relative flex flex-col justify-end"
@@ -240,7 +243,8 @@ export function LocationPage() {
                         </div>
                     </div>
                 </section>
-            </main>
-        </PageLayout>
+                </main>
+            </PageLayout>
+        </>
     )
 }
