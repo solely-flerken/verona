@@ -214,7 +214,7 @@ export function LocationPage() {
                     <div className="location-section__inner grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
                         <div>
                             <p className="location-eyebrow">Über uns</p>
-                            <h2 className="location-heading">Italienisch aus Überzeugung</h2>
+                            <h2 className="location-heading">Pizza mit Tradition</h2>
                             <p className="location-about-text">{aboutTexts[location.id]}</p>
                         </div>
                         <AboutImageGallery images={galleryImages}/>
