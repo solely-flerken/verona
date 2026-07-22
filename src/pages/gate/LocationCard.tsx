@@ -28,10 +28,16 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             style={{
                 flexGrow: isActive ? 1.2 : isPassive ? 0.8 : 1,
                 backgroundColor: location.fallbackBg,
-                ...(location.image && {backgroundImage: `url(${location.image})`, backgroundSize: 'cover', backgroundPosition: 'center'}),
             }}
             className="card flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >
+            {location.image && (
+                <img
+                    src={location.image.src}
+                    alt={location.image.alt}
+                    className="card__photo absolute inset-0 w-full h-full object-cover"
+                />
+            )}
             <div className="card__meta flex items-center justify-between">
                 <span className="card__meta-index">{idx}</span>
                 <span className="card__meta-city">{location.address.city}</span>

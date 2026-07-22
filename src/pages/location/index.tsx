@@ -72,8 +72,8 @@ export function LocationPage() {
     const deliveryUpcoming = location.deliveryHours ? getUpcomingOverrides(location.deliveryHours, now) : null
     const deliveryWeek = location.deliveryHours ? getWeekSchedule(location.deliveryHours, now) : null
     const galleryImages = [
-        ...location.galleryImages.filter((img) => img.src !== location.image),
-        ...location.galleryImages.filter((img) => img.src === location.image),
+        ...location.galleryImages.filter((img) => img.src !== location.image?.src),
+        ...location.galleryImages.filter((img) => img.src === location.image?.src),
     ]
     const status = getOpeningStatus(location.openingHours, now)
     const upcoming = getUpcomingOverrides(location.openingHours, now)
@@ -95,12 +95,16 @@ export function LocationPage() {
                 {/* ── Hero ─────────────────────────────────────────── */}
                 <section
                     className="location-hero relative flex flex-col justify-end"
-                    style={{
-                        backgroundColor: location.fallbackBg,
-                        ...(location.image && {backgroundImage: `url(${location.image})`}),
-                    }}
+                    style={{backgroundColor: location.fallbackBg}}
                 >
-                    <div className="relative px-6 pb-8 md:pb-12">
+                    {location.image && (
+                        <img
+                            src={location.image.src}
+                            alt={location.image.alt}
+                            className="location-hero__photo absolute inset-0 w-full h-full object-cover"
+                        />
+                    )}
+                    <div className="relative z-10 px-6 pb-8 md:pb-12">
                         <div className="location-section__inner flex flex-col items-start gap-3">
                             <p className="location-hero__eyebrow">Pizzeria Verona · Standort {location.address.city}</p>
                             <h1 className="location-hero__title">{location.shortName}</h1>

@@ -50,7 +50,7 @@ export const locationsData: LocationData[] = [
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona1.pizzeria-verona.de/kategorie/Pizza',
         menuPdf: '/menu/Speisekarte_Weseke_03-2025.pdf',
-        image: imagesData.wesekeEntry.src,
+        image: imagesData.wesekeEntry,
         galleryImages: [imagesData.wesekeEntry, imagesData.wesekeLounge],
         fallbackBg: '#1c140d',
         descriptor: 'Hauptrestaurant · 42 Plätze',
@@ -105,7 +105,7 @@ export const locationsData: LocationData[] = [
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona2.pizzeria-verona.de/kategorie/Pizza',
         menuPdf: '/menu/Speisekarte_Borken_03-2025.pdf',
-        image: imagesData.wesekeLounge.src,
+        image: imagesData.wesekeLounge,
         galleryImages: [imagesData.wesekeEntry, imagesData.wesekeLounge], // TODO: real Borken photos
         fallbackBg: '#2d2318',
         descriptor: 'Filiale · Mittagstisch',

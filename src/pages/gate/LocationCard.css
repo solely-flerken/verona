@@ -3,6 +3,7 @@
     /* ── Card shell ──────────────────────────────────────────── */
     .card {
         position: relative;
+        isolation: isolate;
         text-align: left;
         overflow: hidden;
     }
@@ -10,6 +11,10 @@
     .card:focus-visible {
         outline: 2px solid color-mix(in srgb, var(--color-cream) 40%, transparent);
         outline-offset: -2px;
+    }
+
+    .card__photo {
+        z-index: 0;
     }
 
     /* Mobile only: guarantees enough space above .card__body */
@@ -24,6 +29,7 @@
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 1;
         background: rgba(0, 0, 0, 0.50);
         pointer-events: none;
     }
@@ -33,6 +39,7 @@
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 2;
         background: linear-gradient(
                 to bottom,
                 transparent 0%,
@@ -47,7 +54,7 @@
     .card__meta,
     .card__body {
         position: relative;
-        z-index: 1;
+        z-index: 3;
     }
 
     .card__body {

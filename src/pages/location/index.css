@@ -6,14 +6,18 @@
     /* ── Hero ────────────────────────────────────────────────── */
     .location-hero {
         min-height: clamp(320px, 55vh, 560px);
-        background-size: cover;
-        background-position: center;
+        isolation: isolate;
+    }
+
+    .location-hero__photo {
+        z-index: 0;
     }
 
     .location-hero::before {
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 1;
         background: linear-gradient(to top, rgba(10, 7, 4, 0.82) 0%, rgba(10, 7, 4, 0.35) 45%, rgba(10, 7, 4, 0.15) 100%);
     }
 
