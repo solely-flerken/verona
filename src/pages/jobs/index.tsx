@@ -37,7 +37,6 @@ export function JobsPage() {
                         {activeJobs.map(job => (
                             <JobCard key={job.id} job={job}/>
                         ))}
-                        <div className="jobs-separator" aria-hidden="true"/>
                         <ContactCard/>
                     </div>
                 </div>

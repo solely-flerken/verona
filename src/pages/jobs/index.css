@@ -28,9 +28,9 @@
         background-color: color-mix(in srgb, var(--color-paper) 80%, transparent);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
         border-radius: 1.25rem;
         padding: 4rem 3rem;
+        clip-path: inset(0 round 1.25rem);
     }
 
     /* Slim screens: no room to spare for the backdrop border, so the card goes edge-to-edge instead. */
@@ -42,7 +42,7 @@
         .jobs-content {
             max-width: 100%;
             border-radius: 0;
-            border-width: 0;
+            clip-path: none;
             padding: 2.5rem 1.25rem;
         }
     }

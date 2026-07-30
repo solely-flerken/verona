@@ -1,33 +1,25 @@
 @layer components {
     /* ── Contact card ────────────────────────────────────────── */
     .jobs-contact-card {
-        padding: 1.75rem 2rem;
-        border-radius: 1rem;
+        margin: 0 -3rem -4rem;
+        padding: 2.5rem 3rem;
         background-color: var(--color-ink);
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
     }
 
     @media (max-width: 960px) {
         .jobs-contact-card {
-            padding: 1.5rem 1.25rem;
+            margin: 0 -1.25rem -2.5rem;
+            padding: 2rem 1.25rem;
         }
-    }
-
-    .jobs-contact-card__body {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
     }
 
     .jobs-contact-card__heading {
         font-family: var(--font-serif), serif;
-        font-size: 1.75rem;
+        font-size: clamp(1.75rem, 3.5vw, 2.1rem);
+        font-weight: 700;
         font-style: italic;
-        font-weight: 600;
+        line-height: 1;
         color: #fff;
-        line-height: 1.2;
     }
 
     .jobs-contact-card__accent {
@@ -37,16 +29,19 @@
     .jobs-contact-card__text {
         font-family: var(--font-sans), sans-serif;
         font-size: 1rem;
-        line-height: 1.65;
+        line-height: 1.5;
+        max-width: 30rem;
         color: color-mix(in srgb, #fff 60%, transparent);
     }
 
     .jobs-contact-card__actions {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 1.5rem;
         flex-wrap: wrap;
-        padding-top: 1rem;
+        padding-top: 1.75rem;
+        margin-top: 0.5rem;
         border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
     }
 
