@@ -3,6 +3,7 @@
         max-width: var(--location-inner);
         margin: 0 auto;
         transition: max-width 400ms ease;
+        --menu-sticky-offset: 7.5rem;
     }
 
     .menu-shell--wide {
@@ -11,7 +12,7 @@
 
     .menu__category {
         margin-bottom: 2.5rem;
-        scroll-margin-top: 3.75rem;
+        scroll-margin-top: var(--menu-sticky-offset, 7.5rem);
     }
 
     /* ── Category quick-nav (mobile only) ───────────────────── */
@@ -19,17 +20,26 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        height: 3.75rem;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         background-color: var(--color-paper);
         box-shadow: 0 1px 0 var(--color-line), 0 8px 16px -10px rgba(0, 0, 0, 0.18);
         margin: 0 -1.5rem 1.5rem;
         padding: 0 1.5rem;
     }
 
+    .menu-tabs__header {
+        padding: 1rem 0 0.75rem;
+    }
+
+    .menu-tabs__header .location-heading {
+        margin-bottom: 0;
+    }
+
     .menu-tabs__list {
+        height: 3.75rem;
         display: flex;
+        align-items: center;
         gap: 0.5rem;
         overflow-x: auto;
         scroll-snap-type: x proximity;

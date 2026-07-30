@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {useParams} from 'react-router'
-import {MapPin, Phone, Clock, Bike, ExternalLink, FileDown} from 'lucide-react'
+import {MapPin, Phone, Clock, Bike, ExternalLink} from 'lucide-react'
 import {getLocationBySlug} from '../../shared/locationsData.ts'
 import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from '../../shared/openingHours'
 import {telRef} from '../../shared/telRef.ts'
@@ -33,16 +33,7 @@ function MenuSection({categories, menuPdf}: { categories: MenuCategory[], menuPd
         <section className="location-section">
             <div className={`menu-shell ${expanded ? 'menu-shell--wide' : ''}`}>
                 <p className="location-eyebrow">Speisekarte</p>
-                <div className="location-menu-heading-row flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                    <h2 className="location-heading">Aus unserer Küche</h2>
-                    {menuPdf && (
-                        <a href={menuPdf} download className="location-menu-link inline-flex items-center gap-2">
-                            Speisekarte als PDF
-                            <FileDown size={15}/>
-                        </a>
-                    )}
-                </div>
-                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)}/>
+                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf}/>
                 <p className="location-menu-note">
                     Irrtümer und Änderungen vorbehalten — es gelten die Preise in unserem Bestellshop.
                 </p>

@@ -1,5 +1,6 @@
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {ChevronDown, ChevronUp} from 'lucide-react'
+import type {CSSProperties} from 'react'
+import {ChevronDown, ChevronUp, FileDown} from 'lucide-react'
 import type {MenuCategory, MenuItem} from '../../shared/types'
 import './Menu.css'
 
@@ -40,11 +41,15 @@ interface MenuProps {
     categories: MenuCategory[]
     expanded: boolean
     onToggle: () => void
+    heading: string
+    menuPdf?: string
 }
 
-export function Menu({categories, expanded, onToggle}: MenuProps) {
+export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuProps) {
     const listRef = useRef<HTMLDivElement>(null)
+    const tabsBarRef = useRef<HTMLDivElement>(null)
     const tabsListRef = useRef<HTMLDivElement>(null)
+    const [tabsBarHeight, setTabsBarHeight] = useState(0)
     const fromHeight = useRef<number | null>(null)
     const fromShellMax = useRef<string | null>(null)
     const focusCategory = useRef<string | null>(null)
@@ -52,6 +57,15 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
     const [activeCategory, setActiveCategory] = useState<string | null>(categories[0]?.id ?? null)
     const suppressObserver = useRef(false)
     const suppressTimeout = useRef<number | undefined>(undefined)
+
+    /* Measures the sticky quick-nav bar's own height scroll targets account for it */
+    useLayoutEffect(() => {
+        const element = tabsBarRef.current
+        if (!element) return
+        const observer = new ResizeObserver(() => setTabsBarHeight(element.getBoundingClientRect().height))
+        observer.observe(element)
+        return () => observer.disconnect()
+    }, [])
 
     /* Mobile-only quick-nav: highlight whichever category section is at the top of the viewport */
     useEffect(() => {
@@ -67,11 +81,11 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
                 visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
                 setActiveCategory(visible[0].target.getAttribute('data-category'))
             },
-            {rootMargin: '-60px 0px -70% 0px'},
+            {rootMargin: `-${tabsBarHeight}px 0px -70% 0px`},
         )
         sections.forEach((section) => observer.observe(section))
         return () => observer.disconnect()
-    }, [categories])
+    }, [categories, tabsBarHeight])
 
     /* Scrolls the horizontally-scrollable nav row only — using scrollBy instead of tab.scrollIntoView() to avoid scrolling ancestor containers, like the page. */
     useEffect(() => {
@@ -152,9 +166,27 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
         )
     }, [expanded])
 
+    const header = (
+        <>
+            <h2 className="location-heading">{heading}</h2>
+            {menuPdf && (
+                <a href={menuPdf} download className="location-menu-link inline-flex items-center gap-2">
+                    Speisekarte als PDF
+                    <FileDown size={15}/>
+                </a>
+            )}
+        </>
+    )
+
     return (
         <div>
-            <div className="menu-tabs md:hidden">
+            <div className="location-menu-heading-row hidden md:flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                {header}
+            </div>
+            <div className="menu-tabs md:hidden" ref={tabsBarRef}>
+                <div className="menu-tabs__header flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                    {header}
+                </div>
                 <div className="menu-tabs__list" ref={tabsListRef}>
                     {categories.map(({id, name}) => (
                         <button
@@ -169,7 +201,7 @@ export function Menu({categories, expanded, onToggle}: MenuProps) {
                     ))}
                 </div>
             </div>
-            <div ref={listRef}>
+            <div ref={listRef} style={tabsBarHeight ? {'--menu-sticky-offset': `${tabsBarHeight}px`} as CSSProperties : undefined}>
                 <div className={`md:columns-2 md:gap-12 ${expanded ? 'xl:columns-3' : ''}`}>
                     {categories.map(({id, name, sizes, items: allItems}) => {
                         const truncated = !expanded && allItems.length > PREVIEW_ITEMS
