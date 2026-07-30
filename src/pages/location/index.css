@@ -307,6 +307,8 @@
         background-color: var(--color-cream);
         border-radius: 9999px;
         padding: 0.8rem 1.9rem;
+        width: 14rem;
+        justify-content: center;
         text-decoration: none;
         transition: opacity 150ms;
     }
@@ -324,6 +326,8 @@
         border: 1px solid color-mix(in srgb, var(--color-cream) 45%, transparent);
         border-radius: 9999px;
         padding: 0.8rem 1.9rem;
+        width: 14rem;
+        justify-content: center;
         text-decoration: none;
         transition: border-color 150ms, background-color 150ms;
     }
