@@ -35,7 +35,7 @@ function MenuSection({categories, menuPdf}: { categories: MenuCategory[], menuPd
                 <p className="location-eyebrow">Speisekarte</p>
                 <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf}/>
                 <p className="location-menu-note">
-                    Irrtümer und Änderungen vorbehalten — es gelten die Preise in unserem Bestellshop.
+                    Irrtümer und Änderungen vorbehalten. Es gelten die Preise in unserem Bestellshop.
                 </p>
             </div>
         </section>
@@ -226,7 +226,7 @@ export function LocationPage() {
                         <h2 className="location-order-band__title">Hungrig? Dann bestellen Sie jetzt.</h2>
                         <p className="location-order-band__text">
                             Am schnellsten geht es online über unseren Bestellshop. Oder Sie rufen
-                            uns einfach an — wir sind gern für Sie da.
+                            uns einfach an. Wir sind gern für Sie da.
                         </p>
                         <div className="flex flex-wrap justify-center gap-3 mt-2">
                             <a href={location.orderUrl} target="_blank" rel="noopener" className="location-order-band__cta inline-flex items-center gap-2">

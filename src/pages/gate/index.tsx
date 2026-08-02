@@ -19,11 +19,11 @@ export function GatePage() {
         <>
             <script type="application/ld+json">{JSON.stringify(organizationJsonLd())}</script>
             <PageLayout
-                description="Pizzeria Verona – italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung."
+                description="Pizzeria Verona: italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung."
                 footerLinks={speisekarteFooterLinks}
             >
                 <main className={`gate-main relative flex-1 flex flex-col md:flex-row gap-px ${widgetOpen ? 'gate-main--widget-open' : ''}`}>
-                <h1 className="sr-only">Pizzeria Verona in Weseke und Borken – Restaurant, Abholung &amp; Lieferservice</h1>
+                <h1 className="sr-only">Pizzeria Verona in Weseke und Borken: Restaurant, Abholung &amp; Lieferservice</h1>
                 <LocationCard
                     location={weseke}
                     index={0}

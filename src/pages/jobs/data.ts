@@ -44,7 +44,7 @@ export const jobsData: JobListing[] = [
             'Führerschein Klasse B',
             'Zuverlässigkeit und Pünktlichkeit',
             'Gute Deutschkenntnisse',
-            'Eigenes Fahrzeug von Vorteil – Kilometergeld wird erstattet',
+            'Eigenes Fahrzeug von Vorteil (Kilometergeld wird erstattet)',
         ],
         postedAt: '25.06.2026',
     },
