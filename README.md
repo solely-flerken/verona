@@ -11,6 +11,7 @@
 - [x] Add keyboard support to the location lookup widget (Enter key does nothing)
 - [x] Show feedback when a city search returns no match
 - [x] Make Location-Gate hover animation not trigger on short mouse hovers
+- [ ] Revisit Footer social links: currently defaults to Weseke's on shared pages (gate, jobs, impressum) — consider showing both locations' socials there instead
 
 ### SEO / Meta
 - [x] Add per-page `<title>` tags (currently static "Pizzeria Verona" across all pages)
