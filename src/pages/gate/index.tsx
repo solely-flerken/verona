@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {locationsData} from '../../shared/locationsData.ts'
 import {organizationJsonLd} from '../../shared/structuredData'
+import {speisekarteFooterLinks} from '../../shared/footerNav'
 import {useHoverIntent, useViewTransitionNavigate} from './hooks'
 import {PageLayout} from '../../layouts/PageLayout'
 import './index.css'
@@ -17,7 +18,10 @@ export function GatePage() {
     return (
         <>
             <script type="application/ld+json">{JSON.stringify(organizationJsonLd())}</script>
-            <PageLayout description="Pizzeria Verona – italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung.">
+            <PageLayout
+                description="Pizzeria Verona – italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung."
+                footerLinks={speisekarteFooterLinks}
+            >
                 <main className={`gate-main relative flex-1 flex flex-col md:flex-row gap-px ${widgetOpen ? 'gate-main--widget-open' : ''}`}>
                 <h1 className="sr-only">Pizzeria Verona in Weseke und Borken – Restaurant, Abholung &amp; Lieferservice</h1>
                 <LocationCard

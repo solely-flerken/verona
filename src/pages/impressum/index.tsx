@@ -1,5 +1,6 @@
 import {PageLayout} from '../../layouts/PageLayout'
 import {imagesData} from '../../shared/imagesData'
+import {speisekarteFooterLinks} from '../../shared/footerNav'
 import './index.css'
 
 export function ImpressumPage() {
@@ -8,6 +9,7 @@ export function ImpressumPage() {
             subtitle="Impressum"
             description="Impressum und rechtliche Angaben der Pizzeria Verona in Weseke und Borken."
             showBack
+            footerLinks={speisekarteFooterLinks}
         >
             <main className="flex-1 impressum-page" style={{backgroundImage: `url(${imagesData.wesekeEntry.src})`}}>
                 <article className="impressum-content">

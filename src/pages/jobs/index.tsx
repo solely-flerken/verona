@@ -3,6 +3,7 @@ import {jobsData, jobsMetaDescription} from './data'
 import {JobCard} from './JobCard'
 import {ContactCard} from './ContactCard'
 import {imagesData} from '../../shared/imagesData'
+import {speisekarteFooterLinks} from '../../shared/footerNav'
 import './index.css'
 
 export function JobsPage() {
@@ -13,6 +14,7 @@ export function JobsPage() {
             subtitle="Jobs"
             description={jobsMetaDescription}
             showBack
+            footerLinks={speisekarteFooterLinks}
         >
             <main className="flex-1 jobs-page" style={{backgroundImage: `url(${imagesData.wesekeLounge.src})`}}>
                 <div className="jobs-content">

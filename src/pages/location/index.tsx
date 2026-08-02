@@ -30,7 +30,7 @@ function MenuSection({categories, menuPdf}: { categories: MenuCategory[], menuPd
     const [expanded, setExpanded] = useState(false)
 
     return (
-        <section className="location-section">
+        <section id="speisekarte" className="location-section">
             <div className={`menu-shell ${expanded ? 'menu-shell--wide' : ''}`}>
                 <p className="location-eyebrow">Speisekarte</p>
                 <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf}/>
@@ -81,6 +81,11 @@ export function LocationPage() {
                 description={location.metaDescription}
                 showBack
                 cta={{label: 'Online bestellen', href: location.orderUrl}}
+                footerLocationLabel={location.shortName}
+                footerLinks={[
+                    {label: 'Über uns', href: '#ueber-uns'},
+                    {label: 'Speisekarte', href: '#speisekarte'},
+                ]}
             >
                 <main className="flex-1">
                 {/* ── Hero ─────────────────────────────────────────── */}
@@ -201,7 +206,7 @@ export function LocationPage() {
                 </section>
 
                 {/* ── About ────────────────────────────────────────── */}
-                <section className="location-section location-section--warm">
+                <section id="ueber-uns" className="location-section location-section--warm">
                     <div className="location-section__inner grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
                         <div>
                             <p className="location-eyebrow">Über uns</p>

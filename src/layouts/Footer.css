@@ -1,17 +1,83 @@
 @layer components {
     .gate-footer {
         font-family: var(--font-mono), monospace;
-        font-size: 10px;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 40%, transparent);
         background-color: #0a0704;
     }
 
+    /* Diagonal texture — mobile only. */
     @media (max-width: 767px) {
         .gate-footer {
-            letter-spacing: 0.12em;
+            background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 6px);
         }
+    }
+
+    /* ── Mobile ──────────────────────────────────────────────── */
+    .gate-footer__logo {
+        height: 4.5rem;
+        width: auto;
+    }
+
+    .gate-footer__location {
+        margin-top: -0.75rem;
+        font-family: var(--font-mono), monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--color-cream) 75%, transparent);
+    }
+
+    .gate-footer__nav-link {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: color-mix(in srgb, var(--color-cream) 65%, transparent);
+        text-decoration: none;
+        padding: 0.5rem;
+        transition: color 150ms;
+    }
+
+    .gate-footer__nav-link:hover {
+        color: var(--color-cream);
+    }
+
+    .gate-footer__social {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        transition: opacity 150ms;
+    }
+
+    .gate-footer__social:hover {
+        opacity: 0.8;
+    }
+
+    .gate-footer__copyright {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    /* ── Desktop ─────────────────────────────────────────────── */
+    .gate-footer__desktop {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+    }
+
+    .gate-footer__logo-desktop {
+        display: block;
+        height: 2rem;
+        width: auto;
+        transform: translateY(-8%);
+    }
+
+    .gate-footer__social--desktop {
+        width: 2.75rem;
+        height: 2.75rem;
     }
 
     .gate-footer__link {
@@ -22,10 +88,7 @@
         color: color-mix(in srgb, var(--color-cream) 50%, transparent);
     }
 
-    .gate-footer__divider {
-        display: inline-block;
-        width: 1px;
-        height: 0.75rem;
-        background-color: color-mix(in srgb, var(--color-cream) 10%, transparent);
+    .gate-footer__link-sep {
+        color: color-mix(in srgb, var(--color-cream) 20%, transparent);
     }
 }
