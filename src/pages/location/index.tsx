@@ -82,6 +82,7 @@ export function LocationPage() {
                 showBack
                 cta={{label: 'Online bestellen', href: location.orderUrl}}
                 footerLocationLabel={location.shortName}
+                footerSocial={location.social}
                 footerLinks={[
                     {label: 'Über uns', href: '#ueber-uns'},
                     {label: 'Speisekarte', href: '#speisekarte'},

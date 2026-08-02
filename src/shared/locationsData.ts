@@ -16,6 +16,10 @@ export const locationsData: LocationData[] = [
             phone: '02862 3724',
             email: '',
         },
+        social: {
+            facebook: 'https://www.facebook.com/p/Pizzeria-Verona-100063678484513/',
+            instagram: 'https://www.instagram.com/verona.weseke/',
+        },
         openingHours: {
             week: {
                 mon: {closed: true},
@@ -70,6 +74,10 @@ export const locationsData: LocationData[] = [
         contact: {
             phone: '02861 6899929',
             email: '',
+        },
+        social: {
+            facebook: 'https://www.facebook.com/PizzeriaVerona2/',
+            instagram: 'https://www.instagram.com/pizzeria_verona2_borken_/',
         },
         openingHours: {
             week: {

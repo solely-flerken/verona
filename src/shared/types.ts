@@ -33,6 +33,11 @@ export interface LocationContact {
     email: string
 }
 
+export interface LocationSocial {
+    facebook: string
+    instagram: string
+}
+
 export interface MenuItem {
     id: string
     name: string
@@ -55,6 +60,7 @@ export interface LocationData {
     shortName: string
     address: LocationAddress
     contact: LocationContact
+    social: LocationSocial
     openingHours: OpeningHoursConfig
     deliveryHours?: OpeningHoursConfig
     orderUrl: string
