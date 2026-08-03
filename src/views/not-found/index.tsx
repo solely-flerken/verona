@@ -1,7 +1,7 @@
-import {Link} from 'react-router'
+import Link from 'next/link'
 import {ArrowLeft} from 'lucide-react'
-import {PageLayout} from '../../layouts/PageLayout'
-import {imagesData} from '../../shared/imagesData'
+import {PageLayout} from '@/layouts/PageLayout'
+import {imagesData} from '@/shared/imagesData'
 import './index.css'
 
 export function NotFoundPage() {
@@ -13,7 +13,7 @@ export function NotFoundPage() {
                         <p className="not-found-eyebrow">404 · Pizzeria Verona</p>
                         <h1 className="not-found-title">Seite nicht gefunden</h1>
                         <p className="not-found-body">Diese Seite existiert leider nicht.</p>
-                        <Link to="/" className="gate-header-back inline-flex items-center gap-1.5">
+                        <Link href="/" className="gate-header-back inline-flex items-center gap-1.5">
                             <ArrowLeft size={15} strokeWidth={1.75}/>
                             Zurück zur Startseite
                         </Link>

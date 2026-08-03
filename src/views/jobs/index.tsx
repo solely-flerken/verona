@@ -1,9 +1,9 @@
-import {PageLayout} from '../../layouts/PageLayout'
-import {jobsData, jobsMetaDescription} from './data'
+import {PageLayout} from '@/layouts/PageLayout'
+import {jobsData} from './data'
 import {JobCard} from './JobCard'
 import {ContactCard} from './ContactCard'
-import {imagesData} from '../../shared/imagesData'
-import {speisekarteFooterLinks} from '../../shared/footerNav'
+import {imagesData} from '@/shared/imagesData'
+import {speisekarteFooterLinks} from '@/shared/footerNav'
 import './index.css'
 
 export function JobsPage() {
@@ -12,7 +12,6 @@ export function JobsPage() {
     return (
         <PageLayout
             subtitle="Jobs"
-            description={jobsMetaDescription}
             showBack
             footerLinks={speisekarteFooterLinks}
         >

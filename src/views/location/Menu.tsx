@@ -1,7 +1,9 @@
+'use client'
+
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import type {CSSProperties} from 'react'
 import {ChevronDown, ChevronUp, FileDown} from 'lucide-react'
-import type {MenuCategory, MenuItem} from '../../shared/types'
+import type {MenuCategory, MenuItem} from '@/shared/types'
 import './Menu.css'
 
 const PREVIEW_ITEMS = 3

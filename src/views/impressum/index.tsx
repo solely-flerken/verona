@@ -1,13 +1,12 @@
-import {PageLayout} from '../../layouts/PageLayout'
-import {imagesData} from '../../shared/imagesData'
-import {speisekarteFooterLinks} from '../../shared/footerNav'
+import {PageLayout} from '@/layouts/PageLayout'
+import {imagesData} from '@/shared/imagesData'
+import {speisekarteFooterLinks} from '@/shared/footerNav'
 import './index.css'
 
 export function ImpressumPage() {
     return (
         <PageLayout
             subtitle="Impressum"
-            description="Impressum und rechtliche Angaben der Pizzeria Verona in Weseke und Borken."
             showBack
             footerLinks={speisekarteFooterLinks}
         >

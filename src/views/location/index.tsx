@@ -1,17 +1,18 @@
+'use client'
+
 import {useEffect, useState} from 'react'
-import {useParams} from 'react-router'
 import {MapPin, Phone, Clock, Bike, ExternalLink} from 'lucide-react'
-import {getLocationBySlug} from '../../shared/locationsData.ts'
-import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from '../../shared/openingHours'
-import {telRef} from '../../shared/telRef.ts'
-import {StatusBadge} from '../../components/StatusBadge'
-import {PageLayout} from '../../layouts/PageLayout'
-import {NotFoundPage} from '../not-found'
+import {getLocationBySlug} from '@/shared/locationsData.ts'
+import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from '@/shared/openingHours'
+import {telRef} from '@/shared/telRef.ts'
+import {StatusBadge} from '@/components/StatusBadge'
+import {PageLayout} from '@/layouts/PageLayout'
+import {NotFoundPage} from '@/views/not-found'
 import {Menu} from './Menu'
 import {AboutImageGallery} from './AboutImageGallery.tsx'
-import {getMenuForLocation} from '../../shared/menuData'
-import type {MenuCategory} from '../../shared/types'
-import {locationJsonLd} from '../../shared/structuredData'
+import {getMenuForLocation} from '@/shared/menuData'
+import type {MenuCategory} from '@/shared/types'
+import {locationJsonLd} from '@/shared/structuredData'
 import {aboutTexts} from './data'
 import './index.css'
 
@@ -42,10 +43,9 @@ function MenuSection({categories, menuPdf}: { categories: MenuCategory[], menuPd
     )
 }
 
-export function LocationPage() {
-    const {slug} = useParams()
+export function LocationPage({slug}: { slug: string }) {
     const [now, setNow] = useState(() => new Date())
-    const location = slug ? getLocationBySlug(slug) : undefined
+    const location = getLocationBySlug(slug)
 
     useEffect(() => {
         const tick = () => setNow(new Date())
@@ -78,7 +78,6 @@ export function LocationPage() {
             <script type="application/ld+json">{JSON.stringify(locationJsonLd(location))}</script>
             <PageLayout
                 subtitle={location.shortName}
-                description={location.metaDescription}
                 showBack
                 cta={{label: 'Online bestellen', href: location.orderUrl}}
                 footerLocationLabel={location.shortName}

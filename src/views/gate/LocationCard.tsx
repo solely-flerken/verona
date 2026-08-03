@@ -1,8 +1,10 @@
+'use client'
+
 import {MapPin, Phone} from 'lucide-react'
-import {getOpeningStatus} from '../../shared/openingHours'
-import {telRef} from '../../shared/telRef.ts'
-import {StatusBadge} from '../../components/StatusBadge'
-import type {LocationData} from '../../shared/types'
+import {getOpeningStatus} from '@/shared/openingHours'
+import {telRef} from '@/shared/telRef.ts'
+import {StatusBadge} from '@/components/StatusBadge'
+import type {LocationData} from '@/shared/types'
 import './LocationCard.css'
 
 interface LocationCardProps {

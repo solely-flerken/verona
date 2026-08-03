@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Pizzeria Verona",
+  "short_name": "Verona",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

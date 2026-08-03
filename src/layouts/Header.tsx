@@ -1,4 +1,4 @@
-import {Link} from 'react-router'
+import Link from 'next/link'
 import {ArrowLeft, ExternalLink} from 'lucide-react'
 import './Header.css'
 
@@ -18,12 +18,12 @@ export function Header({subtitle = 'Bitte Standort wählen', showBack = false, c
         <header className="gate-header relative flex flex-col gap-1 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center px-6 py-3.5">
             <div className="flex items-center justify-center gap-3 md:justify-start md:gap-0 md:pr-4">
                 {showBack && (
-                    <Link to="/" className="gate-header-back absolute left-3 inset-y-0 flex items-center gap-1.5 p-3 md:static md:inset-y-auto md:p-0">
+                    <Link href="/" className="gate-header-back absolute left-3 inset-y-0 flex items-center gap-1.5 p-3 md:static md:inset-y-auto md:p-0">
                         <ArrowLeft size={15} strokeWidth={1.75}/>
                         <span className="hidden md:inline">Standorte</span>
                     </Link>
                 )}
-                <Link to="/" className="gate-wordmark md:ml-auto">
+                <Link href="/" className="gate-wordmark md:ml-auto">
                     <span className="gate-wordmark__prefix">Pizzeria </span>
                     <span className="gate-wordmark__name">Verona</span>
                 </Link>

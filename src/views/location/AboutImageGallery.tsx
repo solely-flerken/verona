@@ -1,5 +1,7 @@
+'use client'
+
 import {useEffect, useState} from 'react'
-import type {ImageAsset} from '../../shared/imagesData'
+import type {ImageAsset} from '@/shared/imagesData'
 import './AboutImageGallery.css'
 
 const ROTATE_MS = 5000

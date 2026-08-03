@@ -1,18 +1,20 @@
+'use client'
+
 import {flushSync} from 'react-dom'
-import {useNavigate} from 'react-router'
+import {useRouter} from 'next/navigation'
 import {useCallback, useEffect, useRef, useState} from 'react'
 import type {RefObject} from 'react'
 
 export function useViewTransitionNavigate() {
-    const navigate = useNavigate()
+    const router = useRouter()
 
     return (path: string) => {
         if ('startViewTransition' in document) {
             document.startViewTransition(() => {
-                flushSync(() => navigate(path))
+                flushSync(() => router.push(path))
             })
         } else {
-            navigate(path)
+            router.push(path)
         }
     }
 }

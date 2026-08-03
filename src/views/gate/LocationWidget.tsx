@@ -1,6 +1,8 @@
+'use client'
+
 import {useCallback, useRef, useState} from 'react'
 import {X} from 'lucide-react'
-import {getLocationBySlug} from '../../shared/locationsData.ts'
+import {getLocationBySlug} from '@/shared/locationsData.ts'
 import {findNearestLocation} from './cityLookup'
 import {useCloseOnOutsideOrEscape, useViewTransitionNavigate} from './hooks'
 import './LocationWidget.css'

@@ -1,5 +1,5 @@
 import {Bike, Clock} from 'lucide-react'
-import type {OpeningStatus} from '../shared/openingHours'
+import type {OpeningStatus} from '@/shared/openingHours'
 import './StatusBadge.css'
 
 function dotState(s: OpeningStatus) {
