@@ -2,6 +2,12 @@
 
 ## Todo
 
+### Broader Goals
+- [ ] Redesign Jobs Page
+- [ ] Utilize SSG (maybe just switch to NEXT.js)
+- [ ] Implement CMS
+- [ ] Implement Analytics
+
 ### UX
 - [ ] Add smooth page transition animations across all route changes
 - [x] Implement navigation back to the location gate via logo click and a dedicated UI element (e.g. `← Standort`)
