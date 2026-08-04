@@ -15,21 +15,19 @@
         opacity: 0.75;
     }
 
-    .gate-wordmark__prefix,
-    .gate-wordmark__name {
+    .gate-wordmark__prefix {
         font-family: var(--font-serif), serif;
         font-size: 1.75rem;
         font-weight: 700;
         line-height: 1;
         letter-spacing: 0.025em;
-    }
-
-    .gate-wordmark__prefix {
         color: var(--color-ink);
     }
 
-    .gate-wordmark__name {
-        color: var(--color-terracotta);
+    .gate-wordmark__logo {
+        height: 2.5rem;
+        width: auto;
+        transform: translateY(-8%);
     }
 
     /* ── Separator ───────────────────────────────────────────── */

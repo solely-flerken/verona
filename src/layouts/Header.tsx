@@ -23,9 +23,9 @@ export function Header({subtitle = 'Bitte Standort wählen', showBack = false, c
                         <span className="hidden md:inline">Standorte</span>
                     </Link>
                 )}
-                <Link href="/" className="gate-wordmark md:ml-auto">
-                    <span className="gate-wordmark__prefix">Pizzeria </span>
-                    <span className="gate-wordmark__name">Verona</span>
+                <Link href="/" className="gate-wordmark md:ml-auto inline-flex items-center gap-1.5">
+                    <span className="gate-wordmark__prefix">Pizzeria</span>
+                    <img src="/images/verona_logo.png" alt="Verona" className="gate-wordmark__logo"/>
                 </Link>
             </div>
             <span className="gate-header-sep hidden md:block" aria-hidden="true"/>
