@@ -1,22 +1,30 @@
 import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
-import '@fontsource/inter/300.css'
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/jetbrains-mono/300.css'
-import '@fontsource/jetbrains-mono/400.css'
-import '@fontsource/jetbrains-mono/500.css'
-import '@fontsource/cormorant-garamond/300.css'
-import '@fontsource/cormorant-garamond/400.css'
-import '@fontsource/cormorant-garamond/500.css'
-import '@fontsource/cormorant-garamond/600.css'
-import '@fontsource/cormorant-garamond/700.css'
-import '@fontsource/cormorant-garamond/300-italic.css'
-import '@fontsource/cormorant-garamond/400-italic.css'
-import '@fontsource/cormorant-garamond/500-italic.css'
-import '@fontsource/cormorant-garamond/700-italic.css'
+import {Cormorant_Garamond, Inter, JetBrains_Mono} from 'next/font/google'
 import './globals.css'
 import {SITE_URL} from '@/shared/siteUrl'
+
+const inter = Inter({
+    subsets: ['latin'],
+    weight: ['300', '400', '500'],
+    variable: '--font-inter',
+    display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    weight: ['300', '400', '500'],
+    variable: '--font-jetbrains-mono',
+    display: 'swap',
+})
+
+const cormorantGaramond = Cormorant_Garamond({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700'],
+    style: ['normal', 'italic'],
+    variable: '--font-cormorant-garamond',
+    display: 'swap',
+})
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -41,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
-        <html lang="de">
+        <html lang="de" className={`${inter.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable}`}>
         <body>
         {children}
         </body>
