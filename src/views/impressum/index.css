@@ -1,11 +1,9 @@
 @layer components {
-    /* ── Full-page background ────────────────────────────────── */
     .impressum-page {
         position: relative;
         background-size: cover;
         background-position: center 40%;
         background-attachment: fixed;
-        padding: 4rem 2rem;
         display: flex;
         justify-content: center;
         align-items: stretch;
@@ -19,32 +17,25 @@
         background-color: color-mix(in srgb, var(--color-ink) 65%, transparent);
     }
 
-    /* ── Frosted card ────────────────────────────────────────── */
     .impressum-content {
         position: relative;
         z-index: 1;
         width: 100%;
-        max-width: 50rem;
         background-color: color-mix(in srgb, var(--color-paper) 80%, transparent);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
-        border-radius: 1.25rem;
-        padding: 4rem 3rem;
+        padding: 2.5rem 1.25rem;
     }
 
-    /* Slim screens: no room to spare for the backdrop border, so the card goes edge-to-edge instead. */
-    @media (max-width: 960px) {
-        .impressum-page {
-            padding: 0;
-        }
-
+    @media (min-width: 960px) {
         .impressum-content {
-            max-width: 100%;
-            border-radius: 0;
-            border-width: 0;
-            padding: 2.5rem 1.25rem;
+            padding: 4rem 3rem;
         }
+    }
+
+    .impressum-content__inner {
+        max-width: 42rem;
+        margin: 0 auto;
     }
 
     /* ── Header ──────────────────────────────────────────────── */
@@ -74,13 +65,19 @@
     /* ── Sections ────────────────────────────────────────────── */
     .impressum__section {
         padding-left: 1.25rem;
-        border-left: 2px solid color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+        border-left: 2px solid var(--color-terracotta);
         margin-bottom: 2.5rem;
-        transition: border-color 200ms;
     }
 
-    .impressum__section:hover {
-        border-left-color: var(--color-terracotta);
+    @media (min-width: 960px) {
+        .impressum__section {
+            border-left-color: color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+            transition: border-color 200ms;
+        }
+
+        .impressum__section:hover {
+            border-left-color: var(--color-terracotta);
+        }
     }
 
     .impressum__heading {
