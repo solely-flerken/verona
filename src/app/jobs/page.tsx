@@ -1,10 +1,23 @@
 import type {Metadata} from 'next'
 import {JobsPage} from '@/views/jobs'
+import {imagesData} from '@/shared/imagesData'
+import {SITE_NAME, SITE_URL} from '@/shared/siteUrl'
+
+const description = 'Aktuelle Stellenangebote bei Pizzeria Verona in Weseke und Borken. Werde Teil unseres Teams in Gastronomie und Service.'
 
 export const metadata: Metadata = {
     title: 'Jobs',
-    description: 'Aktuelle Stellenangebote bei Pizzeria Verona in Weseke und Borken. Werde Teil unseres Teams in Gastronomie und Service.',
+    description,
     alternates: {canonical: '/jobs'},
+    openGraph: {
+        type: 'website',
+        locale: 'de_DE',
+        siteName: SITE_NAME,
+        title: 'Jobs · Pizzeria Verona',
+        description,
+        url: '/jobs',
+        images: [{url: `${SITE_URL}${imagesData.wesekeOg.src}`, alt: imagesData.wesekeOg.alt}],
+    },
 }
 
 export default function Page() {
