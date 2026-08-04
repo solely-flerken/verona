@@ -1,66 +1,83 @@
 @layer components {
-    /* ── Contact card ────────────────────────────────────────── */
-    .jobs-contact-card {
-        margin: 0 -3rem -4rem;
-        padding: 2.5rem 3rem;
-        background-color: var(--color-ink);
+    /* ── Contact band ────────────────────────────────────────── */
+    .jobs-contact-band {
+        background-color: var(--color-terracotta);
+        padding: 4rem 1.5rem;
     }
 
-    @media (max-width: 960px) {
-        .jobs-contact-card {
-            margin: 0 -1.25rem -2.5rem;
-            padding: 2rem 1.25rem;
-        }
-    }
-
-    .jobs-contact-card__heading {
+    .jobs-contact-band__title {
         font-family: var(--font-serif), serif;
-        font-size: clamp(1.75rem, 3.5vw, 2.1rem);
+        font-size: clamp(1.9rem, 3.5vw, 2.5rem);
         font-weight: 700;
         font-style: italic;
         line-height: 1;
-        color: #fff;
+        color: var(--color-cream);
     }
 
-    .jobs-contact-card__accent {
-        color: var(--color-terracotta);
-    }
-
-    .jobs-contact-card__text {
+    .jobs-contact-band__text {
         font-family: var(--font-sans), sans-serif;
         font-size: 1rem;
-        line-height: 1.5;
         max-width: 30rem;
-        color: color-mix(in srgb, #fff 60%, transparent);
+        color: color-mix(in srgb, var(--color-cream) 85%, transparent);
     }
 
-    .jobs-contact-card__actions {
+    .jobs-contact-band__actions {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        padding-top: 1.75rem;
-        margin-top: 0.5rem;
-        border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 22rem;
+        margin: 0.5rem auto 0;
     }
 
-    .jobs-contact-card__action {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-family: var(--font-serif), serif;
-        font-size: 1.125rem;
+    @media (min-width: 640px) {
+        .jobs-contact-band__actions {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            max-width: none;
+            margin: 0.5rem 0 0;
+        }
+    }
+
+    .jobs-contact-band__cta {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
         font-weight: 600;
-        color: #fff;
-        transition: opacity 200ms;
+        letter-spacing: 0.02em;
+        color: var(--color-terracotta-deep);
+        background-color: var(--color-cream);
+        border-radius: 9999px;
+        padding: 0.8rem 1.9rem;
+        white-space: nowrap;
+        justify-content: center;
+        text-decoration: none;
+        transition: opacity 150ms;
     }
 
-    .jobs-contact-card__action:hover {
-        opacity: 0.7;
+    .jobs-contact-band__cta:hover {
+        opacity: 0.9;
     }
 
-    .jobs-contact-card__icon {
-        color: var(--color-terracotta);
+    .jobs-contact-band__phone {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-cream);
+        border: 1px solid color-mix(in srgb, var(--color-cream) 45%, transparent);
+        border-radius: 9999px;
+        padding: 0.8rem 1.9rem;
+        white-space: nowrap;
+        justify-content: center;
+        text-decoration: none;
+        transition: border-color 150ms, background-color 150ms;
+    }
+
+    .jobs-contact-band__phone:hover {
+        border-color: var(--color-cream);
+        background-color: color-mix(in srgb, var(--color-cream) 8%, transparent);
     }
 }

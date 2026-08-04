@@ -24,6 +24,66 @@ export const jobsContact = {
     email: 'info@pizzeria-verona.de',
 }
 
+export interface JobBenefit {
+    icon: 'clock' | 'users' | 'heart-handshake' | 'sparkles'
+    title: string
+    text: string
+}
+
+export const jobBenefits: JobBenefit[] = [
+    {
+        icon: 'clock',
+        title: 'Flexible Zeiten',
+        text: 'Deine Schicht planen wir gemeinsam, damit Job und Alltag zusammenpassen.',
+    },
+    {
+        icon: 'users',
+        title: 'Familiäres Team',
+        text: 'Bei uns kennt man sich beim Vornamen, ganz ohne große Hierarchien.',
+    },
+    {
+        icon: 'heart-handshake',
+        title: 'Faire Trinkgeld-Teilung',
+        text: 'Trinkgeld wird zur Hälfte mit der Küche geteilt, fair für das ganze Team.',
+    },
+    {
+        icon: 'sparkles',
+        title: 'Auch ohne Erfahrung',
+        text: 'Quereinsteiger sind bei uns herzlich willkommen. Wir zeigen dir alles.',
+    },
+]
+
+export interface JobProcessStep {
+    step: string
+    title: string
+    text: string
+    optional?: boolean
+}
+
+export const jobProcessSteps: JobProcessStep[] = [
+    {
+        step: '01',
+        title: 'Bewerben',
+        text: 'Ruf an, schreib eine Mail oder komm einfach im Laden vorbei.',
+    },
+    {
+        step: '02',
+        title: 'Kennenlernen',
+        text: 'Bei einem kurzen Gespräch erzählen wir dir mehr und lernen dich kennen.',
+    },
+    {
+        step: '03',
+        title: 'Probearbeiten',
+        text: 'Du schnupperst unverbindlich in eine Schicht rein und lernst das Team live kennen.',
+        optional: true,
+    },
+    {
+        step: '04',
+        title: 'Loslegen',
+        text: 'Passt es für beide Seiten, kannst du zeitnah bei uns starten.',
+    },
+]
+
 export const jobsData: JobListing[] = [
     {
         id: 'fahrer',
