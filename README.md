@@ -3,8 +3,8 @@
 ## Todo
 
 ### Broader Goals
-- [ ] Redesign Jobs Page
-- [ ] Utilize SSG (maybe just switch to NEXT.js)
+- [x] Redesign Jobs Page
+- [x] Utilize SSG (maybe just switch to NEXT.js)
 - [ ] Implement CMS
 - [ ] Implement Analytics
 
@@ -22,11 +22,11 @@
 ### SEO / Meta
 - [x] Add per-page `<title>` tags (currently static "Pizzeria Verona" across all pages)
 - [x] Add `<meta name="description">` tags
-- [ ] Add Open Graph `<meta property="og:*">` tags for social sharing (blocked on SSR/SSG — client-injected tags aren't seen by link-preview bots)
+- [x] Add Open Graph `<meta property="og:*">` tags for social sharing (blocked on SSR/SSG — client-injected tags aren't seen by link-preview bots)
 - [x] Add `robots.txt` and `sitemap.xml`
-- [ ] Replace Borken's placeholder photos (`src/shared/locationsData.ts` reuses Weseke's images) with real Borken photos
+- [x] Replace Borken's placeholder photos (`src/shared/locationsData.ts` reuses Weseke's images) with real Borken photos
 - [ ] Claim/verify Google Business Profile listings for both locations (outside the codebase)
 
 ### Accessibility
 - [ ] Add `aria-label` to location card `<button>` elements
-- [ ] Configure `font-display: swap` to avoid render-blocking fonts
+- [x] Configure `font-display: swap` to avoid render-blocking fonts
