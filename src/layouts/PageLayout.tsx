@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react'
 import {Header, type HeaderCta} from './Header'
 import {Footer, type FooterLink, type FooterSocial} from './Footer'
+import './PageLayout.css'
 
 interface PageLayoutProps {
     subtitle?: string
@@ -14,7 +15,7 @@ interface PageLayoutProps {
 
 export function PageLayout({subtitle, showBack, cta, footerLinks, footerLocationLabel, footerSocial, children}: PageLayoutProps) {
     return (
-        <div className="min-h-dvh flex flex-col">
+        <div className="page-shell flex flex-col">
             <Header subtitle={subtitle} showBack={showBack} cta={cta}/>
             {children}
             <Footer sectionLinks={footerLinks} locationLabel={footerLocationLabel} social={footerSocial}/>

@@ -27,7 +27,7 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
     return (
         <footer className="gate-footer">
             {/* ── Mobile ──────────────────────────────────────────── */}
-            <div className="gate-footer__mobile md:hidden flex flex-col items-center gap-5 px-8 py-6">
+            <div className="gate-footer__mobile lg:hidden flex flex-col items-center gap-5 px-8 py-6">
                 <Link href="/" aria-label="Pizzeria Verona">
                     <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo"/>
                 </Link>
@@ -38,8 +38,7 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
                     <a href={social.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social">
                         <FacebookIcon size={28}/>
                     </a>
-                    <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram"
-                       className="gate-footer__social">
+                    <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social">
                         <InstagramIcon size={28}/>
                     </a>
                 </div>
@@ -56,19 +55,16 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
             </div>
 
             {/* ── Desktop ─────────────────────────────────────────── */}
-            <div
-                className="gate-footer__desktop hidden md:grid md:grid-cols-[1fr_auto_1fr] md:items-center gap-4 px-8 py-2.5">
+            <div className="gate-footer__desktop hidden lg:grid lg:grid-cols-[1fr_auto_minmax(0,1fr)] lg:items-center gap-4 px-8 py-2.5">
                 <div className="flex items-center gap-2">
-                    <Link href="/" aria-label="Pizzeria Verona">
+                    <Link href="/" aria-label="Pizzeria Verona" className="shrink-0">
                         <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo-desktop"/>
                     </Link>
                     <div className="flex items-center gap-2 ml-4">
-                        <a href={social.facebook} target="_blank" rel="noopener" aria-label="Facebook"
-                           className="gate-footer__social gate-footer__social--desktop">
+                        <a href={social.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <FacebookIcon size={28}/>
                         </a>
-                        <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram"
-                           className="gate-footer__social gate-footer__social--desktop">
+                        <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <InstagramIcon size={28}/>
                         </a>
                     </div>
@@ -89,7 +85,10 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
                     ))}
                 </div>
 
-                <span className="text-right">© {new Date().getFullYear()} Pizzeria Verona · {locationLabel ?? 'Weseke & Borken'}</span>
+                <span className="gate-footer__copyright-desktop flex flex-wrap items-baseline gap-x-2">
+                    <span className="whitespace-nowrap">© {new Date().getFullYear()} Pizzeria Verona</span>
+                    <span className="whitespace-nowrap">· {locationLabel ?? 'Weseke & Borken'}</span>
+                </span>
             </div>
         </footer>
     )

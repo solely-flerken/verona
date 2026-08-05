@@ -6,7 +6,7 @@
     }
 
     /* Diagonal texture — mobile only. */
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
         .gate-footer {
             background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 6px);
         }
@@ -84,11 +84,24 @@
         transition: color 200ms;
     }
 
+    /* Tighter tracking once the desktop bar has less room to spare */
+    @media (max-width: 1280px) {
+        .gate-footer__link,
+        .gate-footer__link-sep {
+            letter-spacing: 0.08em;
+        }
+    }
+
     .gate-footer__link:hover {
         color: color-mix(in srgb, var(--color-cream) 50%, transparent);
     }
 
     .gate-footer__link-sep {
         color: color-mix(in srgb, var(--color-cream) 20%, transparent);
+    }
+
+    .gate-footer__copyright-desktop {
+        justify-content: flex-end;
+        letter-spacing: 0.08em;
     }
 }
