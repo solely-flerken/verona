@@ -223,7 +223,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuPro
                                 </h3>
                                 <ul className="space-y-4">
                                     {allItems.map((item, i) => (
-                                        <li key={item.id} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'hidden' : ''}`}>
+                                        <li key={item.id} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'md:hidden' : ''}`}>
                                             <div className="flex items-baseline gap-2">
                                                 <span className="menu__name">{item.name}</span>
                                                 <span className="menu__leader flex-1" aria-hidden="true"></span>
@@ -248,7 +248,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuPro
                                             handleToggle()
                                         }}
                                         aria-expanded={expanded}
-                                        className="menu__more cursor-pointer"
+                                        className="menu__more cursor-pointer hidden md:inline-block"
                                     >
                                         … und weitere Gerichte
                                     </button>
@@ -259,7 +259,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuPro
                 </div>
             </div>
             {hasMore && (
-                <div className="flex justify-center">
+                <div className="hidden md:flex justify-center">
                     <button
                         onClick={handleToggle}
                         aria-expanded={expanded}
