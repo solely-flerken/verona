@@ -4,10 +4,9 @@
         background-size: cover;
         background-position: center 40%;
         background-attachment: fixed;
-        padding: 4rem 2rem;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
     }
 
     .not-found-page::before {
@@ -22,39 +21,35 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        max-width: 36rem;
+        display: flex;
+        align-items: center;
         background-color: color-mix(in srgb, var(--color-paper) 80%, transparent);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid color-mix(in srgb, var(--color-paper) 60%, transparent);
-        border-radius: 1.25rem;
-        padding: 4rem 3rem;
+        padding: 2.5rem 1.25rem;
     }
 
-    .not-found-inner {
-        max-width: 26rem;
-    }
-
-    /* Slim screens: no room to spare for the backdrop border, so the card goes edge-to-edge instead. */
+    /* Keeps the footer off-screen until the user scrolls, since the content alone is short. */
     @media (max-width: 960px) {
-        .not-found-page {
-            padding: 0;
-        }
-
         .not-found-content {
-            position: absolute;
-            inset: 0;
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-radius: 0;
-            border-width: 0;
+            min-height: 90dvh;
         }
+    }
 
-        .not-found-inner {
-            margin: 0 auto;
+    @media (min-width: 960px) {
+        .not-found-content {
+            padding: 4rem 3rem;
         }
+    }
+
+    .not-found-content__inner {
+        max-width: 32rem;
+        margin: 0 auto;
+    }
+
+    /* ── Header ──────────────────────────────────────────────── */
+    .not-found-header {
+        margin-bottom: 3rem;
     }
 
     .not-found-eyebrow {
@@ -68,20 +63,59 @@
 
     .not-found-title {
         font-family: var(--font-serif), serif;
-        font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+        font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 700;
         font-style: italic;
         line-height: 0.94;
         letter-spacing: -0.01em;
         color: var(--color-ink);
-        margin-bottom: 1.25rem;
     }
 
-    .not-found-body {
+    /* ── Section ─────────────────────────────────────────────── */
+    .not-found__section {
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--color-terracotta);
+    }
+
+    @media (min-width: 960px) {
+        .not-found__section {
+            border-left-color: color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+            transition: border-color 200ms;
+        }
+
+        .not-found__section:hover {
+            border-left-color: var(--color-terracotta);
+        }
+    }
+
+    .not-found__heading {
+        font-family: var(--font-mono), monospace;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+        color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+    }
+
+    .not-found__body {
         font-family: var(--font-sans), sans-serif;
         font-size: 1rem;
         line-height: 1.7;
         color: color-mix(in srgb, var(--color-ink) 75%, transparent);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .not-found__link {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-terracotta);
+        transition: color 150ms;
+    }
+
+    .not-found__link:hover {
+        color: var(--color-terracotta-deep);
     }
 }
