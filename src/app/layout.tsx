@@ -29,8 +29,8 @@ const cormorantGaramond = Cormorant_Garamond({
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        default: 'Pizzeria Verona · Restaurant, Abholung & Lieferservice',
-        template: '%s · Pizzeria Verona',
+        default: 'Pizzeria Verona - Restaurant, Abholung & Lieferservice',
+        template: '%s - Pizzeria Verona',
     },
     description: 'Italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung.',
     icons: {

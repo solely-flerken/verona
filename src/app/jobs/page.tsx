@@ -13,7 +13,7 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'de_DE',
         siteName: SITE_NAME,
-        title: 'Jobs · Pizzeria Verona',
+        title: 'Pizzeria Verona - Jobs',
         description,
         url: '/jobs',
         images: [{url: `${SITE_URL}${imagesData.wesekeOg.src}`, alt: imagesData.wesekeOg.alt}],

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'de_DE',
         siteName: SITE_NAME,
-        title: 'Pizzeria Verona',
+        title: 'Pizzeria Verona - Restaurant, Abholung & Lieferservice',
         description: description,
         url: '/',
         images: [{url: `${SITE_URL}${imagesData.wesekeOg.src}`, alt: imagesData.wesekeOg.alt}],

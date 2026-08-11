@@ -22,14 +22,14 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
     const titleSuffix = TITLE_SUFFIX[locationData.slug] ?? 'Restaurant & Lieferservice'
 
     return {
-        title: `${locationData.shortName} · ${titleSuffix}`,
+        title: `${locationData.shortName} - ${titleSuffix}`,
         description: locationData.metaDescription,
         alternates: {canonical: `/${locationData.slug}`},
         openGraph: {
             type: 'website',
             locale: 'de_DE',
             siteName: SITE_NAME,
-            title: `${locationData.shortName} · Pizzeria Verona`,
+            title: `Pizzeria Verona ${locationData.shortName} - ${titleSuffix}`,
             description: locationData.metaDescription,
             url: `/${locationData.slug}`,
             images: [{url: `${SITE_URL}${ogImage.src}`, alt: ogImage.alt}],
