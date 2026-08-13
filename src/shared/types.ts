@@ -31,7 +31,7 @@ export interface LocationContact {
     email: string
 }
 
-export interface LocationSocial {
+export interface Socials {
     facebook: string
     instagram: string
 }
@@ -63,7 +63,7 @@ export interface LocationData {
     shortName: string
     address: LocationAddress
     contact: LocationContact
-    social: LocationSocial
+    socials: Socials
     openingHours: OpeningHoursConfig
     deliveryHours?: OpeningHoursConfig
     orderUrl: string

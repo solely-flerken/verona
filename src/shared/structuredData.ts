@@ -1,5 +1,5 @@
 import type {LocationData, OpeningHoursConfig, WeekDay} from './types'
-import {SITE_URL} from './siteData'
+import {SITE_NAME, SITE_URL} from './siteData'
 
 const WEEK_ORDER: WeekDay[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
@@ -31,12 +31,10 @@ function openingHoursSpecification(config: OpeningHoursConfig) {
     })
 }
 
-const ORG_NAME = 'Pizzeria Verona'
-
 function organizationRef() {
     return {
         '@type': 'Organization' as const,
-        name: ORG_NAME,
+        name: SITE_NAME,
         url: SITE_URL,
     }
 }

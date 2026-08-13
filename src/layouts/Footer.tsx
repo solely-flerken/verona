@@ -1,29 +1,25 @@
 import {Fragment} from 'react'
 import Link from 'next/link'
 import {locationsData} from '@/shared/locationsData.ts'
+import type {Socials} from '@/shared/types'
 import {FacebookIcon, InstagramIcon} from './SocialIcons'
 import './Footer.css'
 
 // Site-wide pages fall back to the main restaurant's social accounts.
-const DEFAULT_SOCIAL = locationsData.find((location) => location.id === 'weseke')!.social
+const DEFAULT_SOCIALS = locationsData.find((location) => location.id === 'weseke')!.socials
 
 export interface FooterLink {
     label: string
     href: string
 }
 
-export interface FooterSocial {
-    facebook: string
-    instagram: string
-}
-
 interface FooterProps {
     sectionLinks?: FooterLink[]
     locationLabel?: string
-    social?: FooterSocial
+    socials?: Socials
 }
 
-export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIAL}: FooterProps) {
+export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCIALS}: FooterProps) {
     return (
         <footer className="gate-footer">
             {/* ── Mobile ──────────────────────────────────────────── */}
@@ -35,10 +31,10 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
                 {locationLabel && <span className="gate-footer__location">{locationLabel}</span>}
 
                 <div className="flex items-center gap-3">
-                    <a href={social.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social">
+                    <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social">
                         <FacebookIcon size={28}/>
                     </a>
-                    <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social">
+                    <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social">
                         <InstagramIcon size={28}/>
                     </a>
                 </div>
@@ -61,10 +57,10 @@ export function Footer({sectionLinks = [], locationLabel, social = DEFAULT_SOCIA
                         <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo-desktop"/>
                     </Link>
                     <div className="flex items-center gap-2 ml-4">
-                        <a href={social.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social gate-footer__social--desktop shrink-0">
+                        <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <FacebookIcon size={28}/>
                         </a>
-                        <a href={social.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social gate-footer__social--desktop shrink-0">
+                        <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <InstagramIcon size={28}/>
                         </a>
                     </div>

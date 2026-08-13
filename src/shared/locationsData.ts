@@ -16,7 +16,7 @@ export const locationsData: LocationData[] = [
             phone: '02862 3724',
             email: '',
         },
-        social: {
+        socials: {
             facebook: 'https://www.facebook.com/p/Pizzeria-Verona-100063678484513/',
             instagram: 'https://www.instagram.com/verona.weseke/',
         },
@@ -84,7 +84,7 @@ export const locationsData: LocationData[] = [
             phone: '02861 6899929',
             email: '',
         },
-        social: {
+        socials: {
             facebook: 'https://www.facebook.com/PizzeriaVerona2/',
             instagram: 'https://www.instagram.com/pizzeria_verona2_borken_/',
         },

@@ -50,7 +50,7 @@ export function JobsPage() {
                         <h2 className="jobs-heading">Das erwartet dich bei uns</h2>
                         <div className="jobs-benefits grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
                             {jobBenefits.map((benefit) => {
-                                const Icon = BENEFIT_ICONS[benefit.icon]
+                                const Icon = BENEFIT_ICONS[benefit.icon] ?? Sparkles
                                 return (
                                     <div key={benefit.title} className="jobs-benefit">
                                         <Icon size={22} className="jobs-benefit__icon"/>
