@@ -31,9 +31,9 @@ export const locationsData: LocationData[] = [
                 sun: {slots: [{open: '16:00', close: '22:00'}]},
             },
             overrides: [
-                {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-                {date: '25.12', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
+                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
+                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
         deliveryHours: {
@@ -47,9 +47,9 @@ export const locationsData: LocationData[] = [
                 sun: {slots: [{open: '16:00', close: '21:30'}]},
             },
             overrides: [
-                {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-                {date: '25.12', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
+                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
+                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona1.pizzeria-verona.de/kategorie/Pizza',
@@ -93,9 +93,9 @@ export const locationsData: LocationData[] = [
                 sun: {slots: [{open: '16:00', close: '22:00'}]},
             },
             overrides: [
-                {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-                {date: '25.12', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
+                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
+                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
         deliveryHours: {
@@ -109,9 +109,9 @@ export const locationsData: LocationData[] = [
                 sun: {slots: [{open: '16:00', close: '21:30'}]},
             },
             overrides: [
-                {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-                {date: '25.12', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {date: '26.12', schedule: {closed: true}, label: '2. Weihnachtstag'},
+                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
+                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
             ],
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona2.pizzeria-verona.de/kategorie/Pizza',

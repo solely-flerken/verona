@@ -114,9 +114,9 @@ describe('restaurant — overrides', () => {
     const withOverrides: OpeningHoursConfig = {
         ...standard,
         overrides: [
-            {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-            {date: '31.12', schedule: {closed: true}},
-            {date: '03.10', schedule: {slots: [{open: '12:00', close: '18:00'}]}, label: 'Tag der deutschen Einheit'},
+            {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+            {recurring: true, monthDay: '12-31', schedule: {closed: true}},
+            {recurring: true, monthDay: '10-03', schedule: {slots: [{open: '12:00', close: '18:00'}]}, label: 'Tag der deutschen Einheit'},
         ],
     }
 
@@ -149,8 +149,8 @@ describe('restaurant — overrides', () => {
         const withBoth: OpeningHoursConfig = {
             ...standard,
             overrides: [
-                {date: '24.12', schedule: {closed: true}, label: 'Heiligabend'},
-                {date: '24.12.2026', schedule: {slots: [{open: '14:00', close: '20:00'}]}},
+                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
+                {recurring: false, date: '2026-12-24', schedule: {slots: [{open: '14:00', close: '20:00'}]}},
             ],
         }
 
@@ -175,7 +175,7 @@ describe('delivery mode', () => {
     it('named holiday override', () => {
         const config: OpeningHoursConfig = {
             ...standard,
-            overrides: [{date: '24.12', schedule: {closed: true}, label: 'Heiligabend'}],
+            overrides: [{recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'}],
         }
         expect(getOpeningStatus(config, at(2026, 12, 24, 15), 'delivery')).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · kein Lieferservice'})
     })

@@ -11,11 +11,9 @@ export type DaySchedule =
     | { closed: true }
     | { slots: TimeSlot[] }
 
-export interface DateOverride {
-    date: string  // "DD.MM.YYYY" one-time  |  "DD.MM" recurring annually (e.g. "24.12")
-    schedule: DaySchedule
-    label?: string
-}
+export type DateOverride =
+    | { recurring: true; monthDay: string /* 'MM-DD', e.g. '12-24' */; schedule: DaySchedule; label?: string }
+    | { recurring: false; date: string /* ISO 'YYYY-MM-DD' */; schedule: DaySchedule; label?: string }
 
 export interface OpeningHoursConfig {
     week: Record<WeekDay, DaySchedule>

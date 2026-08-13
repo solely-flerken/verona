@@ -6,13 +6,19 @@ function toWeekDay(d: Date): WeekDay {
     return WEEK_DAYS[d.getDay()]
 }
 
-function toDateStr(d: Date): string {
+function toISODate(d: Date): string {
     const mm = String(d.getMonth() + 1).padStart(2, '0')
     const dd = String(d.getDate()).padStart(2, '0')
-    return `${dd}.${mm}.${d.getFullYear()}`
+    return `${d.getFullYear()}-${mm}-${dd}`
 }
 
-function toMonthDay(d: Date): string {
+function toStorageMonthDay(d: Date): string {
+    const mm = String(d.getMonth() + 1).padStart(2, '0')
+    const dd = String(d.getDate()).padStart(2, '0')
+    return `${mm}-${dd}`
+}
+
+function toDisplayMonthDay(d: Date): string {
     const mm = String(d.getMonth() + 1).padStart(2, '0')
     const dd = String(d.getDate()).padStart(2, '0')
     return `${dd}.${mm}`
@@ -24,10 +30,10 @@ function timeToMinutes(time: string): number {
 }
 
 function findOverride(config: OpeningHoursConfig, d: Date) {
-    const dateStr = toDateStr(d)
-    const monthDay = toMonthDay(d)
-    return config.overrides?.find((o) => o.date === dateStr)
-        ?? config.overrides?.find((o) => o.date === monthDay)
+    const iso = toISODate(d)
+    const monthDay = toStorageMonthDay(d)
+    return config.overrides?.find((o) => !o.recurring && o.date === iso)
+        ?? config.overrides?.find((o) => o.recurring && o.monthDay === monthDay)
 }
 
 function scheduleText(schedule: DaySchedule): string {
@@ -129,7 +135,7 @@ export function getUpcomingOverrides(config: OpeningHoursConfig, now = new Date(
         if (override) {
             result.push({
                 day: toWeekDay(d),
-                dateLabel: `${toMonthDay(d)}.`,
+                dateLabel: `${toDisplayMonthDay(d)}.`,
                 label: override.label,
                 text: scheduleText(override.schedule),
                 isToday: i === 0,
