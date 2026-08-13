@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import {ImpressumPage} from '@/views/impressum'
 import {imagesData} from '@/shared/imagesData'
-import {SITE_NAME, SITE_URL} from '@/shared/siteUrl'
+import {SITE_NAME, SITE_URL} from '@/shared/siteData'
 
 const description = 'Impressum und rechtliche Angaben der Pizzeria Verona in Weseke und Borken.'
 

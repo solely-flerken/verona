@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import {JobsPage} from '@/views/jobs'
 import {imagesData} from '@/shared/imagesData'
-import {SITE_NAME, SITE_URL} from '@/shared/siteUrl'
+import {SITE_NAME, SITE_URL} from '@/shared/siteData'
 
 const description = 'Aktuelle Stellenangebote bei Pizzeria Verona in Weseke und Borken. Werde Teil unseres Teams in Gastronomie und Service.'
 

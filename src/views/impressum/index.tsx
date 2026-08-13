@@ -1,6 +1,7 @@
 import {PageLayout} from '@/layouts/PageLayout'
 import {imagesData} from '@/shared/imagesData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
+import {legalInfo} from '@/shared/siteData'
 import './index.css'
 
 export function ImpressumPage() {
@@ -21,27 +22,27 @@ export function ImpressumPage() {
                         <section className="impressum__section">
                             <h2 className="impressum__heading">Angaben gemäß § 5 TMG</h2>
                             <p className="impressum__body">
-                                Pizzeria Verona Weseke &amp; Borken<br/>
-                                Schlückersring 13<br/>
-                                46325 Borken
+                                {legalInfo.companyName}<br/>
+                                {legalInfo.address.street}<br/>
+                                {legalInfo.address.zip} {legalInfo.address.city}
                             </p>
                             <p className="impressum__body">
-                                Inhaber: Marek Kaminski
+                                Inhaber: {legalInfo.owner}
                             </p>
                         </section>
 
                         <section className="impressum__section">
                             <h2 className="impressum__heading">Kontakt</h2>
                             <p className="impressum__body">
-                                Telefon: 02862 3724<br/>
-                                E-Mail: info@pizzeria-verona.de
+                                Telefon: {legalInfo.contact.phone}<br/>
+                                E-Mail: {legalInfo.contact.email}
                             </p>
                         </section>
 
                         <section className="impressum__section">
                             <h2 className="impressum__heading">Umsatzsteuer-Identifikationsnummer</h2>
                             <p className="impressum__body">
-                                DE 157284978
+                                {legalInfo.vatId}
                             </p>
                         </section>
 

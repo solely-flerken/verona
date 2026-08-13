@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
 import {Cormorant_Garamond, Inter, JetBrains_Mono} from 'next/font/google'
 import './globals.css'
-import {SITE_URL} from '@/shared/siteUrl'
+import {SITE_URL} from '@/shared/siteData'
 
 const inter = Inter({
     subsets: ['latin'],

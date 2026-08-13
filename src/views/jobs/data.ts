@@ -21,11 +21,6 @@ export function getJobLocationLabel(locationSlugs: '*' | string[]): string {
         .join(' & ')
 }
 
-export const jobsContact = {
-    phone: '02862 3724',
-    email: 'info@pizzeria-verona.de',
-}
-
 export interface JobBenefit {
     icon: 'clock' | 'users' | 'heart-handshake' | 'sparkles'
     title: string

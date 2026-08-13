@@ -1,5 +1,5 @@
 import {Phone, Mail} from 'lucide-react'
-import {jobsContact} from './data'
+import {jobsContact} from '@/shared/siteData'
 import {telRef} from '@/shared/telRef.ts'
 import './ContactCard.css'
 

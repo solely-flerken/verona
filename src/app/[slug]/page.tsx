@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import {LocationPage} from '@/views/location'
 import {getLocationBySlug, locationsData} from '@/shared/locationsData'
-import {SITE_NAME, SITE_URL} from '@/shared/siteUrl'
+import {SITE_NAME, SITE_URL} from '@/shared/siteData'
 
 export function generateStaticParams() {
     return locationsData.map((location) => ({slug: location.slug}))

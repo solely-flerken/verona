@@ -1,5 +1,5 @@
 import type {LocationData, OpeningHoursConfig, WeekDay} from './types'
-import {SITE_URL} from './siteUrl'
+import {SITE_URL} from './siteData'
 
 const WEEK_ORDER: WeekDay[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
