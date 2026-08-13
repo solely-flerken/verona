@@ -1,13 +1,7 @@
 import type {Metadata} from 'next'
 import {LocationPage} from '@/views/location'
 import {getLocationBySlug, locationsData} from '@/shared/locationsData'
-import {imagesData} from '@/shared/imagesData'
 import {SITE_NAME, SITE_URL} from '@/shared/siteUrl'
-
-const TITLE_SUFFIX: Record<string, string> = {
-    weseke: 'Restaurant & Lieferservice',
-    borken: 'Mittagstisch & Lieferservice',
-}
 
 export function generateStaticParams() {
     return locationsData.map((location) => ({slug: location.slug}))
@@ -18,8 +12,8 @@ export async function generateMetadata({params}: { params: Promise<{ slug: strin
     const locationData = getLocationBySlug(slug)
     if (!locationData) return {}
 
-    const ogImage = locationData.slug === 'weseke' ? imagesData.wesekeOg : imagesData.borkenOg
-    const titleSuffix = TITLE_SUFFIX[locationData.slug] ?? 'Restaurant & Lieferservice'
+    const ogImage = locationData.ogImage
+    const titleSuffix = locationData.titleSuffix
 
     return {
         title: `${locationData.shortName} - ${titleSuffix}`,

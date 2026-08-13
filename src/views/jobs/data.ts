@@ -1,22 +1,24 @@
-export type EmploymentType = 'Vollzeit' | 'Teilzeit' | 'Minijob'
-export type JobLocation = 'weseke' | 'borken' | 'beide'
+import {locationsData} from '@/shared/locationsData'
 
-export const LOCATION_LABELS: Record<JobLocation, string> = {
-    weseke: 'Weseke',
-    borken: 'Borken',
-    beide: 'Weseke & Borken',
-}
+export type EmploymentType = 'Vollzeit' | 'Teilzeit' | 'Minijob'
 
 export interface JobListing {
     id: string
     active: boolean
     title: string
     employmentType: EmploymentType
-    location: JobLocation
+    locationSlugs: '*' | string[]
     description: string
     tasks: string[]
     requirements: string[]
     postedAt: string // 'DD.MM.YYYY'
+}
+
+export function getJobLocationLabel(locationSlugs: '*' | string[]): string {
+    const slugs = locationSlugs === '*' ? locationsData.map((l) => l.slug) : locationSlugs
+    return slugs
+        .map((slug) => locationsData.find((l) => l.slug === slug)?.shortName ?? slug)
+        .join(' & ')
 }
 
 export const jobsContact = {
@@ -90,7 +92,7 @@ export const jobsData: JobListing[] = [
         active: true,
         title: 'Lieferfahrer (m/w/d)',
         employmentType: 'Minijob',
-        location: 'beide',
+        locationSlugs: '*',
         description: 'Du bringst unsere Pizzen frisch und pünktlich zu unseren Kunden im Raum Weseke, Borken und den angrenzenden Ortschaften. Die Touren sind gut planbar, das Team nett und die Schichten flexibel einteilbar. Ideal als Nebenjob oder Einstieg, auch ohne Erfahrung in der Gastronomie.',
         tasks: [
             'Auslieferung von Speisen im Liefergebiet',

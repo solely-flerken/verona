@@ -13,7 +13,6 @@ import {AboutImageGallery} from './AboutImageGallery.tsx'
 import {getMenuForLocation} from '@/shared/menuData'
 import type {MenuCategory} from '@/shared/types'
 import {locationJsonLd} from '@/shared/structuredData'
-import {aboutTexts} from './data'
 import './index.css'
 
 /* struck: the times are shown but don't apply (overridden today) */
@@ -211,7 +210,7 @@ export function LocationPage({slug}: { slug: string }) {
                         <div>
                             <p className="location-eyebrow">Über uns</p>
                             <h2 className="location-heading">Pizza mit Tradition</h2>
-                            <p className="location-about-text">{aboutTexts[location.id]}</p>
+                            <p className="location-about-text">{location.aboutText}</p>
                         </div>
                         <AboutImageGallery images={galleryImages}/>
                     </div>

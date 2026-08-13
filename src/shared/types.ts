@@ -66,9 +66,12 @@ export interface LocationData {
     orderUrl: string
     menuPdf?: string
     image?: ImageAsset
+    ogImage: ImageAsset
     galleryImages: ImageAsset[]
     fallbackBg: string
     descriptor: string
+    titleSuffix: string
+    aboutText: string
     deliveryCities: string[]
     metaDescription: string
 }

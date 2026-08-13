@@ -1,6 +1,6 @@
 import {MapPin, Clock} from 'lucide-react'
 import type {JobListing} from './data'
-import {LOCATION_LABELS} from './data'
+import {getJobLocationLabel} from './data'
 import './JobCard.css'
 
 export function JobCard({job}: { job: JobListing }) {
@@ -14,7 +14,7 @@ export function JobCard({job}: { job: JobListing }) {
             <p className="job-card__meta flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span className="inline-flex items-center gap-1.5">
                     <MapPin size={12}/>
-                    {LOCATION_LABELS[job.location]}
+                    {getJobLocationLabel(job.locationSlugs)}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                     <Clock size={12}/>
