@@ -36,6 +36,11 @@ export interface LocationSocial {
     instagram: string
 }
 
+export interface DeliveryCity {
+    name: string
+    aliases?: string[]  // alternate spellings/parts used to match free-text location search input
+}
+
 export interface MenuItem {
     id: string
     name: string
@@ -70,6 +75,6 @@ export interface LocationData {
     descriptor: string
     titleSuffix: string
     aboutText: string
-    deliveryCities: string[]
+    deliveryCities: DeliveryCity[]
     metaDescription: string
 }

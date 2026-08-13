@@ -61,7 +61,13 @@ export const locationsData: LocationData[] = [
         descriptor: 'Hauptrestaurant · 42 Plätze',
         titleSuffix: 'Restaurant & Lieferservice',
         aboutText: 'Vor nun über 30 Jahren haben wir eine kleine Stehpizzeria in Weseke übernommen. Seitdem haben wir den Betrieb ausgebaut mit dem Ziel, unseren Gästen einen immer besseren Service und ein unvergessliches Geschmackserlebnis zu bieten. Heute sind wir ein gemütliches, inhabergeführtes Restaurant mit 42 Sitzplätzen sowie mit einem Abhol- und Lieferservice und einer Filiale in Borken auf der Raesfelder Str. 28. Unsere Küche ist eine Mischung aus traditionellen italienischen sowie modernen saisonalen Gerichten.',
-        deliveryCities: ['Weseke', 'Ramsdorf', 'Ramsdorf-Holthausen', 'Südlohn', 'Oeding'],
+        deliveryCities: [
+            {name: 'Weseke'},
+            {name: 'Ramsdorf'},
+            {name: 'Ramsdorf-Holthausen', aliases: ['holthausen']},
+            {name: 'Südlohn'},
+            {name: 'Oeding'},
+        ],
         metaDescription: 'Pizzeria Verona Weseke: unser Hauptrestaurant mit 42 Sitzplätzen, Abholung und Lieferservice nach Weseke, Ramsdorf, Südlohn und Oeding. Öffnungszeiten, Speisekarte & Online-Bestellung.',
     },
     {
@@ -123,7 +129,16 @@ export const locationsData: LocationData[] = [
         descriptor: 'Filiale · Mittagstisch',
         titleSuffix: 'Mittagstisch & Lieferservice',
         aboutText: 'Vor nun über 30 Jahren haben wir eine kleine Stehpizzeria in Weseke übernommen. Seitdem haben wir den Betrieb ausgebaut mit dem Ziel, unseren Gästen einen immer besseren Service und ein unvergessliches Geschmackserlebnis zu bieten. Heute sind wir ein gemütliches, inhabergeführtes Restaurant mit 42 Sitzplätzen sowie mit einem Abhol- und Lieferservice und einer Filiale in Borken auf der Raesfelder Str. 28. Unsere Küche ist eine Mischung aus traditionellen italienischen sowie modernen saisonalen Gerichten.',
-        deliveryCities: ['Borken', 'Hovesath', 'Borkenwirthe', 'Gemen', 'Gemenwirthe', 'Grütlohn', 'Hoxfeld', 'Marbeck'],
+        deliveryCities: [
+            {name: 'Borken'},
+            {name: 'Hovesath'},
+            {name: 'Borkenwirthe'},
+            {name: 'Gemen'},
+            {name: 'Gemenwirthe'},
+            {name: 'Grütlohn'},
+            {name: 'Hoxfeld'},
+            {name: 'Marbeck'},
+        ],
         metaDescription: 'Pizzeria Verona Borken: unsere Filiale mit Mittagstisch, Abholung und Lieferservice nach Borken, Gemen, Marbeck und Umgebung. Öffnungszeiten, Speisekarte & Online-Bestellung.',
     },
 ]

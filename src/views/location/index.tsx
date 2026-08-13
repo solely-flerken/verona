@@ -196,7 +196,7 @@ export function LocationPage({slug}: { slug: string }) {
                                 <p className="location-section-label">Wir liefern u. a. nach:</p>
                                 <div className="flex flex-wrap gap-1.5">
                                     {location.deliveryCities.map(city => (
-                                        <span key={city} className="location-chip">{city}</span>
+                                        <span key={city.name} className="location-chip">{city.name}</span>
                                     ))}
                                 </div>
                             </div>

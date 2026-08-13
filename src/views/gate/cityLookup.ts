@@ -1,20 +1,12 @@
-const CITY_MAP: Record<string, string> = {
-    // Borken
-    'hovesath': 'borken',
-    'borkenwirthe': 'borken',
-    'borken': 'borken',
-    'gemen': 'borken',
-    'grütlohn': 'borken',
-    'marbeck': 'borken',
-    'hoxfeld': 'borken',
-    'gemenwirthe': 'borken',
-    // Weseke
-    'ramsdorf': 'weseke',
-    'holthausen': 'weseke',
-    'südlohn': 'weseke',
-    'oeding': 'weseke',
-    'weseke': 'weseke',
-}
+import {locationsData} from '@/shared/locationsData'
+
+const CITY_MAP: Record<string, string> = Object.fromEntries(
+    locationsData.flatMap((location) =>
+        location.deliveryCities.flatMap((city) =>
+            [city.name, ...(city.aliases ?? [])].map((key) => [key.toLowerCase(), location.slug])
+        )
+    )
+)
 
 export interface PostcodeMatch {
     locationSlug: string

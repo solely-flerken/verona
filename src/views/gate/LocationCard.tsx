@@ -82,7 +82,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                         <p className="card__section-label">Wir liefern u. a. nach:</p>
                         <div className="flex flex-wrap gap-1.5">
                             {location.deliveryCities.map(city => (
-                                <span key={city} className="card__chip card__chip--delivery">{city}</span>
+                                <span key={city.name} className="card__chip card__chip--delivery">{city.name}</span>
                             ))}
                         </div>
                     </div>
