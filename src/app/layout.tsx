@@ -3,6 +3,7 @@ import type {ReactNode} from 'react'
 import {Cormorant_Garamond, Inter, JetBrains_Mono} from 'next/font/google'
 import './globals.css'
 import {SITE_URL} from '@/shared/siteData'
+import {pageSeoData} from '@/shared/pageSeo'
 
 const inter = Inter({
     subsets: ['latin'],
@@ -29,10 +30,10 @@ const cormorantGaramond = Cormorant_Garamond({
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
     title: {
-        default: 'Pizzeria Verona - Restaurant, Abholung & Lieferservice',
+        default: pageSeoData.home.ogTitle,
         template: '%s - Pizzeria Verona',
     },
-    description: 'Italienische Pizzeria mit Restaurant, Abholung und Lieferservice in Weseke und Borken. Speisekarte, Öffnungszeiten & Online-Bestellung.',
+    description: pageSeoData.home.description,
     icons: {
         icon: [
             {url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png'},
