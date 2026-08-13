@@ -42,14 +42,14 @@ export interface MenuItem {
     id: string
     name: string
     description?: string
-    price: string | string[]  // bare amounts like '8,50' (€ is added in render); arrays map positionally to the category's `sizes`
+    price: string | Record<string, string>  // bare amount like '8,50' (€ added in render); for multi-size items, one entry per offered size keyed by the category's `sizes` label (sizes not offered are simply omitted).
     locations: '*' | string[]  // '*' = offered at every location
 }
 
 export interface MenuCategory {
     id: string
     name: string
-    sizes?: string[]  // price column labels, e.g. ['Ø 26', 'Ø 32', 'Ø 40']
+    sizes?: string[]  // price column labels + order, e.g. ['Klein', 'Groß', 'Family']
     items: MenuItem[]
 }
 

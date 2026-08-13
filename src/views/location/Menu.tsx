@@ -17,7 +17,7 @@ function PriceRow({sizes, price}: { sizes: string[], price: MenuItem['price'] })
     const mid = Math.floor((sizes.length - 1) / 2)
     const prices = typeof price === 'string'
         ? sizes.map((_, i) => (i === mid ? price : ''))
-        : price
+        : sizes.map((s) => price[s] ?? '')
 
     const first = Math.max(prices.findIndex((p) => p !== ''), 0)
     let last = prices.length - 1
@@ -231,7 +231,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuPro
                                                     <PriceRow sizes={sizes} price={item.price}/>
                                                 ) : (
                                                     <span className="menu__price">
-                                                        {typeof item.price === 'string' ? `${item.price} €` : `${item.price.join(' / ')} €`}
+                                                        {typeof item.price === 'string' ? `${item.price} €` : `${Object.values(item.price).join(' / ')} €`}
                                                     </span>
                                                 )}
                                             </div>
