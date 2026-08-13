@@ -6,6 +6,7 @@
         isolation: isolate;
         text-align: left;
         overflow: hidden;
+        background-color: var(--color-ink);
     }
 
     .card:focus-visible {

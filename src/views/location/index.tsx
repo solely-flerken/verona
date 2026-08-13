@@ -90,7 +90,6 @@ export function LocationPage({slug}: { slug: string }) {
                 {/* ── Hero ─────────────────────────────────────────── */}
                 <section
                     className="location-hero relative flex flex-col justify-end"
-                    style={{backgroundColor: location.fallbackBg}}
                 >
                     {location.image && (
                         <img

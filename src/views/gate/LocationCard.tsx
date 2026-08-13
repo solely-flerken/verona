@@ -29,7 +29,6 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             onMouseLeave={onMouseLeave}
             style={{
                 flexGrow: isActive ? 1.2 : isPassive ? 0.8 : 1,
-                backgroundColor: location.fallbackBg,
             }}
             className="card flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >

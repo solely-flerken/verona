@@ -71,7 +71,6 @@ export interface LocationData {
     image?: ImageAsset
     ogImage: ImageAsset
     galleryImages: ImageAsset[]
-    fallbackBg: string
     descriptor: string
     titleSuffix: string
     aboutText: string

@@ -7,6 +7,7 @@
     .location-hero {
         min-height: clamp(320px, 55vh, 560px);
         isolation: isolate;
+        background-color: var(--color-ink);
     }
 
     .location-hero__photo {
