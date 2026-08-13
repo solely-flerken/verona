@@ -16,10 +16,12 @@ export function JobCard({job}: { job: JobListing }) {
                     <MapPin size={12}/>
                     {getJobLocationLabel(job.locationSlugs)}
                 </span>
-                <span className="inline-flex items-center gap-1.5">
-                    <Clock size={12}/>
-                    Seit {job.postedAt}
-                </span>
+                {job.postedAt &&
+                    <span className="inline-flex items-center gap-1.5">
+                        <Clock size={12}/>
+                        Seit {job.postedAt}
+                    </span>
+                }
             </p>
             <p className="job-card__description">{job.description}</p>
 

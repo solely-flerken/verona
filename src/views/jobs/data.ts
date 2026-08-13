@@ -11,7 +11,7 @@ export interface JobListing {
     description: string
     tasks: string[]
     requirements: string[]
-    postedAt: string // 'DD.MM.YYYY'
+    postedAt?: string // 'DD.MM.YYYY'
 }
 
 export function getJobLocationLabel(locationSlugs: '*' | string[]): string {
