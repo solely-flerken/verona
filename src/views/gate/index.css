@@ -26,11 +26,12 @@
        shift or content slides past the card's edge and clips. */
     @media (max-width: 767px) {
         .gate-main {
-            --card-cta-clearance: 9rem;
+            --card-cta-clearance: 3.5rem;
+            height: calc(100svh - 5.5rem);
         }
     }
 
-    @media (max-width: 1023px) {
+    @media (min-width: 768px) and (max-width: 1023px) {
         .page-shell:has(> .gate-main) {
             min-height: calc(100dvh + 14rem);
         }

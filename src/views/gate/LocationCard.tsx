@@ -30,7 +30,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             style={{
                 flexGrow: isActive ? 1.2 : isPassive ? 0.8 : 1,
             }}
-            className="card flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
+            className="card md:flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >
             {location.image && (
                 <img
@@ -39,7 +39,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                     className="card__photo absolute inset-0 w-full h-full object-cover"
                 />
             )}
-            <div className="card__meta flex items-center justify-between">
+            <div className="card__meta hidden md:flex items-center justify-between">
                 <span className="card__meta-index">{idx}</span>
                 <span className="card__meta-city">{location.address.city}</span>
             </div>
@@ -50,11 +50,15 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                 <div className="card__content">
                     <div className="card__status-row flex flex-wrap gap-2">
                         <StatusBadge status={status} icon="clock" iconSize={18}/>
-                        {deliveryStatus && <StatusBadge status={deliveryStatus} icon="bike" iconSize={18}/>}
+                        {deliveryStatus && (
+                            <span className="hidden md:inline-flex">
+                                <StatusBadge status={deliveryStatus} icon="bike" iconSize={18}/>
+                            </span>
+                        )}
                     </div>
 
                     <h2 className="card__title">{location.shortName}</h2>
-                    <p className="card__descriptor">{location.descriptor}</p>
+                    <p className="card__descriptor hidden md:block">{location.descriptor}</p>
                     <div className="card__divider"/>
 
                     <div className="card__contact flex flex-col gap-[0.6rem]">
@@ -62,7 +66,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                             <MapPin size={18} className="card__contact-icon shrink-0"/>
                             <address className="card__address">
                                 <p>{location.address.street}</p>
-                                <p>{location.address.zip} {location.address.city}</p>
+                                <p className="hidden md:block">{location.address.zip} {location.address.city}</p>
                             </address>
                         </div>
                         <div className="flex items-center gap-2">
@@ -77,7 +81,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                         </div>
                     </div>
 
-                    <div className="card__delivery-section">
+                    <div className="card__delivery-section hidden md:block">
                         <p className="card__section-label">Wir liefern u. a. nach:</p>
                         <div className="flex flex-wrap gap-1.5">
                             {location.deliveryCities.map(city => (

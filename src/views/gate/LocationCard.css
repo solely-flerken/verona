@@ -18,13 +18,6 @@
         z-index: 0;
     }
 
-    /* Mobile only: guarantees enough space above .card__body */
-    @media (max-width: 767px) {
-        .card__spacer {
-            min-height: 8.5rem;
-        }
-    }
-
     /* Constant tint — pulls the image from "photo" to "atmosphere" */
     .card::before {
         content: '';
@@ -220,5 +213,37 @@
     .card:hover .card__cta-inner {
         background-color: var(--color-terracotta-deep);
     }
-    
+
+    /* ── Mobile ──────────────────────────────────────────────── */
+    @media (max-width: 767px) {
+        .card {
+            height: 50%;
+        }
+
+        /* Guarantees enough space above .card__body */
+        .card__spacer {
+            min-height: 3rem;
+        }
+
+        .card__content {
+            padding-bottom: 0.75rem;
+        }
+
+        .card__status-row {
+            margin-bottom: 0.5rem;
+        }
+
+        .card__title {
+            font-size: clamp(3rem, 14vw, 4.5rem);
+            margin-bottom: 0.25rem;
+        }
+
+        .card__divider {
+            margin-bottom: 0.75rem;
+        }
+
+        .card__contact {
+            margin-bottom: 0.75rem;
+        }
+    }
 }

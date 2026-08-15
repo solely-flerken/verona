@@ -21,7 +21,7 @@ export function GatePage() {
         <>
             <script type="application/ld+json">{JSON.stringify(organizationJsonLd())}</script>
             <PageLayout footerLinks={speisekarteFooterLinks}>
-                <main className={`gate-main relative flex-1 flex flex-col md:flex-row gap-px ${widgetOpen ? 'gate-main--widget-open' : ''}`}>
+                <main className={`gate-main relative md:flex-1 flex flex-col md:flex-row gap-px ${widgetOpen ? 'gate-main--widget-open' : ''}`}>
                 <h1 className="sr-only">Pizzeria Verona in Weseke und Borken: Restaurant, Abholung &amp; Lieferservice</h1>
                 <LocationCard
                     location={weseke}
