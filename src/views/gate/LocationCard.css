@@ -78,21 +78,10 @@
         }
     }
 
-    /* Mobile: the widget floats centered on the seam between the two stacked
-       cards and grows both ways from there — so the first card's content
-       shifts up while the second card's shifts down. */
-    .gate-main--widget-open .card:first-of-type .card__body {
-        transform: translateY(calc(-1 * var(--card-shift, 0rem)));
-    }
-
-    .gate-main--widget-open .card:last-of-type .card__body {
-        transform: translateY(var(--card-shift, 0rem));
-    }
-
     /* Desktop: the widget sits at the bottom of the vertical seam and only
        grows upward, so both cards shift up the same way. */
     @media (min-width: 768px) {
-        .gate-main--widget-open .card:last-of-type .card__body {
+        .gate-main--widget-open .card .card__body {
             transform: translateY(calc(-1 * var(--card-shift, 0rem)));
         }
     }
@@ -232,7 +221,7 @@
     /* ── Mobile ──────────────────────────────────────────────── */
     @media (max-width: 767px) {
         .card {
-            height: 50%;
+            min-height: calc(50svh - 4.5rem);
         }
 
         /* Guarantees enough space above .card__body */
@@ -259,6 +248,10 @@
 
         .card__contact {
             margin-bottom: 0.75rem;
+        }
+
+        .card__cta-bar {
+            padding: 0 2rem 1rem;
         }
     }
 }

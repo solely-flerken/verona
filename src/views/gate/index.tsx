@@ -9,6 +9,7 @@ import {PageLayout} from '@/layouts/PageLayout'
 import './index.css'
 import {LocationCard} from './LocationCard'
 import {LocationWidget} from './LocationWidget'
+import {LocationWidgetV2} from './LocationWidgetV2'
 
 const [weseke, borken] = locationsData
 
@@ -23,6 +24,12 @@ export function GatePage() {
             <PageLayout footerLinks={speisekarteFooterLinks}>
                 <main className={`gate-main relative md:flex-1 flex flex-col md:flex-row gap-px ${widgetOpen ? 'gate-main--widget-open' : ''}`}>
                 <h1 className="sr-only">Pizzeria Verona in Weseke und Borken: Restaurant, Abholung &amp; Lieferservice</h1>
+
+                {/* Mobile: reserved-space bar above both cards */}
+                <div className="md:hidden">
+                    <LocationWidgetV2/>
+                </div>
+
                 <LocationCard
                     location={weseke}
                     index={0}
@@ -33,7 +40,8 @@ export function GatePage() {
                     onMouseLeave={onCardHoverLeave}
                 />
 
-                <div className="widget-dock pointer-events-none">
+                {/* Desktop: floating dock between the cards */}
+                <div className="widget-dock pointer-events-none hidden md:flex">
                     <LocationWidget onOpenChange={setWidgetOpen}/>
                 </div>
 

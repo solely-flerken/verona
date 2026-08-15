@@ -22,12 +22,9 @@
         --panel-height-est: 12.5rem;
     }
 
-    /* Mobile: cards shift toward the seam, so clearance must exceed the
-       shift or content slides past the card's edge and clips. */
     @media (max-width: 767px) {
         .gate-main {
-            --card-cta-clearance: 3.5rem;
-            height: calc(100svh - 5.5rem);
+            min-height: calc(100svh - 5.5rem);
         }
     }
 
@@ -37,24 +34,18 @@
         }
     }
 
-    /* Mobile: zero-height flex item between the two cards (index.tsx) — its
-       centered child lands exactly on the seam – pill is centered */
+    /* Desktop: pill pinned to gate-main's bottom edge, floating over the cards */
     .widget-dock {
         position: relative;
-        height: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: visible;
         z-index: 20;
     }
 
-    /* Desktop: pill pinned to gate-main's bottom edge instead */
     @media (min-width: 768px) {
         .widget-dock {
             position: absolute;
             inset: auto 0 0 0;
-            height: auto;
+            display: flex;
+            justify-content: center;
             align-items: flex-end;
             padding-bottom: var(--widget-margin-bottom);
         }
