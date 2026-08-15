@@ -15,7 +15,22 @@
     }
 
     .card__photo {
+        position: absolute;
+        inset: 0;
         z-index: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: cover;
+    }
+
+    /* Desktop: fixed to the widest the card ever gets on hover so its cover-scale never has to recompute */
+    @media (min-width: 768px) {
+        .card__photo {
+            left: 50%;
+            width: 60vw;
+            transform: translateX(-50%);
+        }
     }
 
     /* Constant tint — pulls the image from "photo" to "atmosphere" */

@@ -36,7 +36,7 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                 <img
                     src={location.image.src}
                     alt={location.image.alt}
-                    className="card__photo absolute inset-0 w-full h-full object-cover"
+                    className="card__photo"
                 />
             )}
             <div className="card__meta hidden md:flex items-center justify-between">
