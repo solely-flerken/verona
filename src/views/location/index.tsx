@@ -148,8 +148,12 @@ export function LocationPage({slug}: { slug: string }) {
                                     {specialDays.map((o) => (
                                         <tr key={o.dateLabel} className={o.isToday ? 'location-ticket__row--today' : ''}>
                                             <td className="location-ticket__day">
-                                                {o.label ?? o.dateLabel}
-                                                <span className="location-ticket__date">({o.dateLabel})</span>
+                                                {o.label ? (
+                                                    <>
+                                                        {o.label}
+                                                        <span className="location-ticket__date">({o.dateLabel})</span>
+                                                    </>
+                                                ) : o.dateLabel}
                                             </td>
                                             <TimeCell text={
                                                 upcoming.find((u) => u.dateLabel === o.dateLabel)?.text
