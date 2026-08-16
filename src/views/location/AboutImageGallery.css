@@ -14,6 +14,33 @@
         opacity: 1;
     }
 
+    .about-gallery__arrow {
+        width: 3.5rem;
+        color: var(--color-cream);
+        opacity: 0;
+        transition: opacity 500ms ease;
+    }
+
+    .about-gallery__arrow--prev {
+        left: 0;
+        justify-content: flex-start;
+        padding-left: 0.5rem;
+        background: linear-gradient(to right, color-mix(in srgb, black 12%, transparent), transparent);
+    }
+
+    .about-gallery__arrow--next {
+        right: 0;
+        justify-content: flex-end;
+        padding-right: 0.5rem;
+        background: linear-gradient(to left, color-mix(in srgb, black 12%, transparent), transparent);
+    }
+
+    @media (hover: hover) {
+        .about-gallery:hover .about-gallery__arrow {
+            opacity: 1;
+        }
+    }
+
     .about-gallery__dots {
         bottom: 0.9rem;
     }
