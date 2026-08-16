@@ -49,10 +49,10 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             <div className="card__body">
                 <div className="card__content">
                     <div className="card__status-row flex flex-wrap gap-2">
-                        <StatusBadge status={status} icon="clock" iconSize={18}/>
+                        <StatusBadge status={status} icon="clock" iconSize={18} transitionName={`status-badge-${location.slug}-clock`}/>
                         {deliveryStatus && (
                             <span className="hidden md:inline-flex">
-                                <StatusBadge status={deliveryStatus} icon="bike" iconSize={18}/>
+                                <StatusBadge status={deliveryStatus} icon="bike" iconSize={18} transitionName={`status-badge-${location.slug}-bike`}/>
                             </span>
                         )}
                     </div>

@@ -104,8 +104,8 @@ export function LocationPage({slug}: { slug: string }) {
                             <h1 className="location-hero__title">{location.shortName}</h1>
                             <p className="location-hero__descriptor">{location.descriptor}</p>
                             <div className="flex flex-wrap gap-2">
-                                <StatusBadge status={status} icon="clock"/>
-                                {deliveryStatus && <StatusBadge status={deliveryStatus} icon="bike"/>}
+                                <StatusBadge status={status} icon="clock" transitionName={`status-badge-${location.slug}-clock`}/>
+                                {deliveryStatus && <StatusBadge status={deliveryStatus} icon="bike" transitionName={`status-badge-${location.slug}-bike`}/>}
                             </div>
                             <a
                                 href={location.orderUrl}

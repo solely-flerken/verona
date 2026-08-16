@@ -36,6 +36,24 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(.status-badge),
+::view-transition-new(.status-badge) {
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+    animation-duration: 180ms;
+    mix-blend-mode: normal;
+}
+
+/* Chromium drops backdrop-filter on the frozen old/new snapshot images (unresolved bug: https://issues.chromium.org/issues/40175472). */
+::view-transition-group(.status-badge) {
+    backdrop-filter: blur(2px);
+}
+
 @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(root) {
         animation: 380ms cubic-bezier(0.4, 0, 0.2, 1) both gate-leave;
