@@ -1,4 +1,4 @@
-import type {DaySchedule, OpeningHoursConfig, WeekDay} from './types'
+import type {DaySchedule, OpeningHoursConfig, TimeSlot, WeekDay} from './types'
 
 const WEEK_DAYS: WeekDay[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 
@@ -27,6 +27,27 @@ function toDisplayMonthDay(d: Date): string {
 function timeToMinutes(time: string): number {
     const [h, m = '0'] = time.split(':')
     return parseInt(h) * 60 + parseInt(m)
+}
+
+function minutesToTime(min: number): string {
+    const h = String(Math.floor(min / 60)).padStart(2, '0')
+    const m = String(min % 60).padStart(2, '0')
+    return `${h}:${m}`
+}
+
+/** Time-range intersection of two day schedules; closed if either is closed or they don't overlap. */
+function intersectDaySchedule(a: DaySchedule, b: DaySchedule): DaySchedule {
+    if ('closed' in a || 'closed' in b) return {closed: true}
+
+    const slots: TimeSlot[] = []
+    for (const x of a.slots) {
+        for (const y of b.slots) {
+            const open = Math.max(timeToMinutes(x.open), timeToMinutes(y.open))
+            const close = Math.min(timeToMinutes(x.close), timeToMinutes(y.close))
+            if (open < close) slots.push({open: minutesToTime(open), close: minutesToTime(close)})
+        }
+    }
+    return slots.length ? {slots} : {closed: true}
 }
 
 function findOverride(config: OpeningHoursConfig, d: Date) {
@@ -98,14 +119,15 @@ export interface WeekScheduleRow {
  *
  * @param config opening hours to format
  * @param now reference date, used only to set `isToday`
+ * @param clampTo restaurant hours to narrow `config` to, e.g. so delivery never outruns opening hours
  */
-export function getWeekSchedule(config: OpeningHoursConfig, now = new Date()): WeekScheduleRow[] {
+export function getWeekSchedule(config: OpeningHoursConfig, now = new Date(), clampTo?: OpeningHoursConfig): WeekScheduleRow[] {
     const today = toWeekDay(now)
 
     return WEEK_ORDER.map((day) => ({
         day,
         label: DAY_LABELS[day],
-        text: scheduleText(config.week[day]),
+        text: scheduleText(clampTo ? intersectDaySchedule(config.week[day], clampTo.week[day]) : config.week[day]),
         isToday: day === today,
     }))
 }
@@ -125,34 +147,55 @@ export interface UpcomingOverride {
  * @param config opening hours whose overrides to scan
  * @param now reference date, day 0 of the scan
  * @param daysAhead how many days past `now` to include
+ * @param clampTo restaurant hours to narrow `config` to; also surfaces days that are only overridden there
+ *   (e.g. delivery inherits a holiday closure even without its own override entry for that date)
  */
-export function getUpcomingOverrides(config: OpeningHoursConfig, now = new Date(), daysAhead = 14): UpcomingOverride[] {
+export function getUpcomingOverrides(config: OpeningHoursConfig, now = new Date(), daysAhead = 14, clampTo?: OpeningHoursConfig): UpcomingOverride[] {
     const result: UpcomingOverride[] = []
     for (let i = 0; i <= daysAhead; i++) {
         const d = new Date(now)
         d.setDate(d.getDate() + i)
         const override = findOverride(config, d)
-        if (override) {
-            result.push({
-                day: toWeekDay(d),
-                dateLabel: `${toDisplayMonthDay(d)}.`,
-                label: override.label,
-                text: scheduleText(override.schedule),
-                isToday: i === 0,
-                daysFromNow: i,
-            })
-        }
+        const clampOverride = clampTo ? findOverride(clampTo, d) : undefined
+        if (!override && !clampOverride) continue
+
+        // Falls back to the clamp target's override before its own regular week day, so e.g. delivery
+        // inherits a restaurant-side holiday schedule change wholesale, not just clamped to its own weekday pattern.
+        const ownSchedule = override?.schedule ?? clampOverride?.schedule ?? config.week[toWeekDay(d)]
+        const schedule = clampTo
+            ? intersectDaySchedule(ownSchedule, clampOverride ? clampOverride.schedule : clampTo.week[toWeekDay(d)])
+            : ownSchedule
+
+        result.push({
+            day: toWeekDay(d),
+            dateLabel: `${toDisplayMonthDay(d)}.`,
+            label: override?.label ?? clampOverride?.label,
+            text: scheduleText(schedule),
+            isToday: i === 0,
+            daysFromNow: i,
+        })
     }
     return result
 }
 
-export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant', closingSoonMinutes = 30): OpeningStatus {
+export function getOpeningStatus(config: OpeningHoursConfig, now = new Date(), mode: Mode = 'restaurant', clampTo?: OpeningHoursConfig, closingSoonMinutes = 30): OpeningStatus {
     const LABEL = LABELS[mode]
     const override = findOverride(config, now)
-    const schedule = override ? override.schedule : config.week[toWeekDay(now)]
+    const clampOverride = clampTo ? findOverride(clampTo, now) : undefined
+
+    // Falls back to the clamp target's override before its own regular week day, so e.g. delivery
+    // inherits a restaurant-side holiday schedule change wholesale, not just clamped to its own weekday pattern.
+    const ownSchedule = override?.schedule ?? clampOverride?.schedule ?? config.week[toWeekDay(now)]
+    const overrideLabel = override?.label ?? clampOverride?.label
+
+    let schedule = ownSchedule
+    if (clampTo) {
+        const clampSchedule = clampOverride ? clampOverride.schedule : clampTo.week[toWeekDay(now)]
+        schedule = intersectDaySchedule(ownSchedule, clampSchedule)
+    }
 
     if ('closed' in schedule) {
-        return {isOpen: false, opensLater: false, closesSoon: false, label: override?.label ? LABEL.override(override.label) : LABEL.closed}
+        return {isOpen: false, opensLater: false, closesSoon: false, label: overrideLabel ? LABEL.override(overrideLabel) : LABEL.closed}
     }
 
     const nowMin = now.getHours() * 60 + now.getMinutes()

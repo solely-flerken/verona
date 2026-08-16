@@ -19,7 +19,7 @@ interface LocationCardProps {
 
 export function LocationCard({location, index, onClick, isActive, isPassive, onMouseEnter, onMouseLeave}: LocationCardProps) {
     const status = getOpeningStatus(location.openingHours)
-    const deliveryStatus = location.deliveryHours ? getOpeningStatus(location.deliveryHours, new Date(), 'delivery') : null
+    const deliveryStatus = location.deliveryHours ? getOpeningStatus(location.deliveryHours, new Date(), 'delivery', location.openingHours) : null
     const idx = String(index + 1).padStart(2, '0')
 
     return (

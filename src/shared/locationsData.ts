@@ -46,11 +46,6 @@ export const locationsData: LocationData[] = [
                 sat: {slots: [{open: '17:00', close: '22:00'}]},
                 sun: {slots: [{open: '16:00', close: '21:30'}]},
             },
-            overrides: [
-                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
-                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
-            ],
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona1.pizzeria-verona.de/kategorie/Pizza',
         menuPdf: '/menu/Speisekarte_Weseke_03-2025.pdf',
@@ -113,11 +108,6 @@ export const locationsData: LocationData[] = [
                 sat: {slots: [{open: '17:00', close: '22:00'}]},
                 sun: {slots: [{open: '16:00', close: '21:30'}]},
             },
-            overrides: [
-                {recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'},
-                {recurring: true, monthDay: '12-25', schedule: {closed: true}, label: '1. Weihnachtstag'},
-                {recurring: true, monthDay: '12-26', schedule: {closed: true}, label: '2. Weihnachtstag'},
-            ],
         } satisfies OpeningHoursConfig,
         orderUrl: 'https://verona2.pizzeria-verona.de/kategorie/Pizza',
         menuPdf: '/menu/Speisekarte_Borken_03-2025.pdf',

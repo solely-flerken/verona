@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {getOpeningStatus, getWeekSchedule} from './openingHours'
+import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from './openingHours'
 import type {OpeningHoursConfig} from './types'
 
 // Local-time date to avoid UTC-vs-local issues
@@ -178,6 +178,80 @@ describe('delivery mode', () => {
             overrides: [{recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'}],
         }
         expect(getOpeningStatus(config, at(2026, 12, 24, 15), 'delivery')).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · kein Lieferservice'})
+    })
+})
+
+describe('delivery clamped to opening hours', () => {
+    it('closes delivery on an opening-hours override, even without a matching delivery override', () => {
+        const opening: OpeningHoursConfig = {
+            ...standard,
+            overrides: [{recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'}],
+        }
+
+        const result = getOpeningStatus(standard, at(2026, 12, 24, 15), 'delivery', opening)
+        expect(result).toEqual({isOpen: false, opensLater: false, closesSoon: false, label: 'Heiligabend · kein Lieferservice'})
+    })
+
+    it('inherits an opening-hours override with special (non-closed) hours when delivery has none of its own', () => {
+        const opening: OpeningHoursConfig = {
+            week: standard.week,
+            overrides: [{recurring: true, monthDay: '10-03', schedule: {slots: [{open: '12:00', close: '18:00'}]}, label: 'Feiertag'}],
+        }
+
+        // Closed every regular day and has no override — should still pick up the opening override's window wholesale.
+        const delivery: OpeningHoursConfig = {
+            week: {mon: {closed: true}, tue: {closed: true}, wed: {closed: true}, thu: {closed: true}, fri: {closed: true}, sat: {closed: true}, sun: {closed: true}},
+        }
+
+        const result = getOpeningStatus(delivery, at(2026, 10, 3, 14), 'delivery', opening)
+        expect(result).toEqual({isOpen: true, opensLater: false, closesSoon: false, label: 'Lieferservice · bis 18:00 Uhr'})
+    })
+
+    it('narrows a delivery slot that runs wider than opening hours', () => {
+        const wideDelivery: OpeningHoursConfig = {
+            week: {...standard.week, tue: {slots: [{open: '10:00', close: '23:00'}]}},
+        }
+
+        // 10:00 is inside delivery's own slot but before the restaurant opens (11:30)
+        const before = getOpeningStatus(wideDelivery, TUE(10), 'delivery', standard)
+        expect(before).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Lieferservice ab 11:30 Uhr'})
+
+        // 12:00 is inside both
+        const inside = getOpeningStatus(wideDelivery, TUE(12), 'delivery', standard)
+        expect(inside.isOpen).toBe(true)
+    })
+
+    it('leaves a delivery slot untouched when it starts later and ends earlier than opening', () => {
+        // opening (standard) tue: 11:30–14:00 & 17:00–22:00; delivery is narrower on both slots — a subset already
+        const narrowDelivery: OpeningHoursConfig = {
+            week: {...standard.week, tue: {slots: [{open: '12:00', close: '13:30'}, {open: '17:30', close: '21:30'}]}},
+        }
+
+        const before = getOpeningStatus(narrowDelivery, TUE(11, 45), 'delivery', standard)
+        expect(before).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Lieferservice ab 12:00 Uhr'})
+
+        const betweenSlots = getOpeningStatus(narrowDelivery, TUE(13, 45), 'delivery', standard)
+        expect(betweenSlots).toEqual({isOpen: false, opensLater: true, closesSoon: false, label: 'Lieferservice ab 17:30 Uhr'})
+    })
+
+    it('getWeekSchedule intersects each day with the clamp target', () => {
+        const wideDelivery: OpeningHoursConfig = {
+            week: {...standard.week, tue: {slots: [{open: '10:00', close: '23:00'}]}},
+        }
+
+        const rows = getWeekSchedule(wideDelivery, TUE(12), standard)
+        expect(rows[1]).toEqual({day: 'tue', label: 'Dienstag', text: '11:30 – 14:00 & 17:00 – 22:00', isToday: true})
+    })
+
+    it('getUpcomingOverrides surfaces a date only overridden on the clamp target', () => {
+        const opening: OpeningHoursConfig = {
+            ...standard,
+            overrides: [{recurring: true, monthDay: '12-24', schedule: {closed: true}, label: 'Heiligabend'}],
+        }
+
+        const rows = getUpcomingOverrides(standard, at(2026, 12, 20, 12), 14, opening)
+        expect(rows).toHaveLength(1)
+        expect(rows[0]).toMatchObject({dateLabel: '24.12.', label: 'Heiligabend', text: 'Geschlossen'})
     })
 })
 

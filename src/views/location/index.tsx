@@ -58,9 +58,9 @@ export function LocationPage({slug}: { slug: string }) {
 
     if (!location) return <NotFoundPage/>
 
-    const deliveryStatus = location.deliveryHours ? getOpeningStatus(location.deliveryHours, now, 'delivery') : null
-    const deliveryUpcoming = location.deliveryHours ? getUpcomingOverrides(location.deliveryHours, now) : null
-    const deliveryWeek = location.deliveryHours ? getWeekSchedule(location.deliveryHours, now) : null
+    const deliveryStatus = location.deliveryHours ? getOpeningStatus(location.deliveryHours, now, 'delivery', location.openingHours) : null
+    const deliveryUpcoming = location.deliveryHours ? getUpcomingOverrides(location.deliveryHours, now, 14, location.openingHours) : null
+    const deliveryWeek = location.deliveryHours ? getWeekSchedule(location.deliveryHours, now, location.openingHours) : null
     const galleryImages = [
         ...location.galleryImages.filter((img) => img.src !== location.image?.src),
         ...location.galleryImages.filter((img) => img.src === location.image?.src),
