@@ -147,13 +147,11 @@ export function LocationPage({slug}: { slug: string }) {
                                     <tbody className="location-ticket__specials">
                                     {specialDays.map((o) => (
                                         <tr key={o.dateLabel} className={o.isToday ? 'location-ticket__row--today' : ''}>
-                                            <td className="location-ticket__day">
-                                                {o.label ? (
-                                                    <>
-                                                        {o.label}
-                                                        <span className="location-ticket__date">({o.dateLabel})</span>
-                                                    </>
-                                                ) : o.dateLabel}
+                                            <td
+                                                className={`location-ticket__day ${o.label ? 'location-ticket__day--dated' : ''}`}
+                                                data-date={o.dateLabel}
+                                            >
+                                                {o.label || o.dateLabel}
                                             </td>
                                             <TimeCell text={
                                                 upcoming.find((u) => u.dateLabel === o.dateLabel)?.text

@@ -98,6 +98,10 @@
     }
 
     /* ── Hours ticket ────────────────────────────────────────── */
+    .location-ticket {
+        min-width: 0;
+    }
+
     .location-ticket__table {
         border-collapse: collapse;
     }
@@ -128,6 +132,7 @@
         font-size: 1.05rem;
         font-weight: 600;
         color: var(--color-ink);
+        overflow-wrap: break-word;
     }
 
     .location-ticket__time {
@@ -141,15 +146,6 @@
         border-top: 2px solid var(--color-line);
     }
 
-    .location-ticket__date {
-        font-family: var(--font-mono), monospace;
-        font-size: 0.65rem;
-        font-weight: 400;
-        letter-spacing: 0.14em;
-        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-        margin-left: 0.4rem;
-    }
-
     .location-ticket__row--today .location-ticket__day,
     .location-ticket__row--today .location-ticket__time {
         color: var(--color-terracotta);
@@ -161,8 +157,8 @@
         opacity: 0.6;
     }
 
-    .location-ticket__row--today .location-ticket__day::after {
-        content: 'Heute';
+    .location-ticket__row--today .location-ticket__day::after,
+    .location-ticket__day--dated::after {
         display: block;
         font-family: var(--font-mono), monospace;
         font-size: 0.65rem;
@@ -172,9 +168,19 @@
         margin-top: 0.2rem;
     }
 
-    /* Large screens have a margin next to the ticket: 'Heute' hangs out there instead of trailing the day name */
+    .location-ticket__row--today .location-ticket__day::after {
+        content: 'Heute';
+        color: var(--color-terracotta);
+    }
+
+    .location-ticket__day--dated::after {
+        content: attr(data-date);
+        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+    }
+
+    /* Large screens have a margin next to the ticket: 'Heute' hangs out there instead of trailing the day name. */
     @media (min-width: 72rem) {
-        .location-ticket__row--today .location-ticket__day::after {
+        .location-ticket__row--today .location-ticket__day:not(.location-ticket__day--dated)::after {
             content: none;
         }
 
@@ -190,6 +196,15 @@
             font-weight: 400;
             letter-spacing: 0.14em;
             text-transform: uppercase;
+        }
+
+        .location-ticket__day--dated::after,
+        .location-ticket__row--today .location-ticket__day--dated::after {
+            content: '(' attr(data-date) ')';
+            display: inline;
+            margin-top: 0;
+            margin-left: 0.4rem;
+            color: color-mix(in srgb, var(--color-ink) 55%, transparent);
         }
     }
 
