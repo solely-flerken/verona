@@ -19,7 +19,7 @@
     }
 
     .jobs-hero__eyebrow {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
@@ -58,7 +58,7 @@
     }
 
     .jobs-eyebrow {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
@@ -124,7 +124,7 @@
 
     .jobs-step__number {
         display: block;
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.75rem;
         letter-spacing: 0.14em;
         color: color-mix(in srgb, var(--color-ink) 45%, transparent);

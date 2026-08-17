@@ -92,14 +92,14 @@
     }
 
     .card__meta-index {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.75rem;
         letter-spacing: 0.25em;
         color: color-mix(in srgb, var(--color-cream) 60%, transparent);
     }
 
     .card__meta-city {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.75rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -128,7 +128,7 @@
     }
 
     .card__descriptor {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 13px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -173,7 +173,7 @@
 
     /* ── Delivery chips ──────────────────────────────────────── */
     .card__section-label {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -182,7 +182,7 @@
     }
 
     .card__chip {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 13px;
         letter-spacing: 0.06em;
         padding: 0.25rem 0.75rem;

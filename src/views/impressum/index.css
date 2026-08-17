@@ -44,7 +44,7 @@
     }
 
     .impressum-eyebrow {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
@@ -81,7 +81,7 @@
     }
 
     .impressum__heading {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 11.5px;
         font-weight: 500;
         letter-spacing: 0.14em;

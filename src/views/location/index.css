@@ -23,7 +23,7 @@
     }
 
     .location-hero__eyebrow {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
@@ -79,7 +79,7 @@
     }
 
     .location-eyebrow {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
@@ -114,7 +114,7 @@
     }
 
     .location-ticket__col {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.7rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -136,7 +136,7 @@
     }
 
     .location-ticket__time {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.8rem;
         color: color-mix(in srgb, var(--color-ink) 70%, transparent);
     }
@@ -160,7 +160,7 @@
     .location-ticket__row--today .location-ticket__day::after,
     .location-ticket__day--dated::after {
         display: block;
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.65rem;
         font-weight: 400;
         letter-spacing: 0.14em;
@@ -191,7 +191,7 @@
             direction: rtl;
             white-space: nowrap;
             transform: translateX(-1rem);
-            font-family: var(--font-mono), monospace;
+            font-family: var(--font-sans), sans-serif;
             font-size: 0.65rem;
             font-weight: 400;
             letter-spacing: 0.14em;
@@ -234,7 +234,7 @@
     }
 
     .location-section-label {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.7rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;

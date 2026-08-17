@@ -104,7 +104,7 @@
     }
 
     .menu__sizes {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.7rem;
         font-style: normal;
         font-weight: 400;
@@ -137,7 +137,7 @@
     }
 
     .menu__price {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.8rem;
         color: var(--color-ink);
         white-space: nowrap;

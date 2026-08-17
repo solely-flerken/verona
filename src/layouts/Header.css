@@ -85,7 +85,7 @@
     .gate-banner-sub {
         font-family: var(--font-mono), monospace;
         font-size: 14px;
-        letter-spacing: 0.28em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         line-height: 1;
         color: color-mix(in srgb, var(--color-ink) 60%, transparent);

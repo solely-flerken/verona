@@ -47,7 +47,7 @@
     }
 
     .status-badge__label {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 0.8rem;
         letter-spacing: 0.08em;
         color: color-mix(in srgb, var(--color-cream) 80%, transparent);
