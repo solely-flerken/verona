@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/fetch-locations.mjs",
     "build": "next build",
+    "fetch:locations": "node scripts/fetch-locations.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",

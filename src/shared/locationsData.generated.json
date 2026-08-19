@@ -1,0 +1,427 @@
+[
+  {
+    "id": "borken",
+    "slug": "borken",
+    "name": "Verona Borken",
+    "shortName": "Borken",
+    "address": {
+      "street": "Raesfelder Straße 28",
+      "city": "Borken",
+      "zip": "46325"
+    },
+    "contact": {
+      "phone": "02861 6899929",
+      "email": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/PizzeriaVerona2/",
+      "instagram": "https://www.instagram.com/pizzeria_verona2_borken_/"
+    },
+    "openingHours": {
+      "week": {
+        "mon": {
+          "closed": true
+        },
+        "tue": {
+          "slots": [
+            {
+              "open": "11:30",
+              "close": "14:00"
+            },
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "wed": {
+          "slots": [
+            {
+              "open": "11:30",
+              "close": "14:00"
+            },
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "thu": {
+          "slots": [
+            {
+              "open": "11:30",
+              "close": "14:00"
+            },
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "fri": {
+          "slots": [
+            {
+              "open": "11:30",
+              "close": "14:00"
+            },
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sat": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sun": {
+          "slots": [
+            {
+              "open": "16:00",
+              "close": "22:00"
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "deliveryHours": {
+      "week": {
+        "mon": {
+          "closed": true
+        },
+        "tue": {
+          "slots": [
+            {
+              "open": "12:00",
+              "close": "13:45"
+            },
+            {
+              "open": "17:30",
+              "close": "22:00"
+            }
+          ]
+        },
+        "wed": {
+          "slots": [
+            {
+              "open": "12:00",
+              "close": "13:45"
+            },
+            {
+              "open": "17:30",
+              "close": "22:00"
+            }
+          ]
+        },
+        "thu": {
+          "slots": [
+            {
+              "open": "12:00",
+              "close": "13:45"
+            },
+            {
+              "open": "17:30",
+              "close": "22:00"
+            }
+          ]
+        },
+        "fri": {
+          "slots": [
+            {
+              "open": "12:00",
+              "close": "13:45"
+            },
+            {
+              "open": "17:30",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sat": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sun": {
+          "slots": [
+            {
+              "open": "16:00",
+              "close": "21:30"
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "orderUrl": "https://verona2.pizzeria-verona.de/kategorie/Pizza",
+    "menuPdf": "http://localhost:3000/api/media/file/Speisekarte_Weseke_03-2025.pdf",
+    "image": {
+      "src": "http://localhost:3000/api/media/file/verona_borken_lounge.jpeg",
+      "alt": "Lounge Verona Borken"
+    },
+    "ogImage": {
+      "src": "http://localhost:3000/api/media/file/verona_borken_counter_og.jpeg",
+      "alt": "Eingangsbereich Verona Borken"
+    },
+    "galleryImages": [
+      {
+        "src": "http://localhost:3000/api/media/file/verona_borken_counter.jpeg",
+        "alt": "Eingangsbereich Verona Borken"
+      },
+      {
+        "src": "http://localhost:3000/api/media/file/verona_borken_lounge.jpeg",
+        "alt": "Lounge Verona Borken"
+      }
+    ],
+    "descriptor": "Filiale · Mittagstisch",
+    "titleSuffix": "Mittagstisch & Lieferservice",
+    "aboutText": "Vor nun über 30 Jahren haben wir eine kleine Stehpizzeria in Weseke übernommen. Seitdem haben wir den Betrieb ausgebaut mit dem Ziel, unseren Gästen einen immer besseren Service und ein unvergessliches Geschmackserlebnis zu bieten. Heute sind wir ein gemütliches, inhabergeführtes Restaurant mit 42 Sitzplätzen sowie mit einem Abhol- und Lieferservice und einer Filiale in Borken auf der Raesfelder Str. 28. Unsere Küche ist eine Mischung aus traditionellen italienischen sowie modernen saisonalen Gerichten.",
+    "deliveryCities": [
+      {
+        "name": "Borken",
+        "aliases": []
+      },
+      {
+        "name": "Hovesath",
+        "aliases": []
+      },
+      {
+        "name": "Borkenwirthe",
+        "aliases": []
+      },
+      {
+        "name": "Gemen",
+        "aliases": []
+      },
+      {
+        "name": "Gemenwirthe",
+        "aliases": []
+      },
+      {
+        "name": "Grütlohn",
+        "aliases": []
+      },
+      {
+        "name": "Hoxfeld",
+        "aliases": []
+      },
+      {
+        "name": "Marbeck",
+        "aliases": []
+      }
+    ],
+    "metaDescription": "Pizzeria Verona Borken: unsere Filiale mit Mittagstisch, Abholung und Lieferservice nach Borken, Gemen, Marbeck und Umgebung. Öffnungszeiten, Speisekarte & Online-Bestellung."
+  },
+  {
+    "id": "weseke",
+    "slug": "weseke",
+    "name": "Verona Weseke",
+    "shortName": "Weseke",
+    "address": {
+      "street": "Schlückersring 13",
+      "city": "Weseke",
+      "zip": "46325"
+    },
+    "contact": {
+      "phone": "02862 3724",
+      "email": ""
+    },
+    "socials": {
+      "facebook": "https://www.facebook.com/p/Pizzeria-Verona-100063678484513/",
+      "instagram": "https://www.instagram.com/verona.weseke/"
+    },
+    "openingHours": {
+      "week": {
+        "mon": {
+          "closed": true
+        },
+        "tue": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "wed": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "thu": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "fri": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sat": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sun": {
+          "slots": [
+            {
+              "open": "16:00",
+              "close": "22:00"
+            }
+          ]
+        }
+      },
+      "overrides": [
+        {
+          "recurring": true,
+          "schedule": {
+            "closed": true
+          },
+          "label": "Heiligabend",
+          "monthDay": "12-24"
+        },
+        {
+          "recurring": true,
+          "schedule": {
+            "closed": true
+          },
+          "label": "1. Weihnachtstag",
+          "monthDay": "12-25"
+        },
+        {
+          "recurring": true,
+          "schedule": {
+            "closed": true
+          },
+          "label": "2. Weihnachtstag",
+          "monthDay": "12-26"
+        }
+      ]
+    },
+    "deliveryHours": {
+      "week": {
+        "mon": {
+          "closed": true
+        },
+        "tue": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "wed": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "thu": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "fri": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sat": {
+          "slots": [
+            {
+              "open": "17:00",
+              "close": "22:00"
+            }
+          ]
+        },
+        "sun": {
+          "slots": [
+            {
+              "open": "16:00",
+              "close": "21:30"
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "orderUrl": "https://verona1.pizzeria-verona.de/kategorie/Pizza",
+    "menuPdf": "http://localhost:3000/api/media/file/Speisekarte_Weseke_03-2025.pdf",
+    "image": {
+      "src": "http://localhost:3000/api/media/file/verona_weseke_entry.jpg",
+      "alt": "Eingangsbereich Verona Weseke"
+    },
+    "ogImage": {
+      "src": "http://localhost:3000/api/media/file/verona_weseke_entry_og.png",
+      "alt": "Eingangsbereich Verona Weseke"
+    },
+    "galleryImages": [
+      {
+        "src": "http://localhost:3000/api/media/file/verona_weseke_entry.jpg",
+        "alt": "Eingangsbereich Verona Weseke"
+      },
+      {
+        "src": "http://localhost:3000/api/media/file/verona_weseke_lounge.jpg",
+        "alt": "Lounge Verona Weseke"
+      }
+    ],
+    "descriptor": "Hauptrestaurant · 42 Plätze",
+    "titleSuffix": "Restaurant & Lieferservice",
+    "aboutText": "Vor nun über 30 Jahren haben wir eine kleine Stehpizzeria in Weseke übernommen. Seitdem haben wir den Betrieb ausgebaut mit dem Ziel, unseren Gästen einen immer besseren Service und ein unvergessliches Geschmackserlebnis zu bieten. Heute sind wir ein gemütliches, inhabergeführtes Restaurant mit 42 Sitzplätzen sowie mit einem Abhol- und Lieferservice und einer Filiale in Borken auf der Raesfelder Str. 28. Unsere Küche ist eine Mischung aus traditionellen italienischen sowie modernen saisonalen Gerichten.",
+    "deliveryCities": [
+      {
+        "name": "Weseke",
+        "aliases": []
+      },
+      {
+        "name": "Ramsdorf",
+        "aliases": []
+      },
+      {
+        "name": "Ramsdorf-Holthausen",
+        "aliases": [
+          "holthausen"
+        ]
+      },
+      {
+        "name": "Südlohn",
+        "aliases": []
+      },
+      {
+        "name": "Oeding",
+        "aliases": []
+      }
+    ],
+    "metaDescription": "Pizzeria Verona Weseke: unser Hauptrestaurant mit 42 Sitzplätzen, Abholung und Lieferservice nach Weseke, Ramsdorf, Südlohn und Oeding. Öffnungszeiten, Speisekarte & Online-Bestellung."
+  }
+]
