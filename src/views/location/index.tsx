@@ -6,6 +6,8 @@ import {getLocationBySlug} from '@/shared/locationsData.ts'
 import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from '@/shared/openingHours'
 import {telRef} from '@/shared/telRef.ts'
 import {StatusBadge} from '@/components/StatusBadge'
+import {FallbackImage} from '@/components/FallbackImage'
+import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
 import {PageLayout} from '@/layouts/PageLayout'
 import {NotFoundPage} from '@/views/not-found'
 import {Menu} from './Menu'
@@ -92,9 +94,10 @@ export function LocationPage({slug}: { slug: string }) {
                     className="location-hero relative flex flex-col justify-end"
                 >
                     {location.image && (
-                        <img
+                        <FallbackImage
                             src={location.image.src}
                             alt={location.image.alt}
+                            fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.image.src}
                             className="location-hero__photo absolute inset-0 w-full h-full object-cover"
                         />
                     )}
@@ -213,7 +216,7 @@ export function LocationPage({slug}: { slug: string }) {
                             <h2 className="location-heading">Pizza mit Tradition</h2>
                             <p className="location-about-text">{location.aboutText}</p>
                         </div>
-                        <AboutImageGallery images={galleryImages}/>
+                        <AboutImageGallery images={galleryImages} fallbackImages={locationImageFallbacks[location.slug]?.galleryImages ?? []}/>
                     </div>
                 </section>
 

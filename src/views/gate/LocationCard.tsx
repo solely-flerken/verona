@@ -4,6 +4,8 @@ import {MapPin, Phone} from 'lucide-react'
 import {getOpeningStatus} from '@/shared/openingHours'
 import {telRef} from '@/shared/telRef.ts'
 import {StatusBadge} from '@/components/StatusBadge'
+import {FallbackImage} from '@/components/FallbackImage'
+import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
 import type {LocationData} from '@/shared/types'
 import './LocationCard.css'
 
@@ -33,9 +35,10 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             className="card md:flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >
             {location.image && (
-                <img
+                <FallbackImage
                     src={location.image.src}
                     alt={location.image.alt}
+                    fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.image.src}
                     className="card__photo"
                 />
             )}

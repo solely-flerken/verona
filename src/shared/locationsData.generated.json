@@ -162,22 +162,22 @@
       "overrides": []
     },
     "orderUrl": "https://verona2.pizzeria-verona.de/kategorie/Pizza",
-    "menuPdf": "http://localhost:3000/api/media/file/Speisekarte_Weseke_03-2025.pdf",
+    "menuPdf": "http://localhost:3010/api/media/file/Speisekarte_Weseke_03-2025.pdf",
     "image": {
-      "src": "http://localhost:3000/api/media/file/verona_borken_lounge.jpeg",
+      "src": "http://localhost:3010/api/media/file/verona_borken_lounge.jpeg",
       "alt": "Lounge Verona Borken"
     },
     "ogImage": {
-      "src": "http://localhost:3000/api/media/file/verona_borken_counter_og.jpeg",
+      "src": "http://localhost:3010/api/media/file/verona_borken_counter_og.jpeg",
       "alt": "Eingangsbereich Verona Borken"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3000/api/media/file/verona_borken_counter.jpeg",
+        "src": "http://localhost:3010/api/media/file/verona_borken_counter.jpeg",
         "alt": "Eingangsbereich Verona Borken"
       },
       {
-        "src": "http://localhost:3000/api/media/file/verona_borken_lounge.jpeg",
+        "src": "http://localhost:3010/api/media/file/verona_borken_lounge.jpeg",
         "alt": "Lounge Verona Borken"
       }
     ],
@@ -376,22 +376,22 @@
       "overrides": []
     },
     "orderUrl": "https://verona1.pizzeria-verona.de/kategorie/Pizza",
-    "menuPdf": "http://localhost:3000/api/media/file/Speisekarte_Weseke_03-2025.pdf",
+    "menuPdf": "http://localhost:3010/api/media/file/Speisekarte_Weseke_03-2025.pdf",
     "image": {
-      "src": "http://localhost:3000/api/media/file/verona_weseke_entry.jpg",
+      "src": "http://localhost:3010/api/media/file/verona_weseke_entry.jpg",
       "alt": "Eingangsbereich Verona Weseke"
     },
     "ogImage": {
-      "src": "http://localhost:3000/api/media/file/verona_weseke_entry_og.png",
+      "src": "http://localhost:3010/api/media/file/verona_weseke_entry_og.png",
       "alt": "Eingangsbereich Verona Weseke"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3000/api/media/file/verona_weseke_entry.jpg",
+        "src": "http://localhost:3010/api/media/file/verona_weseke_entry.jpg",
         "alt": "Eingangsbereich Verona Weseke"
       },
       {
-        "src": "http://localhost:3000/api/media/file/verona_weseke_lounge.jpg",
+        "src": "http://localhost:3010/api/media/file/verona_weseke_lounge.jpg",
         "alt": "Lounge Verona Weseke"
       }
     ],
