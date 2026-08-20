@@ -4,6 +4,7 @@ import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import type {CSSProperties} from 'react'
 import {ChevronDown, ChevronUp, FileDown} from 'lucide-react'
 import type {MenuCategory, MenuItem} from '@/shared/types'
+import {FallbackLink} from '@/components/FallbackLink'
 import './Menu.css'
 
 const PREVIEW_ITEMS = 3
@@ -45,9 +46,10 @@ interface MenuProps {
     onToggle: () => void
     heading: string
     menuPdf?: string
+    menuPdfFallback?: string
 }
 
-export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuProps) {
+export function Menu({categories, expanded, onToggle, heading, menuPdf, menuPdfFallback}: MenuProps) {
     const listRef = useRef<HTMLDivElement>(null)
     const tabsBarRef = useRef<HTMLDivElement>(null)
     const tabsListRef = useRef<HTMLDivElement>(null)
@@ -172,10 +174,15 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf}: MenuPro
         <>
             <h2 className="location-heading">{heading}</h2>
             {menuPdf && (
-                <a href={menuPdf} download className="location-menu-link inline-flex items-center gap-2">
+                <FallbackLink
+                    href={menuPdf}
+                    fallbackHref={menuPdfFallback ?? menuPdf}
+                    download
+                    className="location-menu-link inline-flex items-center gap-2"
+                >
                     Speisekarte als PDF
                     <FileDown size={15}/>
-                </a>
+                </FallbackLink>
             )}
         </>
     )

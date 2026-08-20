@@ -8,6 +8,7 @@ import {telRef} from '@/shared/telRef.ts'
 import {StatusBadge} from '@/components/StatusBadge'
 import {FallbackImage} from '@/components/FallbackImage'
 import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
+import {locationMenuPdfFallbacks} from '@/shared/locationMenuPdfFallbacks'
 import {PageLayout} from '@/layouts/PageLayout'
 import {NotFoundPage} from '@/views/not-found'
 import {Menu} from './Menu'
@@ -28,14 +29,14 @@ function TimeCell({text, struck}: { text: string, struck?: boolean }) {
     )
 }
 
-function MenuSection({categories, menuPdf}: { categories: MenuCategory[], menuPdf?: string }) {
+function MenuSection({categories, menuPdf, menuPdfFallback}: { categories: MenuCategory[], menuPdf?: string, menuPdfFallback?: string }) {
     const [expanded, setExpanded] = useState(false)
 
     return (
         <section id="speisekarte" className="location-section">
             <div className={`menu-shell ${expanded ? 'menu-shell--wide' : ''}`}>
                 <p className="location-eyebrow">Speisekarte</p>
-                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf}/>
+                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf} menuPdfFallback={menuPdfFallback}/>
                 <p className="location-menu-note">
                     Irrtümer und Änderungen vorbehalten. Es gelten die Preise in unserem Bestellshop.
                 </p>
@@ -221,7 +222,7 @@ export function LocationPage({slug}: { slug: string }) {
                 </section>
 
                 {/* ── Menu ─────────────────────────────────────────── */}
-                <MenuSection categories={getMenuForLocation(location.id)} menuPdf={location.menuPdf}/>
+                <MenuSection categories={getMenuForLocation(location.id)} menuPdf={location.menuPdf} menuPdfFallback={locationMenuPdfFallbacks[location.slug]}/>
 
                 {/* ── Order band ───────────────────────────────────── */}
                 <section className="location-order-band">
