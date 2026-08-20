@@ -96,7 +96,7 @@ function mapLocation(doc) {
         deliveryHours: doc.deliveryHours ? mapOpeningHoursConfig(doc.deliveryHours) : undefined,
         orderUrl: doc.ordering?.orderUrl ?? '',
         menuPdf: doc.ordering?.menuPdf ? absoluteUrl(doc.ordering.menuPdf.url) : undefined,
-        image: mapImage(doc.heroImage),
+        heroImage: mapImage(doc.heroImage),
         ogImage: mapImage(doc.ogImage) ?? {src: '', alt: ''},
         galleryImages: (doc.galleryImages ?? []).map(mapImage).filter(Boolean),
         descriptor: doc.descriptor ?? '',

@@ -64,8 +64,8 @@ export function LocationPage({slug}: { slug: string }) {
     const deliveryUpcoming = location.deliveryHours ? getUpcomingOverrides(location.deliveryHours, now, 14, location.openingHours) : null
     const deliveryWeek = location.deliveryHours ? getWeekSchedule(location.deliveryHours, now, location.openingHours) : null
     const galleryImages = [
-        ...location.galleryImages.filter((img) => img.src !== location.image?.src),
-        ...location.galleryImages.filter((img) => img.src === location.image?.src),
+        ...location.galleryImages.filter((img) => img.src !== location.heroImage?.src),
+        ...location.galleryImages.filter((img) => img.src === location.heroImage?.src),
     ]
     const status = getOpeningStatus(location.openingHours, now)
     const upcoming = getUpcomingOverrides(location.openingHours, now)
@@ -93,11 +93,11 @@ export function LocationPage({slug}: { slug: string }) {
                 <section
                     className="location-hero relative flex flex-col justify-end"
                 >
-                    {location.image && (
+                    {location.heroImage && (
                         <FallbackImage
-                            src={location.image.src}
-                            alt={location.image.alt}
-                            fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.image.src}
+                            src={location.heroImage.src}
+                            alt={location.heroImage.alt}
+                            fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.heroImage.src}
                             className="location-hero__photo absolute inset-0 w-full h-full object-cover"
                         />
                     )}

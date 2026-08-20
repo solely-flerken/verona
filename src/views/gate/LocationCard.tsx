@@ -34,11 +34,11 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             }}
             className="card md:flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >
-            {location.image && (
+            {location.heroImage && (
                 <FallbackImage
-                    src={location.image.src}
-                    alt={location.image.alt}
-                    fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.image.src}
+                    src={location.heroImage.src}
+                    alt={location.heroImage.alt}
+                    fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.heroImage.src}
                     className="card__photo"
                 />
             )}

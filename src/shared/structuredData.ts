@@ -53,7 +53,7 @@ export function locationJsonLd(location: LocationData) {
         name: location.name,
         url: `${SITE_URL}/${location.slug}`,
         parentOrganization: organizationRef(),
-        ...(location.image && {image: `${SITE_URL}${location.image.src}`}),
+        ...(location.heroImage && {image: `${SITE_URL}${location.heroImage.src}`}),
         telephone: toInternationalPhone(location.contact.phone),
         servesCuisine: ['Italian', 'Pizza'],
         priceRange: '€€',

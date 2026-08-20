@@ -68,7 +68,7 @@ export interface LocationData {
     deliveryHours?: OpeningHoursConfig
     orderUrl: string
     menuPdf?: string
-    image?: ImageAsset
+    heroImage?: ImageAsset
     ogImage: ImageAsset
     galleryImages: ImageAsset[]
     descriptor: string
