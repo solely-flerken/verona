@@ -195,6 +195,13 @@
         color: color-mix(in srgb, var(--color-cream) 58%, transparent);
     }
 
+    /* Keeps the content horizontally aligned when delivery cities list wraps (although only to 2 rows) */
+    .card__delivery-chips {
+        --chip-row-height: 2rem;
+        min-height: calc(var(--chip-row-height) * 2 + 0.5rem);
+        align-content: flex-start;
+    }
+
     /* ── CTA ─────────────────────────────────────────────────── */
     .card__cta-bar {
         /* Reserves --card-cta-clearance at the bottom for the floating
