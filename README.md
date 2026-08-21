@@ -6,7 +6,7 @@
 - [x] Redesign Jobs Page
 - [x] Utilize SSG (maybe just switch to NEXT.js)
 - [ ] Implement CMS
-- [ ] Implement Analytics
+- [x] Implement Analytics
 
 ### UX
 - [ ] Add smooth page transition animations across all route changes
