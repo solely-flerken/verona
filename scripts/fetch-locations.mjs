@@ -8,7 +8,7 @@
 // not necessarily the latest content, so it's only as fresh as the last time this file was committed.
 
 import {existsSync, readFileSync} from 'node:fs'
-import {writeFile} from 'node:fs/promises'
+import {mkdir, writeFile} from 'node:fs/promises'
 import {dirname, join} from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -33,8 +33,40 @@ function warnAndKeepExisting(message) {
 }
 
 const ORIGIN = PAYLOAD_API_URL?.replace(/\/+$/, '')
-const OUT_FILE = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'shared', 'locationsData.generated.json')
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const OUT_FILE = join(REPO_ROOT, 'src', 'shared', 'locationsData.generated.json')
+const MENU_DIR = join(REPO_ROOT, 'public', 'menu')
+
 const WEEK_DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+// Downloads the CMS-hosted menu PDF to public/menu/<slug>.pdf so the site links to its own domain instead of the CMS's.
+async function downloadMenuPdf(slug, url) {
+    const localPath = `/menu/${slug}.pdf`
+    const fsPath = join(MENU_DIR, `${slug}.pdf`)
+
+    function keepExisting(reason) {
+        console.warn(`[fetch-locations] Could not download menu PDF for ${slug} (${reason}) — keeping existing ${localPath}.`)
+        return existsSync(fsPath) ? localPath : undefined
+    }
+
+    let res
+    try {
+        res = await fetch(url, {signal: AbortSignal.timeout(20000)})
+    } catch (err) {
+        return keepExisting(err.message)
+    }
+    if (!res.ok) return keepExisting(`${res.status} ${res.statusText}`)
+
+    try {
+        await mkdir(MENU_DIR, {recursive: true})
+        await writeFile(fsPath, Buffer.from(await res.arrayBuffer()))
+    } catch (err) {
+        return keepExisting(err.message)
+    }
+
+    console.log(`[fetch-locations] Downloaded menu PDF for ${slug}`)
+    return localPath
+}
 
 function absoluteUrl(url) {
     if (!url) return url
@@ -95,7 +127,7 @@ function mapLocation(doc) {
         openingHours: mapOpeningHoursConfig(doc.openingHours),
         deliveryHours: doc.deliveryHours ? mapOpeningHoursConfig(doc.deliveryHours) : undefined,
         orderUrl: doc.ordering?.orderUrl ?? '',
-        menuPdf: doc.ordering?.menuPdf ? absoluteUrl(doc.ordering.menuPdf.url) : undefined,
+        // menuPdf is filled in after mapping — see downloadMenuPdf()
         heroImage: mapImage(doc.heroImage),
         ogImage: mapImage(doc.ogImage) ?? {src: '', alt: ''},
         galleryImages: (doc.galleryImages ?? []).map(mapImage).filter(Boolean),
@@ -139,6 +171,11 @@ async function main() {
     }
 
     const locations = docs.map(mapLocation)
+    for (const [i, doc] of docs.entries()) {
+        const menuPdfUrl = doc.ordering?.menuPdf ? absoluteUrl(doc.ordering.menuPdf.url) : undefined
+        locations[i].menuPdf = menuPdfUrl ? await downloadMenuPdf(locations[i].slug, menuPdfUrl) : undefined
+    }
+
     await writeFile(OUT_FILE, JSON.stringify(locations, null, 2) + '\n', 'utf-8')
     console.log(`[fetch-locations] Wrote ${locations.length} location(s) to ${OUT_FILE}`)
 }
