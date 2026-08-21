@@ -3,6 +3,7 @@
 import {useCallback, useRef, useState} from 'react'
 import {X} from 'lucide-react'
 import {getLocationBySlug} from '@/shared/locationsData.ts'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {findNearestLocation} from './cityLookup'
 import {useCloseOnOutsideOrEscape, useViewTransitionNavigate} from './hooks'
 import './LocationWidget.css'
@@ -48,6 +49,12 @@ export function LocationWidget({onOpenChange}: LocationWidgetProps) {
 
     useCloseOnOutsideOrEscape(rootRef, phase === 'open', close)
 
+    const selectMatch = () => {
+        if (!matchedLocation) return
+        trackEvent(UmamiEvent.LocationSelect, {locationSlug: matchedLocation.slug})
+        navigate(`/${matchedLocation.slug}`)
+    }
+
     if (phase === 'closed') {
         return <TriggerButton onClick={open}/>
     }
@@ -75,7 +82,7 @@ export function LocationWidget({onOpenChange}: LocationWidgetProps) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && matchedLocation && navigate(`/${matchedLocation.slug}`)}
+                onKeyDown={(e) => e.key === 'Enter' && selectMatch()}
                 placeholder="z. B. Ramsdorf"
                 className="widget__input"
             />
@@ -87,7 +94,7 @@ export function LocationWidget({onOpenChange}: LocationWidgetProps) {
                         <p className="widget__result-name">{matchedLocation.name}</p>
                     </div>
                     <button
-                        onClick={() => navigate(`/${matchedLocation.slug}`)}
+                        onClick={selectMatch}
                         className="widget__result-btn inline-flex items-center shrink-0 whitespace-nowrap"
                     >
                         Weiter →

@@ -3,6 +3,7 @@
 import {Fragment, useCallback, useRef, useState} from 'react'
 import {ChevronDown, ChevronRight} from 'lucide-react'
 import {getLocationBySlug, locationsData} from '@/shared/locationsData.ts'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {findNearestLocation} from './cityLookup'
 import {useCloseOnOutsideOrEscape, useViewTransitionNavigate} from './hooks'
 import './LocationWidgetV2.css'
@@ -23,6 +24,11 @@ export function LocationWidgetV2() {
     }, [])
 
     useCloseOnOutsideOrEscape(rootRef, open, close)
+
+    const selectLocation = (slug: string) => {
+        trackEvent(UmamiEvent.LocationSelect, {locationSlug: slug})
+        navigate(`/${slug}`)
+    }
 
     return (
         <div ref={rootRef} className={`widget2 ${open ? 'widget2--open' : ''}`}>
@@ -46,7 +52,7 @@ export function LocationWidgetV2() {
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && matchedLocation && navigate(`/${matchedLocation.slug}`)}
+                            onKeyDown={(e) => e.key === 'Enter' && matchedLocation && selectLocation(matchedLocation.slug)}
                             placeholder="Ort eingeben, z. B. Ramsdorf"
                             className="widget2__input"
                             tabIndex={open ? 0 : -1}
@@ -59,7 +65,7 @@ export function LocationWidgetV2() {
                                     <p className="widget2__heading">{matchedLocation.name}</p>
                                 </div>
                                 <button
-                                    onClick={() => navigate(`/${matchedLocation.slug}`)}
+                                    onClick={() => selectLocation(matchedLocation.slug)}
                                     className="widget2__continue-btn"
                                     tabIndex={open ? 0 : -1}
                                 >
@@ -84,7 +90,7 @@ export function LocationWidgetV2() {
                                             type="button"
                                             className="widget2__continue-btn"
                                             tabIndex={open ? 0 : -1}
-                                            onClick={() => navigate(`/${location.slug}`)}
+                                            onClick={() => selectLocation(location.slug)}
                                         >
                                             Weiter <ChevronRight size={14}/>
                                         </button>

@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {locationsData} from '@/shared/locationsData.ts'
 import {organizationJsonLd} from '@/shared/structuredData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {useHoverIntent, useViewTransitionNavigate} from './hooks'
 import {PageLayout} from '@/layouts/PageLayout'
 import './index.css'
@@ -17,6 +18,11 @@ export function GatePage() {
     const navigate = useViewTransitionNavigate()
     const [hoveredSlug, onCardHoverEnter, onCardHoverLeave] = useHoverIntent(50)
     const [widgetOpen, setWidgetOpen] = useState(false)
+
+    const selectLocation = (slug: string) => {
+        trackEvent(UmamiEvent.LocationSelect, {locationSlug: slug})
+        navigate(`/${slug}`)
+    }
 
     return (
         <>
@@ -33,7 +39,7 @@ export function GatePage() {
                 <LocationCard
                     location={weseke}
                     index={0}
-                    onClick={() => navigate(`/${weseke.slug}`)}
+                    onClick={() => selectLocation(weseke.slug)}
                     isActive={hoveredSlug === weseke.slug}
                     isPassive={hoveredSlug !== null && hoveredSlug !== weseke.slug}
                     onMouseEnter={() => onCardHoverEnter(weseke.slug)}
@@ -48,7 +54,7 @@ export function GatePage() {
                 <LocationCard
                     location={borken}
                     index={1}
-                    onClick={() => navigate(`/${borken.slug}`)}
+                    onClick={() => selectLocation(borken.slug)}
                     isActive={hoveredSlug === borken.slug}
                     isPassive={hoveredSlug !== null && hoveredSlug !== borken.slug}
                     onMouseEnter={() => onCardHoverEnter(borken.slug)}
