@@ -1,6 +1,7 @@
 import {Fragment} from 'react'
 import Link from 'next/link'
 import {locationsData} from '@/shared/locationsData.ts'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import type {Socials} from '@/shared/types'
 import {FacebookIcon, InstagramIcon} from './SocialIcons'
 import './Footer.css'
@@ -31,10 +32,14 @@ export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCI
                 {locationLabel && <span className="gate-footer__location">{locationLabel}</span>}
 
                 <div className="flex items-center gap-3">
-                    <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social">
+                    <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook"
+                       onClick={() => trackEvent(UmamiEvent.SocialClick, {platform: 'facebook'})}
+                       className="gate-footer__social">
                         <FacebookIcon size={28}/>
                     </a>
-                    <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social">
+                    <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram"
+                       onClick={() => trackEvent(UmamiEvent.SocialClick, {platform: 'instagram'})}
+                       className="gate-footer__social">
                         <InstagramIcon size={28}/>
                     </a>
                 </div>
@@ -57,10 +62,14 @@ export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCI
                         <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo-desktop"/>
                     </Link>
                     <div className="flex items-center gap-2 ml-4">
-                        <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="gate-footer__social gate-footer__social--desktop shrink-0">
+                        <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook"
+                           onClick={() => trackEvent(UmamiEvent.SocialClick, {platform: 'facebook'})}
+                           className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <FacebookIcon size={28}/>
                         </a>
-                        <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" className="gate-footer__social gate-footer__social--desktop shrink-0">
+                        <a href={socials.instagram} target="_blank" rel="noopener" aria-label="Instagram"
+                           onClick={() => trackEvent(UmamiEvent.SocialClick, {platform: 'instagram'})}
+                           className="gate-footer__social gate-footer__social--desktop shrink-0">
                             <InstagramIcon size={28}/>
                         </a>
                     </div>

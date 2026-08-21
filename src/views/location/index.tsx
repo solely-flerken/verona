@@ -5,6 +5,7 @@ import {MapPin, Phone, Clock, Bike, ExternalLink} from 'lucide-react'
 import {getLocationBySlug} from '@/shared/locationsData.ts'
 import {getOpeningStatus, getUpcomingOverrides, getWeekSchedule} from '@/shared/openingHours'
 import {telRef} from '@/shared/telRef.ts'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {StatusBadge} from '@/components/StatusBadge'
 import {FallbackImage} from '@/components/FallbackImage'
 import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
@@ -29,14 +30,14 @@ function TimeCell({text, struck}: { text: string, struck?: boolean }) {
     )
 }
 
-function MenuSection({categories, menuPdf, menuPdfFallback}: { categories: MenuCategory[], menuPdf?: string, menuPdfFallback?: string }) {
+function MenuSection({categories, menuPdf, menuPdfFallback, locationSlug}: { categories: MenuCategory[], menuPdf?: string, menuPdfFallback?: string, locationSlug: string }) {
     const [expanded, setExpanded] = useState(false)
 
     return (
         <section id="speisekarte" className="location-section">
             <div className={`menu-shell ${expanded ? 'menu-shell--wide' : ''}`}>
                 <p className="location-eyebrow">Speisekarte</p>
-                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf} menuPdfFallback={menuPdfFallback}/>
+                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf} menuPdfFallback={menuPdfFallback} locationSlug={locationSlug}/>
                 <p className="location-menu-note">
                     Irrtümer und Änderungen vorbehalten. Es gelten die Preise in unserem Bestellshop.
                 </p>
@@ -81,7 +82,7 @@ export function LocationPage({slug}: { slug: string }) {
             <PageLayout
                 subtitle={location.shortName}
                 showBack
-                cta={{label: 'Online bestellen', href: location.orderUrl}}
+                cta={{label: 'Online bestellen', href: location.orderUrl, onClick: () => trackEvent(UmamiEvent.OrderClick, {location: 'header', locationSlug: location.slug})}}
                 footerLocationLabel={location.shortName}
                 footerSocials={location.socials}
                 footerLinks={[
@@ -115,6 +116,7 @@ export function LocationPage({slug}: { slug: string }) {
                                 href={location.orderUrl}
                                 target="_blank"
                                 rel="noopener"
+                                onClick={() => trackEvent(UmamiEvent.OrderClick, {location: 'hero', locationSlug: location.slug})}
                                 className="location-hero__cta inline-flex items-center gap-2 mt-2"
                             >
                                 Online bestellen
@@ -191,6 +193,7 @@ export function LocationPage({slug}: { slug: string }) {
                                     <div className="flex items-center gap-3">
                                         <Phone size={20} className="location-contact-icon shrink-0"/>
                                         <a href={telRef(location.contact.phone)}
+                                           onClick={() => trackEvent(UmamiEvent.PhoneClick, {location: 'contact', locationSlug: location.slug})}
                                            className="location-contact-link">
                                             {location.contact.phone}
                                         </a>
@@ -222,7 +225,7 @@ export function LocationPage({slug}: { slug: string }) {
                 </section>
 
                 {/* ── Menu ─────────────────────────────────────────── */}
-                <MenuSection categories={getMenuForLocation(location.id)} menuPdf={location.menuPdf} menuPdfFallback={locationMenuPdfFallbacks[location.slug]}/>
+                <MenuSection categories={getMenuForLocation(location.id)} menuPdf={location.menuPdf} menuPdfFallback={locationMenuPdfFallbacks[location.slug]} locationSlug={location.slug}/>
 
                 {/* ── Order band ───────────────────────────────────── */}
                 <section className="location-order-band">
@@ -233,14 +236,11 @@ export function LocationPage({slug}: { slug: string }) {
                             uns einfach an. Wir sind gern für Sie da.
                         </p>
                         <div className="flex flex-wrap justify-center gap-3 mt-2">
-                            <a href={location.orderUrl} target="_blank" rel="noopener" className="location-order-band__cta inline-flex items-center gap-2">
+                            <a href={location.orderUrl} target="_blank" rel="noopener" onClick={() => trackEvent(UmamiEvent.OrderClick, {location: 'cta-band', locationSlug: location.slug})} className="location-order-band__cta inline-flex items-center gap-2">
                                 Online bestellen
                                 <ExternalLink size={17}/>
                             </a>
-                            <a
-                                href={telRef(location.contact.phone)}
-                                className="location-order-band__phone inline-flex items-center gap-2"
-                            >
+                            <a href={telRef(location.contact.phone)} onClick={() => trackEvent(UmamiEvent.PhoneClick, {location: 'cta-band', locationSlug: location.slug})} className="location-order-band__phone inline-flex items-center gap-2">
                                 <Phone size={17}/>
                                 {location.contact.phone}
                             </a>

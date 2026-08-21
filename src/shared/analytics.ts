@@ -13,6 +13,13 @@ function defineEvent<D extends UmamiEventData>(name: string): UmamiEventDef<D> {
 
 export const UmamiEvent = {
     LocationSelect: defineEvent<{ locationSlug: string }>('location-select'),
+    OrderClick: defineEvent<{ location: 'header' | 'hero' | 'cta-band', locationSlug: string }>('order-click'),
+    PhoneClick: defineEvent<{ location: 'gate-card' | 'contact' | 'cta-band', locationSlug: string }>('phone-click'),
+    MenuPdfOpen: defineEvent<{ locationSlug: string }>('menu-pdf-open'),
+    SocialClick: defineEvent<{ platform: 'facebook' | 'instagram' }>('social-click'),
+    GateSearchNoMatch: defineEvent<{ query: string }>('gate-search-widget-no-match'),
+    GateWidgetOpen: defineEvent<Record<string, never>>('gate-search-widget-open'),
+    MenuExpand: defineEvent<{ locationSlug: string }>('menu-expand'),
 } as const
 
 declare global {

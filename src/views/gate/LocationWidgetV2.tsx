@@ -1,6 +1,6 @@
 'use client'
 
-import {Fragment, useCallback, useRef, useState} from 'react'
+import {Fragment, useCallback, useEffect, useRef, useState} from 'react'
 import {ChevronDown, ChevronRight} from 'lucide-react'
 import {getLocationBySlug, locationsData} from '@/shared/locationsData.ts'
 import {trackEvent, UmamiEvent} from '@/shared/analytics'
@@ -17,6 +17,22 @@ export function LocationWidgetV2() {
 
     const match = findNearestLocation(query)
     const matchedLocation = match ? getLocationBySlug(match.locationSlug) : null
+    const lastTrackedQuery = useRef<string | null>(null)
+
+    /* Tracks a settled no-match search (debounced so we don't fire on every keystroke) */
+    useEffect(() => {
+        const trimmed = query.trim()
+        if (matchedLocation || trimmed.length < 3) {
+            lastTrackedQuery.current = null
+            return
+        }
+        const timeout = window.setTimeout(() => {
+            if (lastTrackedQuery.current === trimmed) return
+            lastTrackedQuery.current = trimmed
+            trackEvent(UmamiEvent.GateSearchNoMatch, {query: trimmed})
+        }, 600)
+        return () => window.clearTimeout(timeout)
+    }, [query, matchedLocation])
 
     const close = useCallback(() => {
         setOpen(false)
@@ -36,7 +52,14 @@ export function LocationWidgetV2() {
                 type="button"
                 className="widget2__toggle"
                 aria-expanded={open}
-                onClick={() => (open ? close() : setOpen(true))}
+                onClick={() => {
+                    if (open) {
+                        close()
+                        return
+                    }
+                    trackEvent(UmamiEvent.GateWidgetOpen, {})
+                    setOpen(true)
+                }}
             >
                 <span className="widget2__toggle-label">
                     Nicht sicher? <span className="widget2__toggle-sub">Liefergebiete anzeigen.</span>

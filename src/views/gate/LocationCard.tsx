@@ -3,6 +3,7 @@
 import {MapPin, Phone} from 'lucide-react'
 import {getOpeningStatus} from '@/shared/openingHours'
 import {telRef} from '@/shared/telRef.ts'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {StatusBadge} from '@/components/StatusBadge'
 import {FallbackImage} from '@/components/FallbackImage'
 import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
@@ -77,7 +78,10 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
                             <a
                                 href={telRef(location.contact.phone)}
                                 className="card__phone"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    trackEvent(UmamiEvent.PhoneClick, {location: 'gate-card', locationSlug: location.slug})
+                                }}
                             >
                                 {location.contact.phone}
                             </a>

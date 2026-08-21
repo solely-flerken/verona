@@ -5,6 +5,7 @@ import './Header.css'
 export interface HeaderCta {
     label: string
     href: string
+    onClick?: () => void
 }
 
 interface HeaderProps {
@@ -33,7 +34,7 @@ export function Header({subtitle = 'Bitte Standort wählen', showBack = false, c
                 <span className="gate-banner-sub text-center md:text-left">{subtitle}</span>
                 {cta && (
                     <div className="hidden md:block">
-                        <a href={cta.href} target="_blank" rel="noopener" className="gate-header-cta inline-flex items-center gap-2">
+                        <a href={cta.href} target="_blank" rel="noopener" onClick={cta.onClick} className="gate-header-cta inline-flex items-center gap-2">
                             {cta.label}
                             <ExternalLink size={15}/>
                         </a>

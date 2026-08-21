@@ -5,6 +5,7 @@ import type {CSSProperties} from 'react'
 import {ChevronDown, ChevronUp, FileDown} from 'lucide-react'
 import type {MenuCategory, MenuItem} from '@/shared/types'
 import {FallbackLink} from '@/components/FallbackLink'
+import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import './Menu.css'
 
 const PREVIEW_ITEMS = 3
@@ -47,9 +48,10 @@ interface MenuProps {
     heading: string
     menuPdf?: string
     menuPdfFallback?: string
+    locationSlug: string
 }
 
-export function Menu({categories, expanded, onToggle, heading, menuPdf, menuPdfFallback}: MenuProps) {
+export function Menu({categories, expanded, onToggle, heading, menuPdf, menuPdfFallback, locationSlug}: MenuProps) {
     const listRef = useRef<HTMLDivElement>(null)
     const tabsBarRef = useRef<HTMLDivElement>(null)
     const tabsListRef = useRef<HTMLDivElement>(null)
@@ -134,6 +136,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, menuPdfF
         fromHeight.current = element?.offsetHeight ?? null
         const shell = element?.closest<HTMLElement>('.menu-shell')
         fromShellMax.current = shell ? getComputedStyle(shell).maxWidth : null
+        if (!expanded) trackEvent(UmamiEvent.MenuExpand, {locationSlug})
         onToggle()
     }
 
@@ -178,6 +181,7 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, menuPdfF
                     href={menuPdf}
                     fallbackHref={menuPdfFallback ?? menuPdf}
                     download
+                    onClick={() => trackEvent(UmamiEvent.MenuPdfOpen, {locationSlug})}
                     className="location-menu-link inline-flex items-center gap-2"
                 >
                     Speisekarte als PDF

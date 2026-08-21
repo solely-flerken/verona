@@ -1,6 +1,6 @@
 'use client'
 
-import {useCallback, useRef, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {X} from 'lucide-react'
 import {getLocationBySlug} from '@/shared/locationsData.ts'
 import {trackEvent, UmamiEvent} from '@/shared/analytics'
@@ -36,8 +36,25 @@ export function LocationWidget({onOpenChange}: LocationWidgetProps) {
 
     const match = findNearestLocation(query)
     const matchedLocation = match ? getLocationBySlug(match.locationSlug) : null
+    const lastTrackedQuery = useRef<string | null>(null)
+
+    /* Tracks a settled no-match search (debounced so we don't fire on every keystroke) */
+    useEffect(() => {
+        const trimmed = query.trim()
+        if (matchedLocation || trimmed.length < 3) {
+            lastTrackedQuery.current = null
+            return
+        }
+        const timeout = window.setTimeout(() => {
+            if (lastTrackedQuery.current === trimmed) return
+            lastTrackedQuery.current = trimmed
+            trackEvent(UmamiEvent.GateSearchNoMatch, {query: trimmed})
+        }, 600)
+        return () => window.clearTimeout(timeout)
+    }, [query, matchedLocation])
 
     const open = useCallback(() => {
+        trackEvent(UmamiEvent.GateWidgetOpen, {})
         setPhase('open')
         onOpenChange?.(true)
     }, [onOpenChange])
