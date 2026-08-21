@@ -1,9 +1,13 @@
 import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
+import Script from 'next/script'
 import {Cormorant_Garamond, Inter, JetBrains_Mono} from 'next/font/google'
 import './globals.css'
 import {SITE_URL} from '@/shared/siteData'
 import {pageSeoData} from '@/shared/pageSeo'
+
+const UMAMI_SRC = process.env.NEXT_PUBLIC_UMAMI_SRC
+const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
 
 const inter = Inter({
     subsets: ['latin'],
@@ -52,6 +56,9 @@ export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="de" className={`${inter.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable}`}>
         <body>
+        {UMAMI_SRC && UMAMI_WEBSITE_ID && (
+            <Script src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} strategy="afterInteractive"/>
+        )}
         {children}
         </body>
         </html>

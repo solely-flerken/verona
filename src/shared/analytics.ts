@@ -1,0 +1,29 @@
+type UmamiEventValue = string | number | boolean | UmamiEventValue[] | { [key: string]: UmamiEventValue }
+type UmamiEventData = Record<string, UmamiEventValue>
+
+interface UmamiEventDef<D extends UmamiEventData> {
+    readonly name: string
+    // Phantom, never set. Lets trackEvent infer D from the event passed in.
+    readonly data?: D
+}
+
+function defineEvent<D extends UmamiEventData>(name: string): UmamiEventDef<D> {
+    return {name}
+}
+
+export const UmamiEvent = {
+    LocationSelect: defineEvent<{ locationSlug: string }>('location-select'),
+} as const
+
+declare global {
+    interface Window {
+        umami?: {
+            track: (eventName: string, data?: UmamiEventData) => void
+        }
+    }
+}
+
+export function trackEvent<D extends UmamiEventData>(event: UmamiEventDef<D>, data: D) {
+    if (typeof window === 'undefined') return
+    window.umami?.track(event.name, data)
+}
