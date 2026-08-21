@@ -1,3 +1,5 @@
+'use client'
+
 import {Fragment} from 'react'
 import Link from 'next/link'
 import {locationsData} from '@/shared/locationsData.ts'
