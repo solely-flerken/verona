@@ -47,6 +47,7 @@ export interface MenuItem {
     description?: string
     price: string | Record<string, string>  // bare amount like '8,50' (€ added in render); for multi-size items, one entry per offered size keyed by the category's `sizes` label (sizes not offered are simply omitted).
     locations: '*' | string[]  // '*' = offered at every location
+    active?: boolean  // false = temporarily unavailable (e.g. sold out); omitted/undefined counts as active
 }
 
 export interface MenuCategory {

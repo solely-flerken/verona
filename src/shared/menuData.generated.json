@@ -1,0 +1,1040 @@
+[
+  {
+    "id": "1",
+    "name": "Pizza",
+    "items": [
+      {
+        "id": "1",
+        "name": "Margeritha",
+        "price": {
+          "Klein": "4,50",
+          "Groß": "7,20",
+          "Family": "28,00"
+        },
+        "locations": "*",
+        "description": "Käse"
+      },
+      {
+        "id": "2",
+        "name": "Cipolla",
+        "price": {
+          "Klein": "4,90",
+          "Groß": "7,60",
+          "Family": "30,00"
+        },
+        "locations": "*",
+        "description": "Käse, Zwiebeln"
+      },
+      {
+        "id": "3",
+        "name": "Carciofi",
+        "price": {
+          "Klein": "5,10",
+          "Groß": "8,10",
+          "Family": "32,30"
+        },
+        "locations": "*",
+        "description": "Käse, Artischocken"
+      },
+      {
+        "id": "4",
+        "name": "Napoli",
+        "price": {
+          "Klein": "5,30",
+          "Groß": "8,30",
+          "Family": "32,50"
+        },
+        "locations": "*",
+        "description": "Käse, Sardellen, Oliven"
+      },
+      {
+        "id": "5",
+        "name": "Paprika",
+        "price": {
+          "Klein": "4,90",
+          "Groß": "7,60",
+          "Family": "30,00"
+        },
+        "locations": "*",
+        "description": "Käse, Paprika"
+      },
+      {
+        "id": "6",
+        "name": "Funghi",
+        "price": {
+          "Klein": "4,90",
+          "Groß": "7,60",
+          "Family": "30,00"
+        },
+        "locations": "*",
+        "description": "Käse, Champignons"
+      },
+      {
+        "id": "7",
+        "name": "Salami",
+        "price": {
+          "Klein": "5,80",
+          "Groß": "8,60",
+          "Family": "34,50"
+        },
+        "locations": "*",
+        "description": "Käse, Salami"
+      },
+      {
+        "id": "8",
+        "name": "Prosciutto",
+        "price": {
+          "Klein": "5,80",
+          "Groß": "8,60",
+          "Family": "34,50"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken"
+      },
+      {
+        "id": "9",
+        "name": "Tonno",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,70",
+          "Family": "38,50"
+        },
+        "locations": "*",
+        "description": "Käse, Thunfisch"
+      },
+      {
+        "id": "10",
+        "name": "Primavera",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,80",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Thunfisch, Zwiebeln"
+      },
+      {
+        "id": "11",
+        "name": "Hawaii",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Ananas"
+      },
+      {
+        "id": "12",
+        "name": "Sofia",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Champignons"
+      },
+      {
+        "id": "13",
+        "name": "Vulcano",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Salami"
+      },
+      {
+        "id": "14",
+        "name": "Sola",
+        "price": {
+          "Klein": "6,40",
+          "Groß": "9,90",
+          "Family": "39,50"
+        },
+        "locations": "*",
+        "description": "Käse, Spargel, Champignons, Ei"
+      },
+      {
+        "id": "15",
+        "name": "Italia",
+        "price": {
+          "Klein": "6,70",
+          "Groß": "9,90",
+          "Family": "39,50"
+        },
+        "locations": "*",
+        "description": "Käse, Paprika, Salami, Champignons"
+      },
+      {
+        "id": "16",
+        "name": "Regina",
+        "price": {
+          "Klein": "6,70",
+          "Groß": "9,90",
+          "Family": "39,50"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Salami, Champignons"
+      },
+      {
+        "id": "17",
+        "name": "Quattro Stagioni",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Thunfisch, Champignons, Paprika"
+      },
+      {
+        "id": "18",
+        "name": "Mista",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Salami, Champignons, Paprika"
+      },
+      {
+        "id": "19",
+        "name": "Calzone",
+        "price": {
+          "Groß": "10,80"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Champignons, Thunfisch, Artischocken"
+      },
+      {
+        "id": "20",
+        "name": "Marinara",
+        "price": {
+          "Klein": "6,60",
+          "Groß": "9,90",
+          "Family": "39,00"
+        },
+        "locations": "*",
+        "description": "Käse, Meeresfrüchte"
+      },
+      {
+        "id": "21",
+        "name": "Venezia",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Thunfisch, Ananas"
+      },
+      {
+        "id": "22",
+        "name": "Scampi",
+        "price": {
+          "Klein": "6,60",
+          "Groß": "9,90",
+          "Family": "39,00"
+        },
+        "locations": "*",
+        "description": "Käse, Krabben"
+      },
+      {
+        "id": "23",
+        "name": "Bella Napoli",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Salami, Champignons, Paprika, Artischocken, Ei"
+      },
+      {
+        "id": "25",
+        "name": "Salami-Funghi",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Salami, Champignons"
+      },
+      {
+        "id": "26",
+        "name": "Salami Cipolla",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Salami, Zwiebeln"
+      },
+      {
+        "id": "27",
+        "name": "Prosciutto Cipolla",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Zwiebeln"
+      },
+      {
+        "id": "28",
+        "name": "Spinat",
+        "price": {
+          "Klein": "5,30",
+          "Groß": "8,20",
+          "Family": "32,00"
+        },
+        "locations": "*",
+        "description": "Käse, Spinat"
+      },
+      {
+        "id": "29",
+        "name": "Bolognese",
+        "price": {
+          "Klein": "6,40",
+          "Groß": "8,80",
+          "Family": "35,50"
+        },
+        "locations": "*",
+        "description": "Käse, hausgemachte Bolognesesoße"
+      },
+      {
+        "id": "30",
+        "name": "Romantica",
+        "price": {
+          "Klein": "6,40",
+          "Groß": "9,80",
+          "Family": "39,50"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Salami, Artischocken"
+      },
+      {
+        "id": "31",
+        "name": "Milano",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Thunfisch, Spinat, Ei"
+      },
+      {
+        "id": "32",
+        "name": "Crossa",
+        "price": {
+          "Klein": "8,60",
+          "Groß": "12,00"
+        },
+        "locations": "*",
+        "description": "Salat, Tomaten, Gurken, Krautsalat, gegrillte Hähnchenbrust, Knoblauchsauce"
+      },
+      {
+        "id": "33",
+        "name": "Patchino",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,70",
+          "Family": "43,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Champignons, Thunfisch"
+      },
+      {
+        "id": "46",
+        "name": "Broccoli",
+        "price": {
+          "Klein": "5,30",
+          "Groß": "8,20",
+          "Family": "32,00"
+        },
+        "locations": "*",
+        "description": "Käse, Broccoli"
+      },
+      {
+        "id": "47",
+        "name": "Marco",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, Kochschinken, Broccoli"
+      },
+      {
+        "id": "48",
+        "name": "Vera Picante",
+        "price": {
+          "Klein": "6,90",
+          "Groß": "9,50",
+          "Family": "39,60"
+        },
+        "locations": "*",
+        "description": "Käse, Bolognesesoße, Kidney Bohnen, Mais, Jalapenos"
+      },
+      {
+        "id": "49",
+        "name": "Gyros",
+        "price": {
+          "Klein": "8,80",
+          "Groß": "12,20",
+          "Family": "48,50"
+        },
+        "locations": "*",
+        "description": "Käse, Gyros, Zwiebeln, Jalapenos, frische Tomaten, Knoblauchsauce"
+      },
+      {
+        "id": "50",
+        "name": "Mozzarella",
+        "price": {
+          "Klein": "6,30",
+          "Groß": "9,30",
+          "Family": "37,00"
+        },
+        "locations": "*",
+        "description": "Käse, frische Tomaten, Mozzarella, Basilikum"
+      },
+      {
+        "id": "51",
+        "name": "Gemüse",
+        "price": {
+          "Klein": "7,30",
+          "Groß": "10,60",
+          "Family": "42,50"
+        },
+        "locations": "*",
+        "description": "Zwiebeln, Paprika, Champignons, Mozzarella, Käse, Krautsalat, Knoblauchsauce"
+      },
+      {
+        "id": "52",
+        "name": "Crossa Tonno",
+        "price": {
+          "Klein": "7,30",
+          "Groß": "11,00"
+        },
+        "locations": "*",
+        "description": "dünner Knoblauchteig mit Thunfisch, Salat, Tomaten, Gurken, Krautsalat, Knoblauchsauce"
+      },
+      {
+        "id": "53",
+        "name": "4 Formaggi",
+        "price": {
+          "Klein": "6,40",
+          "Groß": "9,90",
+          "Family": "39,50"
+        },
+        "locations": "*",
+        "description": "4 verschiedene Käsesorten"
+      },
+      {
+        "id": "54",
+        "name": "Nello",
+        "price": {
+          "Klein": "7,00",
+          "Groß": "10,50",
+          "Family": "42,00"
+        },
+        "locations": "*",
+        "description": "Käse, Rigatoni, Bolognesesoße, Kochschinken"
+      },
+      {
+        "id": "57",
+        "name": "Bacon",
+        "price": {
+          "Klein": "5,80",
+          "Groß": "8,60",
+          "Family": "34,50"
+        },
+        "locations": "*",
+        "description": "Käse, Bacon"
+      },
+      {
+        "id": "58",
+        "name": "Egg & Bacon",
+        "price": {
+          "Klein": "6,60",
+          "Groß": "9,50",
+          "Family": "37,50"
+        },
+        "locations": "*",
+        "description": "Käse, Bacon, Ei"
+      },
+      {
+        "id": "59",
+        "name": "Diablo",
+        "price": {
+          "Klein": "6,50",
+          "Groß": "9,50",
+          "Family": "38,00"
+        },
+        "locations": "*",
+        "description": "Peperonisalami, scharfe Peperoni, Tabasco, Mozzarella Käse"
+      },
+      {
+        "id": "60",
+        "name": "Parma e Rucola",
+        "price": {
+          "Klein": "8,20",
+          "Groß": "12,30",
+          "Family": "49,50"
+        },
+        "locations": "*",
+        "description": "Mozzarella Käse, Parmaschinken, Rucola, Parmesankäse"
+      },
+      {
+        "id": "61",
+        "name": "Rucola",
+        "price": {
+          "Klein": "4,90",
+          "Groß": "7,90",
+          "Family": "32,00"
+        },
+        "locations": "*",
+        "description": "Mozzarella Käse, Rucola"
+      },
+      {
+        "id": "62",
+        "name": "Pollo",
+        "price": {
+          "Klein": "7,90",
+          "Groß": "11,80",
+          "Family": "47,50"
+        },
+        "locations": "*",
+        "description": "Käse, Broccoli, Hollandaisesauce, Hähnchen"
+      },
+      {
+        "id": "63",
+        "name": "Salmone",
+        "price": {
+          "Klein": "10,40",
+          "Groß": "13,20",
+          "Family": "53,50"
+        },
+        "locations": "*",
+        "description": "Käse, Wildlachs, Spinat, Knoblauch"
+      },
+      {
+        "id": "64",
+        "name": "Bacon+Plum",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "10,30",
+          "Family": "42,00"
+        },
+        "locations": "*",
+        "description": "Käse, Pflaumen, Bacon"
+      }
+    ],
+    "sizes": [
+      "Klein",
+      "Groß",
+      "Family"
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Pasta in Padella",
+    "items": [
+      {
+        "id": "100",
+        "name": "Spaghetti Napoli",
+        "price": "6,60",
+        "locations": "*",
+        "description": "mit Tomatensoße"
+      },
+      {
+        "id": "101",
+        "name": "Spaghetti Bolognese",
+        "price": "7,40",
+        "locations": "*",
+        "description": "mit Hackfleischsoße"
+      },
+      {
+        "id": "139",
+        "name": "Spaghetti Carbonara",
+        "price": "10,50",
+        "locations": "*",
+        "description": "mit Ei, Schinken, Sahnesoße, Parmesankäse"
+      },
+      {
+        "id": "103",
+        "name": "Spaghetti Con Pesto",
+        "price": "8,30",
+        "locations": "*",
+        "description": "mit hausgemachtem Pesto und Parmesan"
+      },
+      {
+        "id": "104",
+        "name": "Tortellini Napoli",
+        "price": "8,80",
+        "locations": "*",
+        "description": "Fleischfüllung, mit Tomatensoße"
+      },
+      {
+        "id": "105",
+        "name": "Tortellini Bolognese",
+        "price": "9,90",
+        "locations": "*",
+        "description": "Fleischfüllung, mit Hackfleischsoße"
+      },
+      {
+        "id": "106",
+        "name": "Tortellini alla Casa",
+        "price": "10,40",
+        "locations": "*",
+        "description": "Fleischfüllung, mit Schinken und Sahnesoße"
+      },
+      {
+        "id": "107",
+        "name": "Rigatoni Napoli",
+        "price": "7,40",
+        "locations": "*",
+        "description": "mit Tomatensoße"
+      },
+      {
+        "id": "108",
+        "name": "Rigatoni Bolognese",
+        "price": "8,30",
+        "locations": "*",
+        "description": "mit Hackfleischsoße"
+      },
+      {
+        "id": "109",
+        "name": "Rigatoni alla Panna",
+        "price": "8,70",
+        "locations": "*",
+        "description": "mit Schinken und Sahnesoße"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Pasta al Forno",
+    "items": [
+      {
+        "id": "134",
+        "name": "Rigatoni al Forno",
+        "price": "9,20",
+        "locations": "*",
+        "description": "mit Fleischsoße, Schinken, Champignons"
+      },
+      {
+        "id": "135",
+        "name": "Tortellini al Forno",
+        "price": "10,90",
+        "locations": "*",
+        "description": "mit Hackfleischsoße, Schinken"
+      },
+      {
+        "id": "136",
+        "name": "Nudelauflauf",
+        "price": "11,00",
+        "locations": "*",
+        "description": "verschiedene Nudelsorten mit Schinken, Hackfleischsoße, Spinat, Champignons und Käse überbacken"
+      },
+      {
+        "id": "137",
+        "name": "Lasagne al Forno",
+        "price": "11,00",
+        "locations": "*",
+        "description": "Breitbandnudeln mit Fleischsoße, Schinken, Champignons"
+      },
+      {
+        "id": "138",
+        "name": "Spaghetti al Forno",
+        "price": "8,60",
+        "locations": "*",
+        "description": "mit Hackfleischsoße"
+      },
+      {
+        "id": "141",
+        "name": "Tortellini alla Panna",
+        "price": "11,00",
+        "locations": "*",
+        "description": "mit Schinken, Sahnesoße"
+      },
+      {
+        "id": "142",
+        "name": "Tortellini alla Gorgonzola",
+        "price": "11,60",
+        "locations": "*",
+        "description": "mit Schinken, Sahnesoße und 4 Käsesorten überbacken"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Wraps",
+    "items": [
+      {
+        "id": "600",
+        "name": "Tonno Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "Thunfisch, Knoblauchöl, Käse, Salat, Tomaten, Gurken, Krautsalat, Knoblauchsauce, Zwiebeln"
+      },
+      {
+        "id": "601",
+        "name": "Hähnchen Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "gegrillte Hähnchenbrust, Knoblauchöl, Salat, Käse, Tomaten, Gurken, Krautsalat, Knoblauchsauce"
+      },
+      {
+        "id": "602",
+        "name": "Mozzarella Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "hausgemachtes Pesto, Mozzarella, Salat, Käse, Rucola, Tomaten, Gurken, Knoblauchsauce"
+      },
+      {
+        "id": "603",
+        "name": "Parma Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "hausgemachtes Pesto, Käse, Parmaschinken, Salat, Rucola, Tomaten, Knoblauchsauce"
+      },
+      {
+        "id": "605",
+        "name": "Crispy Chicken Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "Chicken Fingers, Knoblauchöl, Eisbergsalat, Krautsalat, Tomaten, Gurken, Knoblauchsauce"
+      },
+      {
+        "id": "606",
+        "name": "Greco Wrap",
+        "price": "8,50",
+        "locations": "*",
+        "description": "Gyros, Knoblauchöl, Käse, Salat, Zwiebeln, Feta Käse, Knoblauchsauce"
+      },
+      {
+        "id": "607",
+        "name": "Vegan Wrap",
+        "price": "9,00",
+        "locations": "*",
+        "description": "Eisbergsalat, Rucola, Basilikum-Pesto, Edamame, rote Zwiebeln, Mais, Paprika, Granatapfelkerne, hausgemachtes veganes Joghurt-Dressing"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Salate",
+    "items": [
+      {
+        "id": "239",
+        "name": "Italiana",
+        "price": {
+          "Klein": "5,80",
+          "Groß": "7,50"
+        },
+        "locations": "*",
+        "description": "Kochschinken, Ananas, frische Paprika, Käse und Oliven"
+      },
+      {
+        "id": "240",
+        "name": "Roma",
+        "price": {
+          "Klein": "6,40",
+          "Groß": "9,10"
+        },
+        "locations": "*",
+        "description": "Kochschinken, Thunfisch, Ananas, frische Paprika, Käse und Oliven"
+      },
+      {
+        "id": "241",
+        "name": "Siziliana",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "9,70"
+        },
+        "locations": "*",
+        "description": "Kochschinken, Thunfisch, Pilze, Zwiebeln, Spargel, frische Paprika, Käse und Oliven"
+      },
+      {
+        "id": "242",
+        "name": "Verona",
+        "price": {
+          "Klein": "5,10",
+          "Groß": "7,10"
+        },
+        "locations": "*",
+        "description": "Mais und Karotten"
+      },
+      {
+        "id": "244",
+        "name": "Chefsalat",
+        "price": {
+          "Klein": "5,30",
+          "Groß": "7,50"
+        },
+        "locations": "*",
+        "description": "Mais, Zwiebeln, frische Paprika und Käse"
+      },
+      {
+        "id": "246",
+        "name": "Mexicana",
+        "price": {
+          "Klein": "5,90",
+          "Groß": "8,00"
+        },
+        "locations": "*",
+        "description": "Kidney Bohnen, Mais, Käse und Ei"
+      },
+      {
+        "id": "247",
+        "name": "Toscana",
+        "price": {
+          "Klein": "5,90",
+          "Groß": "8,00"
+        },
+        "locations": "*",
+        "description": "Zwiebeln, frische Paprika, Oliven, milde Peperoni, Weißkäse und Essig und Öl"
+      },
+      {
+        "id": "248",
+        "name": "Della Casa",
+        "price": {
+          "Klein": "7,20",
+          "Groß": "9,90"
+        },
+        "locations": "*",
+        "description": "Mais, Ananas, gegrillte Hähnchenbrust"
+      },
+      {
+        "id": "249",
+        "name": "Fitness Salat",
+        "price": {
+          "Klein": "8,30",
+          "Groß": "11,00"
+        },
+        "locations": "*",
+        "description": "Thunfisch, Ei, frische Paprika, gegrillte Hähnchenbrust, Joghurt-Dillsauce"
+      }
+    ],
+    "sizes": [
+      "Klein",
+      "Groß"
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Antipasti",
+    "items": [
+      {
+        "id": "80",
+        "name": "Brötchen mit Kräuterbutter",
+        "price": "2,60",
+        "locations": "*"
+      },
+      {
+        "id": "84",
+        "name": "Brötchen mit Knoblauchsauce",
+        "price": "2,60",
+        "locations": "*"
+      },
+      {
+        "id": "85",
+        "name": "Gefüllte Brötchen Schinken",
+        "price": "5,80",
+        "locations": "*",
+        "description": "mit Kochschinken und Käse"
+      },
+      {
+        "id": "86",
+        "name": "Gefüllte Brötchen Salami",
+        "price": "5,80",
+        "locations": "*",
+        "description": "mit Salami und Käse"
+      },
+      {
+        "id": "87",
+        "name": "Gefüllte Brötchen Thunfisch",
+        "price": "6,10",
+        "locations": "*",
+        "description": "mit Thunfisch und Käse"
+      },
+      {
+        "id": "88",
+        "name": "Gefüllte Brötchen Käse",
+        "price": "5,30",
+        "locations": "*",
+        "description": "mit Käse"
+      },
+      {
+        "id": "89",
+        "name": "Bruschetta",
+        "price": "5,50",
+        "locations": "*"
+      },
+      {
+        "id": "82",
+        "name": "Kräuterbutter",
+        "price": "1,40",
+        "locations": "*"
+      },
+      {
+        "id": "83",
+        "name": "Knoblauchsauce",
+        "price": "1,40",
+        "locations": "*"
+      },
+      {
+        "id": "184",
+        "name": "Spicysauce",
+        "price": "1,40",
+        "locations": "*"
+      },
+      {
+        "id": "504",
+        "name": "Chicken Fingers (Klein)",
+        "price": "5,30",
+        "locations": "*"
+      },
+      {
+        "id": "504",
+        "name": "Chicken Fingers (Groß)",
+        "price": "7,40",
+        "locations": "*"
+      },
+      {
+        "id": "300",
+        "name": "Pizzabrot",
+        "price": "6,60",
+        "locations": [
+          "weseke"
+        ],
+        "description": "frisch im Ofen gebacken mit Käse und Kräutern, wahlweise mit Kräuterbutter oder Knoblauchsauce"
+      },
+      {
+        "id": "300",
+        "name": "Pizzabrot",
+        "price": "6,00",
+        "locations": [
+          "borken"
+        ],
+        "description": "frisch im Ofen gebacken mit Käse und Kräutern, wahlweise mit Kräuterbutter oder Knoblauchsauce"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Desserts",
+    "items": [
+      {
+        "id": "400",
+        "name": "Tiramisu",
+        "price": "5,00",
+        "locations": "*",
+        "description": "mit Kaffee getränkter Biskuitboden, bedeckt mit einer Kaffee- und Zabaionecreme, besiebt mit Kakaopulver"
+      },
+      {
+        "id": "401",
+        "name": "Cheesecake",
+        "price": "5,00",
+        "locations": "*",
+        "description": "Biskuitboden bedeckt mit einer Käsekuchen-Creme und fruchtiger Erdbeersauce"
+      },
+      {
+        "id": "410",
+        "name": "Zimtis",
+        "price": "4,50",
+        "locations": "*",
+        "description": "gebackene Teigschnecken mit Zimt und Zucker"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Getränke & Biere",
+    "items": [
+      {
+        "id": "",
+        "name": "Softdrinks",
+        "price": "4,00",
+        "locations": "*",
+        "description": "Cola, Cola Zero, Fanta, Sprite, Mezzo Mix · 1 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Wasser (San Pellegrino)",
+        "price": "5,00",
+        "locations": "*",
+        "description": "0,75 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Fassbrause (Mango Maracuja)",
+        "price": "2,80",
+        "locations": "*",
+        "description": "0,33 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Alkoholfreie Biere",
+        "price": "2,80",
+        "locations": "*",
+        "description": "Vita Malz, Veltins alkoholfrei, Radler alkoholfrei · 0,33 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Biere",
+        "price": "2,80",
+        "locations": [
+          "weseke"
+        ],
+        "description": "Veltins, Alt, Radler, Grevensteiner Landbier · 0,33 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Weizenbiere",
+        "price": "4,00",
+        "locations": [
+          "weseke"
+        ],
+        "description": "Maisels Weisse, auch alkoholfrei · 0,5 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Softdrinks",
+        "price": "2,80",
+        "locations": [
+          "borken"
+        ],
+        "description": "Cola, Cola Zero, Fanta, Sprite, Mezzo Mix · 0,33 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Biere",
+        "price": "2,80",
+        "locations": [
+          "borken"
+        ],
+        "description": "Veltins, Alt, Radler · 0,33 l · zzgl. Pfand"
+      },
+      {
+        "id": "",
+        "name": "Weizenbiere",
+        "price": "4,00",
+        "locations": [
+          "borken"
+        ],
+        "description": "Erdinger, auch alkoholfrei · 0,5 l · zzgl. Pfand"
+      }
+    ]
+  }
+]

@@ -232,9 +232,9 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
                                 </h3>
                                 <ul className="space-y-4">
                                     {allItems.map((item, i) => (
-                                        <li key={item.id} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'md:hidden' : ''}`}>
+                                        <li key={`${item.id}-${i}`} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'md:hidden' : ''}`}>
                                             <div className="flex items-baseline gap-2">
-                                                <span className="menu__name">{item.name}</span>
+                                                <span className="menu__name">{item.id ? `${item.id}. ${item.name}` : item.name}</span>
                                                 <span className="menu__leader flex-1" aria-hidden="true"></span>
                                                 {sizes ? (
                                                     <PriceRow sizes={sizes} price={item.price}/>
