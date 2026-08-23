@@ -1,4 +1,5 @@
 import {locationsData} from '@/shared/locationsData'
+import generatedJobs from '@/shared/jobsData.generated.json'
 
 export type EmploymentType = 'Vollzeit' | 'Teilzeit' | 'Minijob'
 
@@ -20,6 +21,21 @@ export function getJobLocationLabel(locationSlugs: '*' | string[]): string {
         .map((slug) => locationsData.find((l) => l.slug === slug)?.shortName ?? slug)
         .join(' & ')
 }
+
+export interface JobsContact {
+    phone: string
+    email: string
+}
+
+interface GeneratedJobsData {
+    contact: JobsContact
+    listings: JobListing[]
+}
+
+const generated = generatedJobs as GeneratedJobsData
+
+export const jobsContact: JobsContact = generated.contact
+export const jobsData: JobListing[] = generated.listings
 
 export interface JobBenefit {
     icon: 'clock' | 'users' | 'heart-handshake' | 'sparkles'
@@ -78,29 +94,5 @@ export const jobProcessSteps: JobProcessStep[] = [
         step: '04',
         title: 'Loslegen',
         text: 'Passt es für beide Seiten, kannst du zeitnah bei uns starten.',
-    },
-]
-
-export const jobsData: JobListing[] = [
-    {
-        id: 'fahrer',
-        active: true,
-        title: 'Lieferfahrer (m/w/d)',
-        employmentType: 'Minijob',
-        locationSlugs: '*',
-        description: 'Du bringst unsere Pizzen frisch und pünktlich zu unseren Kunden im Raum Weseke, Borken und den angrenzenden Ortschaften. Die Touren sind gut planbar, das Team nett und die Schichten flexibel einteilbar. Ideal als Nebenjob oder Einstieg, auch ohne Erfahrung in der Gastronomie.',
-        tasks: [
-            'Auslieferung von Speisen im Liefergebiet',
-            'Mithilfe im Laden zwischen den Touren, z.B. Kartons falten oder Bestand auffüllen',
-            'Sorgfältiger Umgang mit Essen und Fahrzeug',
-            'Freundlicher Kontakt zu unseren Kunden',
-        ],
-        requirements: [
-            'Führerschein Klasse B',
-            'Zuverlässigkeit und Pünktlichkeit',
-            'Gute Deutschkenntnisse',
-            'Eigenes Fahrzeug von Vorteil (Kilometergeld wird erstattet)',
-        ],
-        postedAt: '25.06.2026',
     },
 ]
