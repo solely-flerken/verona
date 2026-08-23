@@ -1,7 +1,7 @@
 import {PageLayout} from '@/layouts/PageLayout'
 import {imagesData} from '@/shared/imagesData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
-import {legalInfo} from '@/shared/siteData'
+import {legalInfo} from '@/shared/impressumData'
 import './index.css'
 
 export function ImpressumPage() {

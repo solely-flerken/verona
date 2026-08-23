@@ -1,0 +1,14 @@
+{
+  "companyName": "Pizzeria Verona Weseke & Borken",
+  "owner": "Marek Kaminski",
+  "address": {
+    "street": "Schlückersring 13",
+    "city": "Borken",
+    "zip": "46325"
+  },
+  "vatId": "DE 157284978",
+  "contact": {
+    "phone": "02862 3724",
+    "email": "info@pizzeria-verona.de"
+  }
+}

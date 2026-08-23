@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/fetch-locations.mjs",
+    "prebuild": "node scripts/fetch-locations.mjs && node scripts/fetch-impressum.mjs",
     "build": "next build",
     "postbuild": "node scripts/append-signature.mjs",
     "fetch:locations": "node scripts/fetch-locations.mjs",
+    "fetch:impressum": "node scripts/fetch-impressum.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
