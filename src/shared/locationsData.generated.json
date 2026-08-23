@@ -162,23 +162,22 @@
       "overrides": []
     },
     "orderUrl": "https://verona2.pizzeria-verona.de/kategorie/Pizza",
-    "menuPdf": "/menu/borken.pdf",
     "heroImage": {
-      "src": "http://localhost:3010/api/media/file/verona_borken_lounge.jpeg",
-      "alt": "Lounge Verona Borken"
+      "src": "http://localhost:3010/api/media/file/verona_borken_lounge-1.jpeg",
+      "alt": "verona_borken_lounge"
     },
     "ogImage": {
-      "src": "http://localhost:3010/api/media/file/verona_borken_counter_og.jpeg",
-      "alt": "Eingangsbereich Verona Borken"
+      "src": "http://localhost:3010/api/media/file/verona_borken_counter_og-1.jpeg",
+      "alt": "verona_borken_counter_og"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3010/api/media/file/verona_borken_counter.jpeg",
-        "alt": "Eingangsbereich Verona Borken"
+        "src": "http://localhost:3010/api/media/file/verona_borken_lounge-1.jpeg",
+        "alt": "verona_borken_lounge"
       },
       {
-        "src": "http://localhost:3010/api/media/file/verona_borken_lounge.jpeg",
-        "alt": "Lounge Verona Borken"
+        "src": "http://localhost:3010/api/media/file/verona_borken_counter-1.jpeg",
+        "alt": "verona_borken_counter"
       }
     ],
     "descriptor": "Filiale · Mittagstisch",
@@ -218,7 +217,8 @@
         "aliases": []
       }
     ],
-    "metaDescription": "Pizzeria Verona Borken: unsere Filiale mit Mittagstisch, Abholung und Lieferservice nach Borken, Gemen, Marbeck und Umgebung. Öffnungszeiten, Speisekarte & Online-Bestellung."
+    "metaDescription": "Pizzeria Verona Borken: unsere Filiale mit Mittagstisch, Abholung und Lieferservice nach Borken, Gemen, Marbeck und Umgebung. Öffnungszeiten, Speisekarte & Online-Bestellung.",
+    "menuPdf": "/menu/borken.pdf"
   },
   {
     "id": "weseke",
@@ -376,23 +376,22 @@
       "overrides": []
     },
     "orderUrl": "https://verona1.pizzeria-verona.de/kategorie/Pizza",
-    "menuPdf": "/menu/weseke.pdf",
     "heroImage": {
-      "src": "http://localhost:3010/api/media/file/verona_weseke_entry.jpg",
-      "alt": "Eingangsbereich Verona Weseke"
+      "src": "http://localhost:3010/api/media/file/verona_weseke_entry-1.jpg",
+      "alt": "verona_weseke_entry"
     },
     "ogImage": {
-      "src": "http://localhost:3010/api/media/file/verona_weseke_entry_og.png",
-      "alt": "Eingangsbereich Verona Weseke"
+      "src": "http://localhost:3010/api/media/file/verona_weseke_entry_og-1.png",
+      "alt": "verona_weseke_entry_og"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3010/api/media/file/verona_weseke_entry.jpg",
-        "alt": "Eingangsbereich Verona Weseke"
+        "src": "http://localhost:3010/api/media/file/verona_weseke_entry-1.jpg",
+        "alt": "verona_weseke_entry"
       },
       {
-        "src": "http://localhost:3010/api/media/file/verona_weseke_lounge.jpg",
-        "alt": "Lounge Verona Weseke"
+        "src": "http://localhost:3010/api/media/file/verona_weseke_lounge-1.jpg",
+        "alt": "verona_weseke_lounge"
       }
     ],
     "descriptor": "Hauptrestaurant · 42 Plätze",
@@ -422,6 +421,7 @@
         "aliases": []
       }
     ],
-    "metaDescription": "Pizzeria Verona Weseke: unser Hauptrestaurant mit 42 Sitzplätzen, Abholung und Lieferservice nach Weseke, Ramsdorf, Südlohn und Oeding. Öffnungszeiten, Speisekarte & Online-Bestellung."
+    "metaDescription": "Pizzeria Verona Weseke: unser Hauptrestaurant mit 42 Sitzplätzen, Abholung und Lieferservice nach Weseke, Ramsdorf, Südlohn und Oeding. Öffnungszeiten, Speisekarte & Online-Bestellung.",
+    "menuPdf": "/menu/weseke.pdf"
   }
 ]

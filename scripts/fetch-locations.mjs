@@ -87,8 +87,9 @@ function mapDaySchedule(day) {
 }
 
 function mapWeek(week) {
+    const byDay = new Map((Array.isArray(week) ? week : []).map((row) => [row.day, row]))
     const result = {}
-    for (const day of WEEK_DAYS) result[day] = mapDaySchedule(week?.[day])
+    for (const day of WEEK_DAYS) result[day] = mapDaySchedule(byDay.get(day))
     return result
 }
 
