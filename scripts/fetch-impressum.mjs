@@ -1,34 +1,12 @@
 // Fetches the Impressum (legal info) global from the Payload CMS at build time and writes it to
 // src/shared/impressumData.generated.json, which impressumData.ts imports.
 
-import {existsSync, readFileSync} from 'node:fs'
 import {writeFile} from 'node:fs/promises'
-import {dirname, join} from 'node:path'
-import {fileURLToPath} from 'node:url'
+import {join} from 'node:path'
+import {REPO_ROOT, fetchCmsJson, makeWarn} from './lib/cms-fetch.mjs'
 
-// Tiny .env loader.
-function loadDotEnv(path = '.env') {
-    if (!existsSync(path)) return
-    for (const line of readFileSync(path, 'utf-8').split('\n')) {
-        const match = /^\s*([\w.-]+)\s*=\s*(.*)?\s*$/.exec(line)
-        if (!match) continue
-        const [, key, rawValue = ''] = match
-        if (key in process.env) continue
-        process.env[key] = rawValue.trim().replace(/^(['"])(.*)\1$/, '$2')
-    }
-}
-
-loadDotEnv()
-
-const PAYLOAD_API_URL = process.env.PAYLOAD_API_URL
-
-function warnAndKeepExisting(message) {
-    console.warn(`[fetch-impressum] ${message} — keeping existing impressumData.generated.json.`)
-}
-
-const ORIGIN = PAYLOAD_API_URL?.replace(/\/+$/, '')
-const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT_FILE = join(REPO_ROOT, 'src', 'shared', 'impressumData.generated.json')
+const warn = makeWarn('fetch-impressum', 'impressumData.generated.json')
 
 function mapImpressum(doc) {
     return {
@@ -48,30 +26,11 @@ function mapImpressum(doc) {
 }
 
 async function main() {
-    if (!PAYLOAD_API_URL) {
-        warnAndKeepExisting('PAYLOAD_API_URL is not set')
-        return
-    }
+    const doc = await fetchCmsJson('/api/globals/impressum', warn)
+    if (!doc) return
 
-    let res
-    try {
-        res = await fetch(`${ORIGIN}/api/globals/impressum`, {
-            signal: AbortSignal.timeout(20000),
-        })
-    } catch (err) {
-        warnAndKeepExisting(`Could not reach verona-cms at ${ORIGIN}: ${err.message}`)
-        return
-    }
-
-    if (!res.ok) {
-        warnAndKeepExisting(`verona-cms responded with ${res.status} ${res.statusText}`)
-        return
-    }
-
-    const doc = await res.json()
-
-    if (!doc?.companyName) {
-        warnAndKeepExisting('verona-cms returned an empty impressum document')
+    if (!doc.companyName) {
+        warn('verona-cms returned an empty impressum document')
         return
     }
 

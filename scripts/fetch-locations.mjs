@@ -1,41 +1,14 @@
 // Fetches Location data from the Payload CMS at build time and writes it to
 // src/shared/locationsData.generated.json, which locationsData.ts imports.
-//
-// Runs as a npm "prebuild" hook (see package.json). If Payload is unreachable,
-// errors, or returns zero locations, this script logs a warning and leaves
-// locationsData.generated.json untouched (i.e. whatever was checked out from
-// git) instead of failing the build. The fallback is whatever's currently committed,
-// not necessarily the latest content, so it's only as fresh as the last time this file was committed.
 
-import {existsSync, readFileSync} from 'node:fs'
+import {existsSync} from 'node:fs'
 import {mkdir, writeFile} from 'node:fs/promises'
-import {dirname, join} from 'node:path'
-import {fileURLToPath} from 'node:url'
+import {join} from 'node:path'
+import {ORIGIN, REPO_ROOT, fetchCmsJson, makeWarn} from './lib/cms-fetch.mjs'
 
-// Tiny .env loader.
-function loadDotEnv(path = '.env') {
-    if (!existsSync(path)) return
-    for (const line of readFileSync(path, 'utf-8').split('\n')) {
-        const match = /^\s*([\w.-]+)\s*=\s*(.*)?\s*$/.exec(line)
-        if (!match) continue
-        const [, key, rawValue = ''] = match
-        if (key in process.env) continue
-        process.env[key] = rawValue.trim().replace(/^(['"])(.*)\1$/, '$2')
-    }
-}
-
-loadDotEnv()
-
-const PAYLOAD_API_URL = process.env.PAYLOAD_API_URL
-
-function warnAndKeepExisting(message) {
-    console.warn(`[fetch-locations] ${message} — keeping existing locationsData.generated.json.`)
-}
-
-const ORIGIN = PAYLOAD_API_URL?.replace(/\/+$/, '')
-const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT_FILE = join(REPO_ROOT, 'src', 'shared', 'locationsData.generated.json')
 const MENU_DIR = join(REPO_ROOT, 'public', 'menu')
+const warn = makeWarn('fetch-locations', 'locationsData.generated.json')
 
 const WEEK_DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
@@ -143,31 +116,13 @@ function mapLocation(doc) {
 }
 
 async function main() {
-    if (!PAYLOAD_API_URL) {
-        warnAndKeepExisting('PAYLOAD_API_URL is not set')
-        return
-    }
+    const body = await fetchCmsJson('/api/locations?depth=2&limit=0', warn)
+    if (!body) return
 
-    let res
-    try {
-        res = await fetch(`${ORIGIN}/api/locations?depth=2&limit=0`, {
-            signal: AbortSignal.timeout(20000),
-        })
-    } catch (err) {
-        warnAndKeepExisting(`Could not reach verona-cms at ${ORIGIN}: ${err.message}`)
-        return
-    }
-
-    if (!res.ok) {
-        warnAndKeepExisting(`verona-cms responded with ${res.status} ${res.statusText}`)
-        return
-    }
-
-    const body = await res.json()
-    const docs = body?.docs ?? []
+    const docs = body.docs ?? []
 
     if (docs.length === 0) {
-        warnAndKeepExisting('verona-cms returned zero locations')
+        warn('verona-cms returned zero locations')
         return
     }
 
