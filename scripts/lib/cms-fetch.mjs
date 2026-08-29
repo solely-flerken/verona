@@ -1,6 +1,7 @@
 // Shared build-time helpers for the scripts/fetch-*.mjs prebuild scripts
 
 import {existsSync, readFileSync} from 'node:fs'
+import {mkdir, writeFile} from 'node:fs/promises'
 import {dirname, join} from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -48,4 +49,33 @@ export async function fetchCmsJson(path, warn) {
     }
 
     return res.json()
+}
+
+// Downloads a binary CMS asset (image, PDF, ...) from `url` to `fsPath` so the site can
+// serve it from its own domain instead of the CMS's. If the fetch fails or errors, falls
+// back to whatever is already on disk at `fsPath` (if anything), so a download failure or
+// a JSON write failure never leaves `publicPath` pointing at a file that doesn't exist.
+export async function downloadAsset({url, fsPath, publicPath, scriptName, label}) {
+    function keepExisting(reason) {
+        console.warn(`[${scriptName}] Could not download ${label} (${reason}) — keeping existing ${publicPath}.`)
+        return existsSync(fsPath) ? publicPath : undefined
+    }
+
+    let res
+    try {
+        res = await fetch(url, {signal: AbortSignal.timeout(20000)})
+    } catch (err) {
+        return keepExisting(err.message)
+    }
+    if (!res.ok) return keepExisting(`${res.status} ${res.statusText}`)
+
+    try {
+        await mkdir(dirname(fsPath), {recursive: true})
+        await writeFile(fsPath, Buffer.from(await res.arrayBuffer()))
+    } catch (err) {
+        return keepExisting(err.message)
+    }
+
+    console.log(`[${scriptName}] Downloaded ${label}`)
+    return publicPath
 }

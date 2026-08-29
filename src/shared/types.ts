@@ -1,4 +1,7 @@
-import type {ImageAsset} from './imagesData'
+export interface ImageAsset {
+    src: string
+    alt: string
+}
 
 export type WeekDay = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 

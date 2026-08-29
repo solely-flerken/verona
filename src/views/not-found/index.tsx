@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import {ArrowLeft} from 'lucide-react'
 import {PageLayout} from '@/layouts/PageLayout'
-import {imagesData} from '@/shared/imagesData'
+import {locationsData} from '@/shared/locationsData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
 import './index.css'
 
 export function NotFoundPage() {
+    const heroImage = locationsData[0]?.heroImage
+
     return (
         <PageLayout subtitle="Seite nicht gefunden" showBack footerLinks={speisekarteFooterLinks}>
-            <main className="flex-1 not-found-page" style={{backgroundImage: `url(${imagesData.wesekeLounge.src})`}}>
+            <main className="flex-1 not-found-page" style={heroImage ? {backgroundImage: `url(${heroImage.src})`} : undefined}>
                 <article className="not-found-content">
                     <div className="not-found-content__inner">
                         <div className="not-found-header">

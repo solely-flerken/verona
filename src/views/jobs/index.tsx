@@ -3,7 +3,8 @@ import {PageLayout} from '@/layouts/PageLayout'
 import {jobBenefits, jobProcessSteps, jobsData, type JobBenefit} from './data'
 import {JobCard} from './JobCard'
 import {ContactCard} from './ContactCard'
-import {imagesData} from '@/shared/imagesData'
+import {SkeletonImage} from '@/components/SkeletonImage'
+import {locationsData} from '@/shared/locationsData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
 import './index.css'
 
@@ -16,6 +17,7 @@ const BENEFIT_ICONS: Record<JobBenefit['icon'], typeof Clock> = {
 
 export function JobsPage() {
     const activeJobs = jobsData.filter(j => j.active)
+    const heroImage = locationsData[0]?.heroImage
 
     return (
         <PageLayout
@@ -26,11 +28,13 @@ export function JobsPage() {
             <main className="flex-1">
                 {/* ── Hero ─────────────────────────────────────────── */}
                 <section className="jobs-hero relative flex flex-col justify-end">
-                    <img
-                        src={imagesData.wesekeLounge.src}
-                        alt={imagesData.wesekeLounge.alt}
-                        className="jobs-hero__photo absolute inset-0 w-full h-full object-cover"
-                    />
+                    {heroImage && (
+                        <SkeletonImage
+                            src={heroImage.src}
+                            alt={heroImage.alt}
+                            className="jobs-hero__photo absolute inset-0 w-full h-full object-cover"
+                        />
+                    )}
                     <div className="relative z-10 px-6 pb-10 md:pb-14">
                         <div className="jobs-section__inner flex flex-col items-start gap-3">
                             <p className="jobs-hero__eyebrow">Karriere · Weseke &amp; Borken</p>

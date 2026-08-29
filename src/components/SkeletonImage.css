@@ -1,5 +1,5 @@
 @layer components {
-    .fallback-image-skeleton {
+    .image-skeleton {
         background-color: color-mix(in srgb, var(--color-ink) 70%, var(--color-backdrop) 40%);
     }
 }

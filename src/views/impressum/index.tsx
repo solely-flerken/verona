@@ -1,17 +1,19 @@
 import {PageLayout} from '@/layouts/PageLayout'
-import {imagesData} from '@/shared/imagesData'
+import {locationsData} from '@/shared/locationsData'
 import {speisekarteFooterLinks} from '@/shared/footerNav'
 import {legalInfo} from '@/shared/impressumData'
 import './index.css'
 
 export function ImpressumPage() {
+    const heroImage = locationsData[0]?.heroImage
+
     return (
         <PageLayout
             subtitle="Impressum"
             showBack
             footerLinks={speisekarteFooterLinks}
         >
-            <main className="flex-1 impressum-page" style={{backgroundImage: `url(${imagesData.wesekeEntry.src})`}}>
+            <main className="flex-1 impressum-page" style={heroImage ? {backgroundImage: `url(${heroImage.src})`} : undefined}>
                 <article className="impressum-content">
                     <div className="impressum-content__inner">
                         <div className="impressum-header">

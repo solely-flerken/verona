@@ -3,14 +3,14 @@
 import {useEffect, useRef, useState} from 'react'
 import type {TouchEvent} from 'react'
 import {ChevronLeft, ChevronRight} from 'lucide-react'
-import type {ImageAsset} from '@/shared/imagesData'
-import {FallbackImage} from '@/components/FallbackImage'
+import type {ImageAsset} from '@/shared/types'
+import {SkeletonImage} from '@/components/SkeletonImage'
 import './AboutImageGallery.css'
 
 const ROTATE_MS = 5000
 const SWIPE_THRESHOLD_PX = 40
 
-export function AboutImageGallery({images, fallbackImages = []}: { images: ImageAsset[], fallbackImages?: ImageAsset[] }) {
+export function AboutImageGallery({images}: { images: ImageAsset[] }) {
     const [active, setActive] = useState(0)
     const [paused, setPaused] = useState(false)
     const touchStartX = useRef<number | null>(null)
@@ -49,11 +49,10 @@ export function AboutImageGallery({images, fallbackImages = []}: { images: Image
             onTouchEnd={handleTouchEnd}
         >
             {images.map((img, i) => (
-                <FallbackImage
+                <SkeletonImage
                     key={img.src}
                     src={img.src}
                     alt={img.alt}
-                    fallbackSrc={fallbackImages.length ? fallbackImages[i % fallbackImages.length].src : img.src}
                     className={`about-gallery__image absolute inset-0 w-full h-full ${i === active ? 'about-gallery__image--active' : ''}`}
                 />
             ))}

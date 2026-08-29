@@ -163,20 +163,20 @@
     },
     "orderUrl": "https://verona2.pizzeria-verona.de/kategorie/Pizza",
     "heroImage": {
-      "src": "http://localhost:3010/api/media/file/verona_borken_lounge-1.jpeg",
+      "src": "/images/cms/borken-hero.jpeg",
       "alt": "verona_borken_lounge"
     },
     "ogImage": {
-      "src": "http://localhost:3010/api/media/file/verona_borken_counter_og-1.jpeg",
+      "src": "/images/cms/borken-og.jpeg",
       "alt": "verona_borken_counter_og"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3010/api/media/file/verona_borken_lounge-1.jpeg",
+        "src": "/images/cms/borken-gallery-0.jpeg",
         "alt": "verona_borken_lounge"
       },
       {
-        "src": "http://localhost:3010/api/media/file/verona_borken_counter-1.jpeg",
+        "src": "/images/cms/borken-gallery-1.jpeg",
         "alt": "verona_borken_counter"
       }
     ],
@@ -377,20 +377,20 @@
     },
     "orderUrl": "https://verona1.pizzeria-verona.de/kategorie/Pizza",
     "heroImage": {
-      "src": "http://localhost:3010/api/media/file/verona_weseke_entry-1.jpg",
+      "src": "/images/cms/weseke-hero.jpg",
       "alt": "verona_weseke_entry"
     },
     "ogImage": {
-      "src": "http://localhost:3010/api/media/file/verona_weseke_entry_og-1.png",
+      "src": "/images/cms/weseke-og.png",
       "alt": "verona_weseke_entry_og"
     },
     "galleryImages": [
       {
-        "src": "http://localhost:3010/api/media/file/verona_weseke_entry-1.jpg",
+        "src": "/images/cms/weseke-gallery-0.jpg",
         "alt": "verona_weseke_entry"
       },
       {
-        "src": "http://localhost:3010/api/media/file/verona_weseke_lounge-1.jpg",
+        "src": "/images/cms/weseke-gallery-1.jpg",
         "alt": "verona_weseke_lounge"
       }
     ],

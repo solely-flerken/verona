@@ -5,8 +5,7 @@ import {getOpeningStatus} from '@/shared/openingHours'
 import {telRef} from '@/shared/telRef.ts'
 import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {StatusBadge} from '@/components/StatusBadge'
-import {FallbackImage} from '@/components/FallbackImage'
-import {locationImageFallbacks} from '@/shared/locationImageFallbacks'
+import {SkeletonImage} from '@/components/SkeletonImage'
 import type {LocationData} from '@/shared/types'
 import './LocationCard.css'
 
@@ -36,10 +35,9 @@ export function LocationCard({location, index, onClick, isActive, isPassive, onM
             className="card md:flex-1 flex flex-col cursor-pointer min-w-0 transition-[flex-grow] duration-500 ease-in-out"
         >
             {location.heroImage && (
-                <FallbackImage
+                <SkeletonImage
                     src={location.heroImage.src}
                     alt={location.heroImage.alt}
-                    fallbackSrc={locationImageFallbacks[location.slug]?.heroImage.src ?? location.heroImage.src}
                     className="card__photo"
                 />
             )}
