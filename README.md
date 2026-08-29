@@ -5,7 +5,7 @@
 ### Broader Goals
 - [x] Redesign Jobs Page
 - [x] Utilize SSG (maybe just switch to NEXT.js)
-- [ ] Implement CMS
+- [x] Implement CMS
 - [x] Implement Analytics
 
 ### UX
@@ -18,6 +18,8 @@
 - [x] Show feedback when a city search returns no match
 - [x] Make Location-Gate hover animation not trigger on short mouse hovers
 - [ ] Revisit Footer social links: currently defaults to Weseke's on shared pages (gate, jobs, impressum) — consider showing both locations' socials there instead
+- [x] Download images on build instead of fetching them from the CMS
+- [x] Fix menu price category alignment (labels themselves + prices)
 
 ### SEO / Meta
 - [x] Add per-page `<title>` tags (currently static "Pizzeria Verona" across all pages)
