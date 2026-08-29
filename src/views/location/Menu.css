@@ -80,14 +80,46 @@
     }
 
     .menu__heading {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: baseline;
+        column-gap: 0.1rem;
+        border-bottom: 1px solid var(--color-line);
+        padding-bottom: 0.4rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .menu__category--sized .menu__heading {
+        grid-template-columns: minmax(0, 1fr) repeat(var(--menu-sizes), 3.2rem);
+    }
+
+    .menu__heading-name {
         font-family: var(--font-serif), serif;
         font-size: 1.5rem;
         font-weight: 700;
         font-style: italic;
         color: var(--color-terracotta);
-        border-bottom: 1px solid var(--color-line);
-        padding-bottom: 0.4rem;
-        margin-bottom: 1.1rem;
+    }
+
+    .menu__row {
+        display: grid;
+        grid-template-columns: minmax(0, max-content) minmax(1rem, 1fr) auto;
+        align-items: baseline;
+        column-gap: 0.1rem;
+    }
+
+    .menu__category--sized .menu__row {
+        grid-template-columns: minmax(0, max-content) minmax(1rem, 1fr) repeat(var(--menu-sizes), 3.2rem);
+    }
+
+    @media (max-width: 767px) {
+        .menu__category--sized .menu__heading {
+            grid-template-columns: minmax(0, 1fr) repeat(var(--menu-sizes), 3rem);
+        }
+
+        .menu__category--sized .menu__row {
+            grid-template-columns: minmax(0, max-content) minmax(0.5rem, 1fr) repeat(var(--menu-sizes), 3rem);
+        }
     }
 
     .menu__name {
@@ -95,12 +127,12 @@
         font-size: 1.2rem;
         font-weight: 600;
         color: var(--color-ink);
+        overflow-wrap: break-word;
     }
 
     .menu__leader {
         border-bottom: 2px dotted color-mix(in srgb, var(--color-ink) 30%, transparent);
         transform: translateY(-4px);
-        min-width: 1.5rem;
     }
 
     .menu__sizes {
@@ -113,27 +145,8 @@
         white-space: nowrap;
     }
 
-    /* Shared fixed width keeps heading labels and price cells in one grid */
     .menu__price-col {
-        width: 3.2rem;
-        flex-shrink: 0;
-        text-align: right;
-    }
-
-    /* Size labels centered over their columns; prices stay right-aligned.
-       The shift matches the label center to the right-anchored digit cluster. */
-    .menu__sizes.menu__price-col {
         text-align: center;
-        transform: translateX(0.5rem);
-    }
-
-    .menu__price-euro {
-        margin-left: 0.4rem;
-        flex-shrink: 0;
-    }
-
-    .menu__price-euro--ghost {
-        visibility: hidden;
     }
 
     .menu__price {
@@ -149,6 +162,7 @@
         line-height: 1.4;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
         margin-top: 0.2rem;
+        overflow-wrap: break-word;
     }
 
     .menu__more {

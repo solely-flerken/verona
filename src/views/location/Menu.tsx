@@ -10,33 +10,18 @@ import './Menu.css'
 const PREVIEW_ITEMS = 3
 const TABS_EDGE_FADE = 32
 
-/* Price cells for a row in a sized category: the first available price renders
-   at natural width so the dot leader reaches it, the € follows the last one,
-   and the fixed-width cells in between keep every price on its size column.
-   A lone string price counts as available only in the middle size. */
 function PriceRow({sizes, price}: { sizes: string[], price: MenuItem['price'] }) {
     const mid = Math.floor((sizes.length - 1) / 2)
     const prices = typeof price === 'string'
         ? sizes.map((_, i) => (i === mid ? price : ''))
         : sizes.map((s) => price[s] ?? '')
 
-    const first = Math.max(prices.findIndex((p) => p !== ''), 0)
-    let last = prices.length - 1
-    while (last > first && !prices[last]) {
-        last--
-    }
-
     return (
-        <span className="flex items-baseline">
-            <span className="menu__price">{prices[first] ?? ''}</span>
-            {sizes.slice(first + 1, last + 1).map((s, i) => (
-                <span key={s} className="menu__price menu__price-col">{prices[first + 1 + i] ?? ''}</span>
+        <>
+            {prices.map((p, i) => (
+                <span key={sizes[i]} className="menu__price menu__price-col">{p && `${p} €`}</span>
             ))}
-            <span className="menu__price menu__price-euro">€</span>
-            {sizes.slice(last + 1).map((s) => (
-                <span key={s} className="menu__price-col" aria-hidden="true"/>
-            ))}
-        </span>
+        </>
     )
 }
 
@@ -217,25 +202,24 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
                     {categories.map(({id, name, sizes, items: allItems}) => {
                         const truncated = !expanded && allItems.length > PREVIEW_ITEMS
                         return (
-                            <section key={id} data-category={id} className="menu__category break-inside-avoid">
-                                <h3 tabIndex={-1} className="menu__heading flex items-baseline justify-between gap-4">
-                                    {name}
-                                    {sizes && (
-                                        <span className="flex items-baseline">
-                                            {sizes.map((s) => (
-                                                <span key={s} className="menu__sizes menu__price-col">{s}</span>
-                                            ))}
-                                            {/* Ghost € reserves the same width as the rows' € so columns align */}
-                                            <span className="menu__price menu__price-euro menu__price-euro--ghost" aria-hidden="true">€</span>
-                                        </span>
-                                    )}
+                            <section
+                                key={id}
+                                data-category={id}
+                                className={`menu__category break-inside-avoid ${sizes ? 'menu__category--sized' : ''}`}
+                                style={sizes ? {'--menu-sizes': sizes.length} as CSSProperties : undefined}
+                            >
+                                <h3 tabIndex={-1} className="menu__heading">
+                                    <span className="menu__heading-name">{name}</span>
+                                    {sizes?.map((s) => (
+                                        <span key={s} className="menu__sizes menu__price-col">{s}</span>
+                                    ))}
                                 </h3>
                                 <ul className="space-y-4">
                                     {allItems.map((item, i) => (
                                         <li key={`${item.id}-${i}`} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'md:hidden' : ''}`}>
-                                            <div className="flex items-baseline gap-2">
+                                            <div className="menu__row">
                                                 <span className="menu__name">{item.id ? `${item.id}. ${item.name}` : item.name}</span>
-                                                <span className="menu__leader flex-1" aria-hidden="true"></span>
+                                                <span className="menu__leader" aria-hidden="true"></span>
                                                 {sizes ? (
                                                     <PriceRow sizes={sizes} price={item.price}/>
                                                 ) : (
