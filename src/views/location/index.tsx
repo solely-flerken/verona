@@ -8,6 +8,7 @@ import {telRef} from '@/shared/telRef.ts'
 import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import {StatusBadge} from '@/components/StatusBadge'
 import {SkeletonImage} from '@/components/SkeletonImage'
+import {MapConsent} from '@/components/MapConsent'
 import {PageLayout} from '@/layouts/PageLayout'
 import {NotFoundPage} from '@/views/not-found'
 import {Menu} from './Menu'
@@ -125,87 +126,105 @@ export function LocationPage({slug}: { slug: string }) {
 
                 {/* ── Info: hours + contact ─────────────────── */}
                 <section className="location-section">
-                    <div className="location-section__inner grid gap-10 md:grid-cols-2 md:gap-16">
-                        <div className="location-ticket">
-                            <p className="location-eyebrow">Öffnungszeiten</p>
-                            <h2 className="location-heading">Wann Sie uns erreichen</h2>
-                            <table className="location-ticket__table w-full">
-                                <thead>
-                                <tr>
-                                    <th/>
-                                    <th className="location-ticket__col"><Clock size={14} className="inline"/> Restaurant</th>
-                                    {deliveryWeek && <th className="location-ticket__col"><Bike size={14} className="inline"/> Lieferung</th>}
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {week.map((row, i) => (
-                                    <tr key={row.day} className={row.isToday && !todayHasSpecial ? 'location-ticket__row--today' : ''}>
-                                        <td className="location-ticket__day">{row.label}</td>
-                                        <TimeCell text={row.text} struck={row.isToday && todayHasSpecial}/>
-                                        {deliveryWeek && <TimeCell text={deliveryWeek[i].text} struck={row.isToday && todayHasSpecial}/>}
+                    <div>
+                        <div className="location-section__inner grid gap-10 md:grid-cols-2 md:gap-16">
+                            <div className="location-ticket">
+                                <p className="location-eyebrow">Öffnungszeiten</p>
+                                <h2 className="location-heading">Wann Sie uns erreichen</h2>
+                                <table className="location-ticket__table w-full">
+                                    <thead>
+                                    <tr>
+                                        <th/>
+                                        <th className="location-ticket__col"><Clock size={14}
+                                                                                    className="inline"/> Restaurant
+                                        </th>
+                                        {deliveryWeek && <th className="location-ticket__col"><Bike size={14}
+                                                                                                    className="inline"/> Lieferung
+                                        </th>}
                                     </tr>
-                                ))}
-                                </tbody>
-                                {specialDays.length > 0 && (
-                                    <tbody className="location-ticket__specials">
-                                    {specialDays.map((o) => (
-                                        <tr key={o.dateLabel} className={o.isToday ? 'location-ticket__row--today' : ''}>
-                                            <td
-                                                className={`location-ticket__day ${o.label ? 'location-ticket__day--dated' : ''}`}
-                                                data-date={o.dateLabel}
-                                            >
-                                                {o.label || o.dateLabel}
-                                            </td>
-                                            <TimeCell text={
-                                                upcoming.find((u) => u.dateLabel === o.dateLabel)?.text
-                                                ?? week.find((r) => r.day === o.day)?.text
-                                                ?? ''
-                                            }/>
-                                            {deliveryWeek && (
-                                                <TimeCell text={
-                                                    deliveryUpcoming?.find((u) => u.dateLabel === o.dateLabel)?.text
-                                                    ?? deliveryWeek.find((r) => r.day === o.day)?.text
-                                                    ?? ''
-                                                }/>
-                                            )}
+                                    </thead>
+                                    <tbody>
+                                    {week.map((row, i) => (
+                                        <tr key={row.day}
+                                            className={row.isToday && !todayHasSpecial ? 'location-ticket__row--today' : ''}>
+                                            <td className="location-ticket__day">{row.label}</td>
+                                            <TimeCell text={row.text} struck={row.isToday && todayHasSpecial}/>
+                                            {deliveryWeek && <TimeCell text={deliveryWeek[i].text}
+                                                                       struck={row.isToday && todayHasSpecial}/>}
                                         </tr>
                                     ))}
                                     </tbody>
-                                )}
-                            </table>
-                        </div>
-
-                        <div className="flex flex-col gap-8">
-                            <div>
-                                <p className="location-eyebrow">Kontakt</p>
-                                <h2 className="location-heading">So finden Sie uns</h2>
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex items-start gap-3">
-                                        <MapPin size={20} className="location-contact-icon shrink-0"/>
-                                        <address className="location-contact-text not-italic">
-                                            <p>{location.address.street}</p>
-                                            <p>{location.address.zip} {location.address.city}</p>
-                                        </address>
+                                    {specialDays.length > 0 && (
+                                        <tbody className="location-ticket__specials">
+                                        {specialDays.map((o) => (
+                                            <tr key={o.dateLabel}
+                                                className={o.isToday ? 'location-ticket__row--today' : ''}>
+                                                <td
+                                                    className={`location-ticket__day ${o.label ? 'location-ticket__day--dated' : ''}`}
+                                                    data-date={o.dateLabel}
+                                                >
+                                                    {o.label || o.dateLabel}
+                                                </td>
+                                                <TimeCell text={
+                                                    upcoming.find((u) => u.dateLabel === o.dateLabel)?.text
+                                                    ?? week.find((r) => r.day === o.day)?.text
+                                                    ?? ''
+                                                }/>
+                                                {deliveryWeek && (
+                                                    <TimeCell text={
+                                                        deliveryUpcoming?.find((u) => u.dateLabel === o.dateLabel)?.text
+                                                        ?? deliveryWeek.find((r) => r.day === o.day)?.text
+                                                        ?? ''
+                                                    }/>
+                                                )}
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    )}
+                                </table>
+                            </div>
+                            <div className="flex flex-col gap-8">
+                                <div>
+                                    <p className="location-eyebrow">Kontakt</p>
+                                    <h2 className="location-heading">So finden Sie uns</h2>
+                                    <div className="flex flex-col gap-4">
+                                        <div className="flex items-start gap-3">
+                                            <MapPin size={20} className="location-contact-icon shrink-0"/>
+                                            <address className="location-contact-text not-italic">
+                                                <p>{location.address.street}</p>
+                                                <p>{location.address.zip} {location.address.city}</p>
+                                            </address>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <Phone size={20} className="location-contact-icon shrink-0"/>
+                                            <a href={telRef(location.contact.phone)}
+                                               onClick={() => trackEvent(UmamiEvent.PhoneClick, {
+                                                   location: 'contact',
+                                                   locationSlug: location.slug
+                                               })}
+                                               className="location-contact-link">
+                                                {location.contact.phone}
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                        <Phone size={20} className="location-contact-icon shrink-0"/>
-                                        <a href={telRef(location.contact.phone)}
-                                           onClick={() => trackEvent(UmamiEvent.PhoneClick, {location: 'contact', locationSlug: location.slug})}
-                                           className="location-contact-link">
-                                            {location.contact.phone}
-                                        </a>
+                                </div>
+                                <div>
+                                    <p className="location-section-label">Wir liefern u. a. nach:</p>
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {location.deliveryCities.map(city => (
+                                            <span key={city.name} className="location-chip">{city.name}</span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <p className="location-section-label">Wir liefern u. a. nach:</p>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {location.deliveryCities.map(city => (
-                                        <span key={city.name} className="location-chip">{city.name}</span>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
+                    </div>
+                    <div className="location-section__inner mt-10">
+                        <MapConsent
+                            address={`${location.address.street}, ${location.address.zip} ${location.address.city}`}
+                            title={`Karte: ${location.name}`}
+                            locationSlug={location.slug}
+                        />
                     </div>
                 </section>
 

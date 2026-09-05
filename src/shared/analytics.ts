@@ -20,6 +20,7 @@ export const UmamiEvent = {
     GateSearchNoMatch: defineEvent<{ query: string }>('gate-search-widget-no-match'),
     GateWidgetOpen: defineEvent<Record<string, never>>('gate-search-widget-open'),
     MenuExpand: defineEvent<{ locationSlug: string }>('menu-expand'),
+    MapsConsent: defineEvent<{ locationSlug: string }>('maps-consent'),
 } as const
 
 declare global {

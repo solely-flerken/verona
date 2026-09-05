@@ -1,0 +1,82 @@
+@layer components {
+    .map-consent__wrap:fullscreen {
+        background-color: var(--color-ink);
+        display: flex;
+        align-items: center;
+    }
+
+    .map-consent__wrap:fullscreen .map-consent__frame {
+        aspect-ratio: auto;
+        height: 100%;
+    }
+
+    .map-consent__filter-defs {
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    .map-consent__frame {
+        aspect-ratio: 2.39 / 1;
+        border: 0;
+        outline: none;
+        border-radius: 0.75rem;
+    }
+
+    .map-consent__maximize {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.5rem;
+        border-radius: 9999px;
+        color: var(--color-cream);
+        background-color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+        backdrop-filter: blur(4px);
+        transition: background-color 150ms;
+    }
+
+    .map-consent__maximize:hover {
+        background-color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+    }
+
+    .map-consent__placeholder {
+        aspect-ratio: 2.39 / 1;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        background-color: var(--color-paper-warm);
+    }
+
+    .map-consent__icon {
+        color: var(--color-terracotta);
+    }
+
+    .map-consent__text {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        max-width: 28rem;
+        color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+    }
+
+    .map-consent__button {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--color-cream);
+        background-color: var(--color-terracotta);
+        border-radius: 9999px;
+        padding: 0.65rem 1.4rem;
+        transition: background-color 150ms;
+    }
+
+    .map-consent__button:hover {
+        background-color: var(--color-terracotta-deep);
+    }
+
+    @media (max-width: 767px) {
+        .map-consent__frame,
+        .map-consent__placeholder {
+            aspect-ratio: 1 / 1;
+        }
+    }
+}
