@@ -1,6 +1,5 @@
 @layer components {
     .gate-header {
-        border-bottom: 1px solid var(--color-line);
         background-color: var(--color-paper);
         view-transition-name: site-header;
     }
@@ -11,6 +10,22 @@
             justify-content: center;
             overflow: hidden;
         }
+    }
+
+    /* ── Back link ──────────────────────────────────────────── */
+    .gate-header-back {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 14px;
+        letter-spacing: 0.1rem;
+        line-height: 1;
+        color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+        text-decoration: none;
+        transition: color 150ms;
+        white-space: nowrap;
+    }
+
+    .gate-header-back:hover {
+        color: var(--color-ink);
     }
 
     /* ── Wordmark ────────────────────────────────────────────── */
@@ -47,18 +62,14 @@
         background-color: var(--color-line);
     }
 
-    /* ── Back link ──────────────────────────────────────────── */
-    .gate-header-back {
+    /* ── Subtitle ────────────────────────────────────────────── */
+    .gate-banner-sub {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
-        text-decoration: none;
-        color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-        transition: color 150ms;
-        white-space: nowrap;
-    }
-
-    .gate-header-back:hover {
-        color: var(--color-ink);
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        line-height: 1;
+        color: color-mix(in srgb, var(--color-ink) 75%, transparent);
     }
 
     /* ── Order CTA */
@@ -79,16 +90,5 @@
 
     .gate-header-cta:hover {
         background-color: var(--color-terracotta-deep);
-    }
-
-    /* ── Subtitle ────────────────────────────────────────────── */
-    .gate-banner-sub {
-        font-family: var(--font-sans), sans-serif;
-        font-size: 14px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        line-height: 1;
-        color: color-mix(in srgb, var(--color-ink) 60%, transparent);
-        transform: translateY(3px);
     }
 }
