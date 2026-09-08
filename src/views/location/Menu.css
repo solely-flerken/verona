@@ -2,12 +2,7 @@
     .menu-shell {
         max-width: var(--location-inner);
         margin: 0 auto;
-        transition: max-width 400ms ease;
         --menu-sticky-offset: 7.5rem;
-    }
-
-    .menu-shell--wide {
-        max-width: 90rem;
     }
 
     .menu__category {
@@ -15,7 +10,7 @@
         scroll-margin-top: var(--menu-sticky-offset, 7.5rem);
     }
 
-    /* ── Category quick-nav (mobile only) ───────────────────── */
+    /* ── Category quick-nav ─────────────────────────────────── */
     .menu-tabs {
         position: sticky;
         top: 0;
@@ -42,7 +37,6 @@
         align-items: center;
         gap: 0.5rem;
         overflow-x: auto;
-        scroll-snap-type: x proximity;
         scrollbar-width: none;
         /* Hint that the row scrolls further by fading its trailing edge */
         mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent);
@@ -64,7 +58,6 @@
         border: 1px solid var(--color-line);
         border-radius: 9999px;
         padding: 0.7rem 1.4rem;
-        scroll-snap-align: start;
         -webkit-tap-highlight-color: transparent;
         transition: color 150ms, border-color 150ms, background-color 150ms, transform 100ms;
     }
@@ -112,13 +105,18 @@
         grid-template-columns: minmax(0, max-content) minmax(1rem, 1fr) repeat(var(--menu-sizes), 3.2rem);
     }
 
-    @media (max-width: 767px) {
+    /* Mobile — also used for the whole tablet range, up to the desktop switch */
+    @media (max-width: 77.99rem) {
         .menu__category--sized .menu__heading {
             grid-template-columns: minmax(0, 1fr) repeat(var(--menu-sizes), 3rem);
         }
 
         .menu__category--sized .menu__row {
             grid-template-columns: minmax(0, max-content) minmax(0.5rem, 1fr) repeat(var(--menu-sizes), 3rem);
+        }
+
+        .menu-tabs__list--dragging {
+            user-select: none;
         }
     }
 
@@ -165,36 +163,156 @@
         overflow-wrap: break-word;
     }
 
-    .menu__more {
-        font-family: var(--font-sans), sans-serif;
-        font-size: 0.8rem;
-        font-style: italic;
-        color: color-mix(in srgb, var(--color-ink) 45%, transparent);
-        background: none;
-        border: none;
-        padding: 0;
-        margin-top: 0.75rem;
-        transition: color 150ms;
+    .menu__items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    .menu__more:hover {
-        color: var(--color-terracotta);
+    /* On mobile a wide category's two lists just stack */
+    .menu__cols {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    .menu__toggle {
-        font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--color-terracotta);
-        background: none;
-        border: 1px solid color-mix(in srgb, var(--color-terracotta) 35%, transparent);
-        border-radius: 9999px;
-        padding: 0.5rem 1.3rem;
-        transition: border-color 150ms, background-color 150ms;
+    /* Second size legend for a split category — sits in the header row,
+       above the right-hand sub-column. Hidden until the category splits. */
+    .menu__legend {
+        display: none;
+        grid-template-columns: minmax(0, 1fr) repeat(var(--menu-sizes), 3.2rem);
+        column-gap: 0.1rem;
+        align-items: baseline;
+        padding-bottom: 0.4rem;
     }
 
-    .menu__toggle:hover {
-        border-color: var(--color-terracotta);
-        background-color: color-mix(in srgb, var(--color-terracotta) 6%, transparent);
+    /* ── Desktop (78rem+): full menu, categories laid out left → right → left,
+       with the category nav hanging in the left margin. */
+    @media (min-width: 78rem) {
+        .menu-shell {
+            max-width: 54rem;
+        }
+
+        .menu-body {
+            margin-bottom: 2.5rem;
+        }
+
+        .menu-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 3rem;
+            row-gap: 2.5rem;
+            align-items: start;
+            grid-auto-flow: row dense;
+        }
+
+        .menu__category {
+            margin-bottom: 0;
+        }
+
+        /* A long category breaks out to full width and splits its items into two sub-columns */
+        .menu__category--wide {
+            grid-column: 1 / -1;
+        }
+
+        .menu__category--wide .menu__head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 3rem;
+            align-items: end;
+            border-bottom: 1px solid var(--color-line);
+            margin-bottom: 1.1rem;
+        }
+
+        .menu__category--wide .menu__head .menu__heading,
+        .menu__category--wide .menu__head .menu__legend {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .menu__category--wide .menu__cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 3rem;
+            align-items: start;
+        }
+
+        .menu__legend {
+            display: grid;
+        }
+
+        /* A merely long category spans two rows so shorter ones stack beside it */
+        .menu__category--tall {
+            grid-row: span 2;
+        }
+    }
+
+    /* The category list floats out into the left margin */
+    @media (min-width: 78rem) {
+        .menu-body {
+            position: relative;
+        }
+
+        /* No sticky bar above the content in this mode */
+        .menu__category {
+            scroll-margin-top: 2rem;
+        }
+
+        .menu-tabs {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -10rem;
+            width: 8.5rem;
+            z-index: auto;
+            margin: 0;
+            padding: 0;
+            background: none;
+            box-shadow: none;
+        }
+
+        .menu-tabs__list {
+            position: sticky;
+            top: 2.5rem;
+            flex-direction: column;
+            align-items: stretch;
+            height: auto;
+            gap: 0.1rem;
+            overflow: visible;
+            mask-image: none;
+            -webkit-mask-image: none;
+            padding-right: 0;
+        }
+
+        .menu-tabs__tab {
+            font-family: var(--font-sans), sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: right;
+            white-space: normal;
+            color: color-mix(in srgb, var(--color-ink) 42%, transparent);
+            background: none;
+            border: none;
+            border-right: 2px solid transparent;
+            border-radius: 0;
+            padding: 0.3rem 0.7rem 0.3rem 0;
+            transition: color 150ms, border-color 150ms;
+        }
+
+        .menu-tabs__tab:hover {
+            color: var(--color-ink);
+        }
+
+        .menu-tabs__tab:active {
+            transform: none;
+        }
+
+        .menu-tabs__tab--active {
+            color: var(--color-terracotta);
+            background: none;
+            border-right-color: var(--color-terracotta);
+        }
     }
 }

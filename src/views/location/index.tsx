@@ -30,15 +30,14 @@ function TimeCell({text, struck}: { text: string, struck?: boolean }) {
 }
 
 function MenuSection({categories, menuPdf, locationSlug}: { categories: MenuCategory[], menuPdf?: string, locationSlug: string }) {
-    const [expanded, setExpanded] = useState(false)
-
     return (
         <section id="speisekarte" className="location-section">
-            <div className={`menu-shell ${expanded ? 'menu-shell--wide' : ''}`}>
+            <div className="menu-shell">
                 <p className="location-eyebrow">Speisekarte</p>
-                <Menu categories={categories} expanded={expanded} onToggle={() => setExpanded((e) => !e)} heading="Aus unserer Küche" menuPdf={menuPdf} locationSlug={locationSlug}/>
+                <Menu categories={categories} heading="Aus unserer Küche" menuPdf={menuPdf} locationSlug={locationSlug}/>
                 <p className="location-menu-note">
-                    Irrtümer und Änderungen vorbehalten. Es gelten die Preise in unserem Bestellshop.
+                    Bestellen können Sie in unserem Bestellshop oder telefonisch. <br/>
+                    Es gelten die dort angegebenen Preise. Irrtümer und Änderungen vorbehalten.
                 </p>
             </div>
         </section>

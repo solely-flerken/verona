@@ -2,13 +2,16 @@
 
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import type {CSSProperties} from 'react'
-import {ChevronDown, ChevronUp, FileDown} from 'lucide-react'
+import {FileDown} from 'lucide-react'
 import type {MenuCategory, MenuItem} from '@/shared/types'
 import {trackEvent, UmamiEvent} from '@/shared/analytics'
 import './Menu.css'
 
-const PREVIEW_ITEMS = 3
 const TABS_EDGE_FADE = 32
+/* Desktop: a category this long breaks out to full width and splits into two sub-columns */
+const WIDE_CATEGORY_ITEMS = 20
+/* Desktop: a category this long spans two grid rows so shorter ones stack beside it */
+const TALL_CATEGORY_ITEMS = 12
 
 function PriceRow({sizes, price}: { sizes: string[], price: MenuItem['price'] }) {
     const mid = Math.floor((sizes.length - 1) / 2)
@@ -25,29 +28,71 @@ function PriceRow({sizes, price}: { sizes: string[], price: MenuItem['price'] })
     )
 }
 
+function ItemList({items, sizes, offset = 0}: { items: MenuItem[], sizes?: string[], offset?: number }) {
+    return (
+        <ul className="menu__items">
+            {items.map((item, i) => (
+                <li key={`${item.id}-${offset + i}`}>
+                    <div className="menu__row">
+                        <span className="menu__name">{item.id ? `${item.id}. ${item.name}` : item.name}</span>
+                        <span className="menu__leader" aria-hidden="true"></span>
+                        {sizes ? (
+                            <PriceRow sizes={sizes} price={item.price}/>
+                        ) : (
+                            <span className="menu__price">
+                                {typeof item.price === 'string' ? `${item.price} €` : `${Object.values(item.price).join(' / ')} €`}
+                            </span>
+                        )}
+                    </div>
+                    {item.description && (
+                        <p className="menu__description">{item.description}</p>
+                    )}
+                </li>
+            ))}
+        </ul>
+    )
+}
+
+function SizeLegend({sizes}: { sizes: string[] }) {
+    return (
+        <div className="menu__legend" aria-hidden="true">
+            <span/>
+            {sizes.map((s) => (
+                <span key={s} className="menu__sizes menu__price-col">{s}</span>
+            ))}
+        </div>
+    )
+}
+
 interface MenuProps {
     categories: MenuCategory[]
-    expanded: boolean
-    onToggle: () => void
     heading: string
     menuPdf?: string
     locationSlug: string
 }
 
-export function Menu({categories, expanded, onToggle, heading, menuPdf, locationSlug}: MenuProps) {
+export function Menu({categories, heading, menuPdf, locationSlug}: MenuProps) {
     const listRef = useRef<HTMLDivElement>(null)
     const tabsBarRef = useRef<HTMLDivElement>(null)
     const tabsListRef = useRef<HTMLDivElement>(null)
     const [tabsBarHeight, setTabsBarHeight] = useState(0)
-    const fromHeight = useRef<number | null>(null)
-    const fromShellMax = useRef<string | null>(null)
-    const focusCategory = useRef<string | null>(null)
-    const hasMore = categories.some((c) => c.items.length > PREVIEW_ITEMS)
+    const [railNav, setRailNav] = useState(false)
     const [activeCategory, setActiveCategory] = useState<string | null>(categories[0]?.id ?? null)
     const suppressObserver = useRef(false)
     const suppressTimeout = useRef<number | undefined>(undefined)
+    const dragged = useRef(false)
 
-    /* Measures the sticky quick-nav bar's own height scroll targets account for it */
+    /* Wide viewports hang the nav in the left margin (vertical, fully visible);
+       narrower ones keep it as a horizontally-scrolling sticky bar */
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 78rem)')
+        const update = () => setRailNav(mq.matches)
+        update()
+        mq.addEventListener('change', update)
+        return () => mq.removeEventListener('change', update)
+    }, [])
+
+    /* Measures the mobile sticky bar's own height so scroll targets clear it */
     useLayoutEffect(() => {
         const element = tabsBarRef.current
         if (!element) return
@@ -56,29 +101,28 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
         return () => observer.disconnect()
     }, [])
 
-    /* Mobile-only quick-nav: highlight whichever category section is at the top of the viewport */
+    /* Nav highlight: mark whichever category sits at the top */
     useEffect(() => {
         const sections = listRef.current?.querySelectorAll<HTMLElement>('[data-category]')
         if (!sections?.length) return
 
+        const topInset = railNav ? 24 : tabsBarHeight
         const observer = new IntersectionObserver(
             (entries) => {
-                /* Ignore intermediate sections the smooth-scroll passes through after a tab click */
                 if (suppressObserver.current) return
                 const visible = entries.filter((e) => e.isIntersecting)
                 if (visible.length === 0) return
                 visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
                 setActiveCategory(visible[0].target.getAttribute('data-category'))
             },
-            {rootMargin: `-${tabsBarHeight}px 0px -70% 0px`},
+            {rootMargin: `-${topInset}px 0px -70% 0px`},
         )
         sections.forEach((section) => observer.observe(section))
         return () => observer.disconnect()
-    }, [categories, tabsBarHeight])
+    }, [categories, tabsBarHeight, railNav])
 
-    /* Scrolls the horizontally-scrollable nav row only — using scrollBy instead of tab.scrollIntoView() to avoid scrolling ancestor containers, like the page. */
     useEffect(() => {
-        if (!activeCategory) return
+        if (railNav || !activeCategory) return
         const container = tabsListRef.current
         const tab = container?.querySelector<HTMLElement>(`[data-tab="${activeCategory}"]`)
         if (!container || !tab) return
@@ -90,9 +134,62 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
         } else if (tabBox.right > containerBox.right) {
             container.scrollBy({left: tabBox.right - containerBox.right + TABS_EDGE_FADE, behavior: 'smooth'})
         }
-    }, [activeCategory])
+    }, [activeCategory, railNav])
 
-    function scrollToCategory(id: string) {
+    /* Mobile bar: touch scrolls it natively; give the mouse click-and-drag too. */
+    useEffect(() => {
+        const el = tabsListRef.current
+        if (!el || railNav) return
+
+        let startX = 0
+        let startScroll = 0
+        let dragging = false
+
+        const onMove = (e: PointerEvent) => {
+            if (!dragging) {
+                if (Math.abs(e.clientX - startX) < 6) return
+                dragging = true
+                startX = e.clientX
+                startScroll = el.scrollLeft
+                el.classList.add('menu-tabs__list--dragging')
+            }
+            el.scrollLeft = startScroll - (e.clientX - startX)
+            e.preventDefault()
+        }
+        const onUp = () => {
+            window.removeEventListener('pointermove', onMove)
+            window.removeEventListener('pointerup', onUp)
+            window.removeEventListener('pointercancel', onUp)
+            if (dragging) {
+                el.classList.remove('menu-tabs__list--dragging')
+                /* Don't let the release fire a tab click */
+                dragged.current = true
+                setTimeout(() => {
+                    dragged.current = false
+                }, 0)
+            }
+        }
+        const onDown = (e: PointerEvent) => {
+            if (e.pointerType !== 'mouse') return
+            startX = e.clientX
+            startScroll = el.scrollLeft
+            dragging = false
+            window.addEventListener('pointermove', onMove)
+            window.addEventListener('pointerup', onUp)
+            window.addEventListener('pointercancel', onUp)
+        }
+
+        el.addEventListener('pointerdown', onDown)
+        return () => {
+            el.removeEventListener('pointerdown', onDown)
+            window.removeEventListener('pointermove', onMove)
+            window.removeEventListener('pointerup', onUp)
+            window.removeEventListener('pointercancel', onUp)
+        }
+    }, [railNav])
+
+    function selectCategory(id: string) {
+        if (dragged.current) return
         suppressObserver.current = true
         setActiveCategory(id)
         listRef.current?.querySelector<HTMLElement>(`[data-category="${id}"]`)?.scrollIntoView({
@@ -105,56 +202,6 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
             suppressObserver.current = false
         }, 700)
     }
-
-    /* A category's 'extend' button unmounts itself on expand */
-    useEffect(() => {
-        if (!focusCategory.current) return
-        const heading = listRef.current?.querySelector<HTMLElement>(`[data-category="${focusCategory.current}"] h3`)
-        focusCategory.current = null
-        heading?.focus()
-    }, [expanded])
-
-    function handleToggle() {
-        const element = listRef.current
-        fromHeight.current = element?.offsetHeight ?? null
-        const shell = element?.closest<HTMLElement>('.menu-shell')
-        fromShellMax.current = shell ? getComputedStyle(shell).maxWidth : null
-        if (!expanded) trackEvent(UmamiEvent.MenuExpand, {locationSlug})
-        onToggle()
-    }
-
-    useLayoutEffect(() => {
-        const element = listRef.current
-        const from = fromHeight.current
-        const fromMax = fromShellMax.current
-        fromHeight.current = null
-        fromShellMax.current = null
-        if (!element || from === null) return
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-        /* Measure the end height at the shell's final width — suspend its width
-           transition, measure, then restart it from the pre-toggle width.
-           Otherwise, the height animation lands short and content below jumps. */
-        const shell = element.closest<HTMLElement>('.menu-shell')
-        if (shell) shell.style.transition = 'none'
-        const to = element.offsetHeight
-        if (shell && fromMax) {
-            shell.style.maxWidth = fromMax
-            void shell.offsetWidth
-            shell.style.transition = ''
-            shell.style.maxWidth = ''
-        }
-
-        if (from === to) return
-
-        element.animate(
-            [
-                {height: `${from}px`, overflow: 'hidden'},
-                {height: `${to}px`, overflow: 'hidden'},
-            ],
-            {duration: 400, easing: 'ease'},
-        )
-    }, [expanded])
 
     const header = (
         <>
@@ -176,93 +223,71 @@ export function Menu({categories, expanded, onToggle, heading, menuPdf, location
 
     return (
         <div>
-            <div className="location-menu-heading-row hidden md:flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            <div className="location-menu-heading-row hidden min-[78rem]:flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                 {header}
             </div>
-            <div className="menu-tabs md:hidden" ref={tabsBarRef}>
-                <div className="menu-tabs__header flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                    {header}
+            <div className="menu-body">
+                <div className="menu-tabs" ref={tabsBarRef}>
+                    <div className="menu-tabs__header flex min-[78rem]:hidden flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                        {header}
+                    </div>
+                    <div className="menu-tabs__list" ref={tabsListRef}>
+                        {categories.map(({id, name}) => (
+                            <button
+                                key={id}
+                                type="button"
+                                data-tab={id}
+                                onClick={() => selectCategory(id)}
+                                className={`menu-tabs__tab ${activeCategory === id ? 'menu-tabs__tab--active' : ''}`}
+                            >
+                                {name}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className="menu-tabs__list" ref={tabsListRef}>
-                    {categories.map(({id, name}) => (
-                        <button
-                            key={id}
-                            type="button"
-                            data-tab={id}
-                            onClick={() => scrollToCategory(id)}
-                            className={`menu-tabs__tab ${activeCategory === id ? 'menu-tabs__tab--active' : ''}`}
-                        >
-                            {name}
-                        </button>
-                    ))}
-                </div>
-            </div>
-            <div ref={listRef} style={tabsBarHeight ? {'--menu-sticky-offset': `${tabsBarHeight}px`} as CSSProperties : undefined}>
-                <div className={`md:columns-2 md:gap-12 ${expanded ? 'xl:columns-3' : ''}`}>
-                    {categories.map(({id, name, sizes, items: allItems}) => {
-                        const truncated = !expanded && allItems.length > PREVIEW_ITEMS
+                <div ref={listRef} className="menu-list" style={tabsBarHeight ? {'--menu-sticky-offset': `${tabsBarHeight}px`} as CSSProperties : undefined}>
+                    {categories.map(({id, name, sizes, items}) => {
+                        const wide = items.length >= WIDE_CATEGORY_ITEMS
+                        const tall = !wide && items.length >= TALL_CATEGORY_ITEMS
+                        const split = Math.ceil(items.length / 2)
+
                         return (
                             <section
                                 key={id}
                                 data-category={id}
-                                className={`menu__category break-inside-avoid ${sizes ? 'menu__category--sized' : ''}`}
+                                className={`menu__category ${sizes ? 'menu__category--sized' : ''} ${wide ? 'menu__category--wide' : ''} ${tall ? 'menu__category--tall' : ''}`}
                                 style={sizes ? {'--menu-sizes': sizes.length} as CSSProperties : undefined}
                             >
-                                <h3 tabIndex={-1} className="menu__heading">
-                                    <span className="menu__heading-name">{name}</span>
-                                    {sizes?.map((s) => (
-                                        <span key={s} className="menu__sizes menu__price-col">{s}</span>
-                                    ))}
-                                </h3>
-                                <ul className="space-y-4">
-                                    {allItems.map((item, i) => (
-                                        <li key={`${item.id}-${i}`} className={`break-inside-avoid ${!expanded && i >= PREVIEW_ITEMS ? 'md:hidden' : ''}`}>
-                                            <div className="menu__row">
-                                                <span className="menu__name">{item.id ? `${item.id}. ${item.name}` : item.name}</span>
-                                                <span className="menu__leader" aria-hidden="true"></span>
-                                                {sizes ? (
-                                                    <PriceRow sizes={sizes} price={item.price}/>
-                                                ) : (
-                                                    <span className="menu__price">
-                                                        {typeof item.price === 'string' ? `${item.price} €` : `${Object.values(item.price).join(' / ')} €`}
-                                                    </span>
-                                                )}
+                                <div className="menu__head">
+                                    <h3 className="menu__heading">
+                                        <span className="menu__heading-name">{name}</span>
+                                        {sizes?.map((s) => (
+                                            <span key={s} className="menu__sizes menu__price-col">{s}</span>
+                                        ))}
+                                    </h3>
+                                    {wide && sizes && <SizeLegend sizes={sizes}/>}
+                                </div>
+                                <div className="menu__cols">
+                                    {wide ? (
+                                        <>
+                                            <div className="menu__col">
+                                                <ItemList items={items.slice(0, split)} sizes={sizes}/>
                                             </div>
-                                            {item.description && (
-                                                <p className="menu__description">{item.description}</p>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                                {truncated && (
-                                    <button
-                                        onClick={() => {
-                                            focusCategory.current = id
-                                            handleToggle()
-                                        }}
-                                        aria-expanded={expanded}
-                                        className="menu__more cursor-pointer hidden md:inline-block"
-                                    >
-                                        … und weitere Gerichte
-                                    </button>
-                                )}
+                                            <div className="menu__col">
+                                                <ItemList items={items.slice(split)} sizes={sizes} offset={split}/>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className="menu__col">
+                                            <ItemList items={items} sizes={sizes}/>
+                                        </div>
+                                    )}
+                                </div>
                             </section>
                         )
                     })}
                 </div>
             </div>
-            {hasMore && (
-                <div className="hidden md:flex justify-center">
-                    <button
-                        onClick={handleToggle}
-                        aria-expanded={expanded}
-                        className="menu__toggle inline-flex items-center gap-2 cursor-pointer"
-                    >
-                        {expanded ? 'Weniger anzeigen' : 'Gesamte Speisekarte anzeigen'}
-                        {expanded ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
-                    </button>
-                </div>
-            )}
         </div>
     )
 }
