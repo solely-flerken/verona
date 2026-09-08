@@ -1,44 +1,39 @@
 @layer components {
     .gate-footer {
-        font-family: var(--font-mono), monospace;
-        color: color-mix(in srgb, var(--color-cream) 40%, transparent);
+        color: var(--color-cream);
         background-color: #0a0704;
+        font-family: var(--font-sans), sans-serif;
     }
 
-    /* Diagonal texture — mobile only. */
-    @media (max-width: 1023px) {
-        .gate-footer {
-            background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 6px);
-        }
+    .gate-footer__copyright-symbol {
+        font-size: 0.8rem;
+        font-weight: 300;
+        line-height: 0;
     }
 
     /* ── Mobile ──────────────────────────────────────────────── */
-    .gate-footer__logo {
+    .gate-footer__mobile {
+        font-size: 11px;
+        font-weight: 300;
+    }
+
+    .gate-footer__logo-mobile {
         height: 4.5rem;
         width: auto;
     }
 
-    .gate-footer__location {
+    .gate-footer__location-mobile {
         margin-top: -0.75rem;
-        font-family: var(--font-mono), monospace;
-        font-size: 0.8rem;
-        letter-spacing: 0.22em;
+        font-size: 14px;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
 
-    .gate-footer__nav-link {
-        font-family: var(--font-sans), sans-serif;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: color-mix(in srgb, var(--color-cream) 65%, transparent);
+    .gate-footer__nav-link-mobile {
+        font-size: 1rem;
         text-decoration: none;
         padding: 0.5rem;
-        transition: color 150ms;
-    }
-
-    .gate-footer__nav-link:hover {
-        color: var(--color-cream);
     }
 
     .gate-footer__social {
@@ -55,17 +50,17 @@
     }
 
     .gate-footer__copyright {
-        font-size: 10px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-size: 0.8rem;
         text-align: center;
     }
 
     /* ── Desktop ─────────────────────────────────────────────── */
     .gate-footer__desktop {
         font-size: 11px;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
+        font-weight: 300;
+        color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
 
     .gate-footer__logo-desktop {
@@ -80,28 +75,20 @@
         height: 2.75rem;
     }
 
-    .gate-footer__link {
+    .gate-footer__nav-link-desktop {
         transition: color 200ms;
     }
 
-    /* Tighter tracking once the desktop bar has less room to spare */
-    @media (max-width: 1280px) {
-        .gate-footer__link,
-        .gate-footer__link-sep {
-            letter-spacing: 0.08em;
-        }
+    .gate-footer__nav-link-desktop:hover {
+        color: var(--color-cream);
     }
 
-    .gate-footer__link:hover {
+    .gate-footer__nav-link-sep {
         color: color-mix(in srgb, var(--color-cream) 50%, transparent);
-    }
-
-    .gate-footer__link-sep {
-        color: color-mix(in srgb, var(--color-cream) 20%, transparent);
     }
 
     .gate-footer__copyright-desktop {
         justify-content: flex-end;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
     }
 }

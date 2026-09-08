@@ -83,7 +83,7 @@
 
     /* ── Subtitle ────────────────────────────────────────────── */
     .gate-banner-sub {
-        font-family: var(--font-mono), monospace;
+        font-family: var(--font-sans), sans-serif;
         font-size: 14px;
         letter-spacing: 0.2em;
         text-transform: uppercase;

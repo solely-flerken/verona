@@ -28,10 +28,10 @@ export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCI
             {/* ── Mobile ──────────────────────────────────────────── */}
             <div className="gate-footer__mobile lg:hidden flex flex-col items-center gap-5 px-8 py-6">
                 <Link href="/" aria-label="Pizzeria Verona">
-                    <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo"/>
+                    <img src="/images/verona_logo.png" alt="Pizzeria Verona" className="gate-footer__logo-mobile"/>
                 </Link>
 
-                {locationLabel && <span className="gate-footer__location">{locationLabel}</span>}
+                {locationLabel && <span className="gate-footer__location-mobile">{locationLabel}</span>}
 
                 <div className="flex items-center gap-3">
                     <a href={socials.facebook} target="_blank" rel="noopener" aria-label="Facebook"
@@ -48,13 +48,13 @@ export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCI
 
                 <nav className="flex flex-col items-center gap-1">
                     {sectionLinks.map((link) => (
-                        <a key={link.href} href={link.href} className="gate-footer__nav-link">{link.label}</a>
+                        <a key={link.href} href={link.href} className="gate-footer__nav-link-mobile">{link.label}</a>
                     ))}
-                    <Link href="/jobs" className="gate-footer__nav-link">Jobs</Link>
-                    <Link href="/impressum" className="gate-footer__nav-link">Impressum</Link>
+                    <Link href="/jobs" className="gate-footer__nav-link-mobile">Jobs</Link>
+                    <Link href="/impressum" className="gate-footer__nav-link-mobile">Impressum</Link>
                 </nav>
 
-                <span className="gate-footer__copyright">© {new Date().getFullYear()} Pizzeria Verona · Weseke &amp; Borken</span>
+                <span className="gate-footer__copyright"><span className="gate-footer__copyright-symbol">©</span> {new Date().getFullYear()} Pizzeria Verona</span>
             </div>
 
             {/* ── Desktop ─────────────────────────────────────────── */}
@@ -80,21 +80,20 @@ export function Footer({sectionLinks = [], locationLabel, socials = DEFAULT_SOCI
                 <div className="flex items-center gap-3">
                     {[
                         ...sectionLinks.map((link) => (
-                            <a key={link.href} href={link.href} className="gate-footer__link">{link.label}</a>
+                            <a key={link.href} href={link.href} className="gate-footer__nav-link-desktop">{link.label}</a>
                         )),
-                        <Link key="jobs" href="/jobs" className="gate-footer__link">Jobs</Link>,
-                        <Link key="impressum" href="/impressum" className="gate-footer__link">Impressum</Link>,
+                        <Link key="jobs" href="/jobs" className="gate-footer__nav-link-desktop">Jobs</Link>,
+                        <Link key="impressum" href="/impressum" className="gate-footer__nav-link-desktop">Impressum</Link>,
                     ].map((link, i) => (
                         <Fragment key={link.key}>
-                            {i > 0 && <span className="gate-footer__link-sep" aria-hidden="true">|</span>}
+                            {i > 0 && <span className="gate-footer__nav-link-sep" aria-hidden="true">|</span>}
                             {link}
                         </Fragment>
                     ))}
                 </div>
 
-                <span className="gate-footer__copyright-desktop flex flex-wrap items-baseline gap-x-2">
-                    <span className="whitespace-nowrap">© {new Date().getFullYear()} Pizzeria Verona</span>
-                    <span className="whitespace-nowrap">· {locationLabel ?? 'Weseke & Borken'}</span>
+                <span className="gate-footer__copyright-desktop flex">
+                    <span className="whitespace-nowrap"><span className="gate-footer__copyright-symbol">©</span> {new Date().getFullYear()} Pizzeria Verona</span>
                 </span>
             </div>
         </footer>
