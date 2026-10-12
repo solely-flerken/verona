@@ -80,7 +80,7 @@
         font-family: var(--font-sans), sans-serif;
         font-size: 0.9375rem;
         color: var(--color-ink);
-        background-color: var(--color-paper-warm);
+        background-color: var(--color-card);
         outline: none;
         transition: border-color 200ms;
     }
@@ -90,7 +90,7 @@
     }
 
     .widget2__input:focus {
-        border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+        border-color: var(--color-terracotta);
     }
 
     /* ── Divider ─────────────────────────────────────────────── */
@@ -182,5 +182,28 @@
         font-family: var(--font-sans), sans-serif;
         font-size: 0.875rem;
         color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    }
+
+    /* ── Desktop ─────────────────────────────────────────────── */
+    @media (min-width: 768px) {
+        .widget2__panel-inner {
+            padding-inline: max(2rem, calc((100% - 56rem) / 2));
+        }
+
+        .widget2__cities {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: start;
+            column-gap: 2rem;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .widget2__cities > .widget2__divider {
+            align-self: stretch;
+            width: 1px;
+            height: auto;
+            margin: 0;
+        }
     }
 }
