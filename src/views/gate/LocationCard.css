@@ -20,8 +20,6 @@
         z-index: 0;
         width: 100%;
         height: 100%;
-        max-width: none;
-        object-fit: cover;
     }
 
     /* Desktop: fixed to the widest the card ever gets on hover so its cover-scale never has to recompute */
@@ -67,7 +65,7 @@
     }
 
     .card__body {
-        transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 0 2rem 1.5rem;
     }
 
     /* Desktop: capped to the passive-hover width (40% of the row) so
@@ -75,14 +73,6 @@
     @media (min-width: 768px) {
         .card__body {
             max-width: 40vw;
-        }
-    }
-
-    /* Desktop: the widget sits at the bottom of the vertical seam and only
-       grows upward, so both cards shift up the same way. */
-    @media (min-width: 768px) {
-        .gate-main--widget-open .card .card__body {
-            transform: translateY(calc(-1 * var(--card-shift, 0rem)));
         }
     }
 
@@ -95,6 +85,7 @@
         font-family: var(--font-sans), sans-serif;
         font-size: 0.75rem;
         letter-spacing: 0.25em;
+        font-variant-numeric: tabular-nums;
         color: color-mix(in srgb, var(--color-cream) 60%, transparent);
     }
 
@@ -104,11 +95,6 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 55%, transparent);
-    }
-
-    /* ── Content area ────────────────────────────────────────── */
-    .card__content {
-        padding: 0 2rem 1.5rem;
     }
 
     .card__status-row {
@@ -121,6 +107,7 @@
         font-weight: 300;
         font-style: italic;
         line-height: 1;
+        letter-spacing: -0.01em;
         margin-bottom: 0.5rem;
         margin-left: -0.25rem;
         color: var(--color-cream);
@@ -168,7 +155,25 @@
         font-size: 1.0625rem;
         font-weight: 500;
         letter-spacing: 0.01em;
+        font-variant-numeric: tabular-nums;
         color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 3px;
+        transition: color 200ms, text-decoration-color 200ms;
+    }
+
+    @media (hover: hover) {
+        .card__phone:hover {
+            color: var(--color-cream);
+            text-decoration-color: color-mix(in srgb, var(--color-cream) 45%, transparent);
+        }
+    }
+
+    .card__phone:focus-visible {
+        outline: 2px solid color-mix(in srgb, var(--color-cream) 50%, transparent);
+        outline-offset: 2px;
+        border-radius: 2px;
     }
 
     /* ── Delivery chips ──────────────────────────────────────── */
@@ -186,12 +191,8 @@
         font-size: 13px;
         letter-spacing: 0.06em;
         padding: 0.25rem 0.75rem;
-        border: 1px solid;
+        border: 1px solid color-mix(in srgb, var(--color-cream) 22%, transparent);
         border-radius: 9999px;
-    }
-
-    .card__chip--delivery {
-        border-color: color-mix(in srgb, var(--color-cream) 22%, transparent);
         color: color-mix(in srgb, var(--color-cream) 58%, transparent);
     }
 
@@ -202,27 +203,74 @@
         align-content: flex-start;
     }
 
-    /* ── CTA ─────────────────────────────────────────────────── */
-    .card__cta-bar {
-        /* Reserves --card-cta-clearance at the bottom for the floating
-           "Nicht sicher?" pill (see .gate-main in index.css). */
-        padding: 0 2rem var(--card-cta-clearance, 2rem);
-    }
-
-    .card__cta-inner {
-        padding: 0.65rem 1.25rem;
-        border-radius: 0.5rem;
-        font-family: var(--font-sans), sans-serif;
-        font-size: 0.875rem;
-        font-weight: 500;
-        letter-spacing: 0.025em;
-        color: var(--color-cream);
+    /* ── Band ────────────────────────────────────────────────── */
+    /* Edge-to-edge strip. It's drawn --band-grow taller than it shows and clipped.
+       Hover unclips the top, so it grows upward without animating height. */
+    .card__band {
+        --band-grow: 0.75rem;
+        position: relative;
+        z-index: 3;
+        isolation: isolate;
+        height: calc(var(--band-height, 4.8rem) + var(--band-grow));
+        margin-top: calc(-1 * var(--band-grow));
+        padding: var(--band-grow) 2rem 0;
         background-color: var(--color-terracotta);
-        transition: background-color 200ms;
+        clip-path: inset(var(--band-grow) 0 0 0);
+        transition: clip-path 350ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms;
     }
 
-    .card:hover .card__cta-inner {
+    .card:focus-visible .card__band {
+        clip-path: inset(0);
+    }
+
+    @media (hover: hover) {
+        .card:hover .card__band {
+            clip-path: inset(0);
+        }
+
+        .card:hover .card__band-label::after {
+            transform: scaleX(1);
+        }
+    }
+
+    .card:active .card__band {
         background-color: var(--color-terracotta-deep);
+    }
+
+    .card__band-label {
+        position: relative;
+        font-family: var(--font-sans), sans-serif;
+        font-size: 1.0625rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        color: var(--color-cream);
+    }
+
+    /* Underline that draws in under the label on hover */
+    .card__band-label::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.3rem;
+        height: 2px;
+        background: var(--color-cream);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:focus-visible .card__band-label::after {
+        transform: scaleX(1);
+    }
+
+    .card__band-kicker {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        line-height: 1.2;
+        color: color-mix(in srgb, var(--color-cream) 92%, transparent);
     }
 
     /* ── Mobile ──────────────────────────────────────────────── */
@@ -236,7 +284,7 @@
             min-height: 3rem;
         }
 
-        .card__content {
+        .card__body {
             padding-bottom: 0.75rem;
         }
 
@@ -257,8 +305,17 @@
             margin-bottom: 0.75rem;
         }
 
-        .card__cta-bar {
-            padding: 0 2rem 1rem;
+        /* ── Band ── */
+        .card__band {
+            --band-height: 4rem;
+            --band-grow: 0.5rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .card__band,
+        .card__band-label::after {
+            transition: none;
         }
     }
 }
