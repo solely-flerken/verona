@@ -16,7 +16,8 @@
 
     .jobs-contact-band__text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
+        line-height: 1.5;
         max-width: 30rem;
         color: color-mix(in srgb, var(--color-cream) 85%, transparent);
     }
@@ -44,9 +45,9 @@
 
     .jobs-contact-band__cta {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-terracotta-deep);
         background-color: var(--color-cream);
         border-radius: 9999px;
@@ -63,9 +64,9 @@
 
     .jobs-contact-band__phone {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-cream);
         border: 1px solid color-mix(in srgb, var(--color-cream) 45%, transparent);
         border-radius: 9999px;

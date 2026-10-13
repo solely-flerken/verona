@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import type {ReactNode} from 'react'
 import Script from 'next/script'
-import {Cormorant_Garamond, Inter, JetBrains_Mono} from 'next/font/google'
+import {Cormorant_Garamond, Inter} from 'next/font/google'
 import './globals.css'
 import {SITE_URL} from '@/shared/siteData'
 import {pageSeoData} from '@/shared/pageSeo'
@@ -11,15 +11,8 @@ const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
 
 const inter = Inter({
     subsets: ['latin'],
-    weight: ['300', '400', '500'],
+    weight: ['400', '500', '600'],
     variable: '--font-inter',
-    display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ['latin'],
-    weight: ['300', '400', '500'],
-    variable: '--font-jetbrains-mono',
     display: 'swap',
 })
 
@@ -54,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
-        <html lang="de" className={`${inter.variable} ${jetbrainsMono.variable} ${cormorantGaramond.variable}`}>
+        <html lang="de" className={`${inter.variable} ${cormorantGaramond.variable}`}>
         <body>
         {UMAMI_SRC && UMAMI_WEBSITE_ID && (
             <Script src={UMAMI_SRC} data-website-id={UMAMI_WEBSITE_ID} strategy="afterInteractive"/>

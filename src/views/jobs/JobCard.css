@@ -5,7 +5,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.5rem;
     }
 
     .job-card__name {
@@ -22,8 +22,8 @@
 
     .job-card__type {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.8rem;
-        letter-spacing: 0.06em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
         white-space: nowrap;
         color: var(--color-terracotta);
@@ -51,8 +51,8 @@
 
     .job-card__meta {
         font-family: var(--font-sans), sans-serif;
-        font-size: 11px;
-        letter-spacing: 0.1em;
+        font-size: var(--fs-2xs);
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-ink) 45%, transparent);
         margin-bottom: 1.25rem;
@@ -64,7 +64,7 @@
 
     .job-card__description {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.6;
         margin-bottom: 1.75rem;
         color: color-mix(in srgb, var(--color-ink) 70%, transparent);
@@ -94,17 +94,17 @@
 
     .job-card__list-heading {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         font-weight: 500;
-        letter-spacing: 0.14em;
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.625rem;
         color: color-mix(in srgb, var(--color-ink) 40%, transparent);
     }
 
     .job-card__list {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.6;
         color: color-mix(in srgb, var(--color-ink) 72%, transparent);
         list-style: none;

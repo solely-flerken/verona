@@ -15,8 +15,8 @@
     /* ── Back link ──────────────────────────────────────────── */
     .gate-header-back {
         font-family: var(--font-sans), sans-serif;
-        font-size: 14px;
-        letter-spacing: 0.1rem;
+        font-size: var(--fs-md);
+        letter-spacing: var(--ls-ui);
         line-height: 1;
         color: color-mix(in srgb, var(--color-ink) 75%, transparent);
         text-decoration: none;
@@ -65,8 +65,8 @@
     /* ── Subtitle ────────────────────────────────────────────── */
     .gate-banner-sub {
         font-family: var(--font-sans), sans-serif;
-        font-size: 14px;
-        letter-spacing: 0.2em;
+        font-size: var(--fs-md);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         line-height: 1;
         color: color-mix(in srgb, var(--color-ink) 75%, transparent);
@@ -76,9 +76,9 @@
     .gate-header-cta {
         display: inline-block;
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.85rem;
+        font-size: var(--fs-sm);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         white-space: nowrap;
         color: var(--color-cream);
         background-color: var(--color-terracotta);

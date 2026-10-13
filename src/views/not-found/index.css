@@ -54,8 +54,8 @@
 
     .not-found-eyebrow {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.22em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: var(--color-terracotta);
         margin-bottom: 0.75rem;
@@ -66,8 +66,8 @@
         font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 700;
         font-style: italic;
-        line-height: 0.94;
-        letter-spacing: -0.01em;
+        line-height: 1;
+        letter-spacing: var(--ls-display);
         color: var(--color-ink);
     }
 
@@ -90,17 +90,17 @@
 
     .not-found__heading {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         font-weight: 500;
-        letter-spacing: 0.14em;
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.625rem;
         color: color-mix(in srgb, var(--color-ink) 45%, transparent);
     }
 
     .not-found__body {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.7;
         color: color-mix(in srgb, var(--color-ink) 75%, transparent);
         margin-bottom: 1.5rem;
@@ -108,8 +108,8 @@
 
     .not-found__link {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: var(--fs-md);
+        font-weight: 600;
         text-decoration: none;
         color: var(--color-terracotta);
         transition: color 150ms;

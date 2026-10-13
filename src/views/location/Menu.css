@@ -50,7 +50,7 @@
 
     .menu-tabs__tab {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
+        font-size: var(--fs-md);
         font-weight: 600;
         white-space: nowrap;
         color: color-mix(in srgb, var(--color-ink) 60%, transparent);
@@ -79,7 +79,7 @@
         column-gap: 0.1rem;
         border-bottom: 1px solid var(--color-line);
         padding-bottom: 0.4rem;
-        margin-bottom: 1.1rem;
+        margin-bottom: 1rem;
     }
 
     .menu__category--sized .menu__heading {
@@ -135,10 +135,10 @@
 
     .menu__sizes {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.7rem;
+        font-size: var(--fs-2xs);
         font-style: normal;
         font-weight: 400;
-        letter-spacing: 0.05em;
+        letter-spacing: var(--ls-ui);
         color: color-mix(in srgb, var(--color-ink) 50%, transparent);
         white-space: nowrap;
     }
@@ -149,14 +149,15 @@
 
     .menu__price {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.8rem;
+        font-size: var(--fs-sm);
+        font-variant-numeric: tabular-nums;
         color: var(--color-ink);
         white-space: nowrap;
     }
 
     .menu__description {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.85rem;
+        font-size: var(--fs-sm);
         line-height: 1.4;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
         margin-top: 0.2rem;
@@ -221,7 +222,7 @@
             column-gap: 3rem;
             align-items: end;
             border-bottom: 1px solid var(--color-line);
-            margin-bottom: 1.1rem;
+            margin-bottom: 1rem;
         }
 
         .menu__category--wide .menu__head .menu__heading,
@@ -286,9 +287,9 @@
 
         .menu-tabs__tab {
             font-family: var(--font-sans), sans-serif;
-            font-size: 0.7rem;
+            font-size: var(--fs-2xs);
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: var(--ls-caps);
             text-transform: uppercase;
             text-align: right;
             white-space: normal;

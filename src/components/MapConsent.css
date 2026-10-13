@@ -51,7 +51,7 @@
 
     .map-consent__text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.85rem;
+        font-size: var(--fs-sm);
         line-height: 1.5;
         max-width: 28rem;
         color: color-mix(in srgb, var(--color-ink) 65%, transparent);
@@ -59,9 +59,9 @@
 
     .map-consent__button {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
+        font-size: var(--fs-md);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-cream);
         background-color: var(--color-terracotta);
         border-radius: 9999px;

@@ -6,15 +6,13 @@
     }
 
     .gate-footer__copyright-symbol {
-        font-size: 0.8rem;
-        font-weight: 300;
+        font-size: var(--fs-sm);
         line-height: 0;
     }
 
     /* ── Mobile ──────────────────────────────────────────────── */
     .gate-footer__mobile {
-        font-size: 11px;
-        font-weight: 300;
+        font-size: var(--fs-2xs);
     }
 
     .gate-footer__logo-mobile {
@@ -24,14 +22,14 @@
 
     .gate-footer__location-mobile {
         margin-top: -0.75rem;
-        font-size: 14px;
-        letter-spacing: 0.2em;
+        font-size: var(--fs-md);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
 
     .gate-footer__nav-link-mobile {
-        font-size: 1rem;
+        font-size: var(--fs-base);
         text-decoration: none;
         padding: 0.5rem;
     }
@@ -50,16 +48,15 @@
     }
 
     .gate-footer__copyright {
-        font-size: 0.8rem;
+        font-size: var(--fs-sm);
         text-align: center;
     }
 
     /* ── Desktop ─────────────────────────────────────────────── */
     .gate-footer__desktop {
-        font-size: 11px;
-        letter-spacing: 0.2em;
+        font-size: var(--fs-2xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
-        font-weight: 300;
         color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
 
@@ -89,6 +86,6 @@
 
     .gate-footer__copyright-desktop {
         justify-content: flex-end;
-        letter-spacing: 0.1em;
+        letter-spacing: var(--ls-caps);
     }
 }

@@ -24,8 +24,8 @@
 
     .location-hero__eyebrow {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.22em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
@@ -35,7 +35,7 @@
         font-size: clamp(3.5rem, 9vw, 6.5rem);
         font-weight: 700;
         line-height: 0.9;
-        letter-spacing: -0.01em;
+        letter-spacing: var(--ls-display);
         color: var(--color-cream);
     }
 
@@ -48,9 +48,9 @@
 
     .location-hero__cta {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.95rem;
+        font-size: var(--fs-base);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-cream);
         background-color: var(--color-terracotta);
         border-radius: 9999px;
@@ -80,8 +80,8 @@
 
     .location-eyebrow {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.22em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: var(--color-terracotta);
         margin-bottom: 0.75rem;
@@ -115,10 +115,10 @@
 
     .location-ticket__col {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+        font-size: var(--fs-2xs);
         font-weight: 400;
+        letter-spacing: var(--ls-caps);
+        text-transform: uppercase;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
         white-space: nowrap;
     }
@@ -137,7 +137,8 @@
 
     .location-ticket__time {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.8rem;
+        font-size: var(--fs-sm);
+        font-variant-numeric: tabular-nums;
         color: color-mix(in srgb, var(--color-ink) 70%, transparent);
     }
 
@@ -161,9 +162,9 @@
     .location-ticket__day--dated::after {
         display: block;
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.65rem;
+        font-size: var(--fs-2xs);
         font-weight: 400;
-        letter-spacing: 0.14em;
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
         margin-top: 0.2rem;
     }
@@ -192,9 +193,9 @@
             white-space: nowrap;
             transform: translateX(-1rem);
             font-family: var(--font-sans), sans-serif;
-            font-size: 0.65rem;
+            font-size: var(--fs-2xs);
             font-weight: 400;
-            letter-spacing: 0.14em;
+            letter-spacing: var(--ls-caps);
             text-transform: uppercase;
         }
 
@@ -216,14 +217,14 @@
 
     .location-contact-text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.5;
         color: var(--color-ink);
     }
 
     .location-contact-link {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         color: var(--color-ink);
         text-decoration: none;
         transition: color 150ms;
@@ -235,16 +236,16 @@
 
     .location-section-label {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
+        font-size: var(--fs-2xs);
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.625rem;
     }
 
     .location-chip {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.8rem;
+        font-size: var(--fs-sm);
         color: color-mix(in srgb, var(--color-ink) 75%, transparent);
         border: 1px solid var(--color-line);
         border-radius: 9999px;
@@ -272,7 +273,7 @@
 
     .location-menu-link {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.95rem;
+        font-size: var(--fs-md);
         font-weight: 600;
         color: var(--color-terracotta);
         text-decoration: none;
@@ -285,7 +286,7 @@
 
     .location-menu-note {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.75rem;
+        font-size: var(--fs-xs);
         text-align: center;
         color: color-mix(in srgb, var(--color-ink) 45%, transparent);
         margin-top: 1.25rem;
@@ -308,7 +309,7 @@
 
     .location-order-band__text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.5;
         max-width: 34rem;
         color: color-mix(in srgb, var(--color-cream) 85%, transparent);
@@ -316,9 +317,9 @@
 
     .location-order-band__cta {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-terracotta-deep);
         background-color: var(--color-cream);
         border-radius: 9999px;
@@ -335,9 +336,9 @@
 
     .location-order-band__phone {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         font-weight: 600;
-        letter-spacing: 0.02em;
+        letter-spacing: var(--ls-ui);
         color: var(--color-cream);
         border: 1px solid color-mix(in srgb, var(--color-cream) 45%, transparent);
         border-radius: 9999px;

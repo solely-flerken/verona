@@ -109,7 +109,7 @@
     .widget__title {
         font-family: var(--font-serif), serif;
         font-size: 1.25rem;
-        font-weight: 800;
+        font-weight: 700;
         text-align: center;
         color: var(--color-ink);
     }
@@ -161,7 +161,7 @@
     .widget__result-name {
         font-family: var(--font-serif), serif;
         font-size: 1.25rem;
-        font-weight: 800;
+        font-weight: 700;
         line-height: 1;
         color: var(--color-ink);
     }

@@ -20,8 +20,8 @@
 
     .jobs-hero__eyebrow {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.22em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: color-mix(in srgb, var(--color-cream) 75%, transparent);
     }
@@ -31,7 +31,7 @@
         font-size: clamp(3.5rem, 9vw, 6.5rem);
         font-weight: 700;
         line-height: 0.9;
-        letter-spacing: -0.01em;
+        letter-spacing: var(--ls-display);
         color: var(--color-cream);
     }
 
@@ -59,8 +59,8 @@
 
     .jobs-eyebrow {
         font-family: var(--font-sans), sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.22em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps-wide);
         text-transform: uppercase;
         color: var(--color-terracotta);
         margin-bottom: 0.75rem;
@@ -78,7 +78,7 @@
 
     .jobs-empty-text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.5;
         color: color-mix(in srgb, var(--color-ink) 65%, transparent);
         margin-bottom: 1.5rem;
@@ -93,16 +93,16 @@
 
     .jobs-benefit__title {
         font-family: var(--font-serif), serif;
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         font-weight: 600;
         line-height: 1.2;
         color: var(--color-ink);
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.5rem;
     }
 
     .jobs-benefit__text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.9rem;
+        font-size: var(--fs-md);
         line-height: 1.5;
         color: color-mix(in srgb, var(--color-ink) 65%, transparent);
     }
@@ -125,15 +125,15 @@
     .jobs-step__number {
         display: block;
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.14em;
+        font-size: var(--fs-xs);
+        letter-spacing: var(--ls-caps);
         color: color-mix(in srgb, var(--color-ink) 45%, transparent);
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.625rem;
     }
 
     .jobs-step__optional {
         color: var(--color-terracotta);
-        letter-spacing: 0.1em;
+        letter-spacing: var(--ls-caps);
         text-transform: uppercase;
     }
 
@@ -143,12 +143,12 @@
         font-weight: 600;
         line-height: 1.2;
         color: var(--color-ink);
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.5rem;
     }
 
     .jobs-step__text {
         font-family: var(--font-sans), sans-serif;
-        font-size: 0.95rem;
+        font-size: var(--fs-md);
         line-height: 1.5;
         color: color-mix(in srgb, var(--color-ink) 65%, transparent);
     }

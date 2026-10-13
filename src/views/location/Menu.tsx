@@ -22,7 +22,7 @@ function PriceRow({sizes, price}: { sizes: string[], price: MenuItem['price'] })
     return (
         <>
             {prices.map((p, i) => (
-                <span key={sizes[i]} className="menu__price menu__price-col">{p && `${p} €`}</span>
+                <span key={sizes[i]} className="menu__price menu__price-col">{p && `${p} €`}</span>
             ))}
         </>
     )
@@ -40,7 +40,7 @@ function ItemList({items, sizes, offset = 0}: { items: MenuItem[], sizes?: strin
                             <PriceRow sizes={sizes} price={item.price}/>
                         ) : (
                             <span className="menu__price">
-                                {typeof item.price === 'string' ? `${item.price} €` : `${Object.values(item.price).join(' / ')} €`}
+                                {typeof item.price === 'string' ? `${item.price} €` : `${Object.values(item.price).join(' / ')} €`}
                             </span>
                         )}
                     </div>
